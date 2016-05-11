@@ -1,0 +1,11 @@
+<h1>abhShoes</h1>
+
+<% if signed_in? %>
+  <h2> Welcome <%= @user.username %></h2>
+<% else %>
+  <h2> Welcome </h2>
+<% end %>
+
+<p><%= link_to "Sign Up", {:action => 'new', :controller=>"users" }%></p>
+<p><%= link_to "Log In", {:action => 'new', :controller=>"sessions" }%></p>
+                                                          

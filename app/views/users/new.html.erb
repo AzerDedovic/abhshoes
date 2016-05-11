@@ -1,0 +1,17 @@
+<h1>Sign Up</h1>
+
+<%= form_tag :action => 'create' do  %>
+
+<p><label for = "username">email</label>:
+	<%= text_field 'users', 'username', placeholder: "email" %></p>
+
+<p><label for = "password">Password</label>:
+	<%= password_field "users", "password", placeholder: "Password" %></p>
+
+<p><label for = "password_confirmation">Confirm password</label>:
+	<%= password_field "users", "password_confirmation", placeholder: "Confirm Password" %></p>
+
+
+<%= submit_tag "Sign Up" %>
+
+<% end -%>
