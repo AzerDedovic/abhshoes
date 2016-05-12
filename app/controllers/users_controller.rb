@@ -11,6 +11,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     @user.admin = false
+    #@user.password = BCrypt::Password.create(:password)
      if @user.save
        flash[:success] = "Uspjesna registracija"
      else
