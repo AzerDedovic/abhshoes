@@ -2,12 +2,15 @@ class User < ActiveRecord::Base
 
    validates :password_confirmation, :presence =>true
    validates :username, :presence => true #, :unique => true
+   #validates :username, presence: { message: "error" }
    validates :password, :presence =>true,  :confirmation =>true
    validates_confirmation_of :password
    validates_uniqueness_of :username
 
    validates_format_of :username, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, on: :create
    validates_length_of :password, minimum: 5, maximum: 30
+
+   #validates :title, presence: { message: "Story title is required" }
 
    #before_save :encrypt_password
    #after_save :clear_password

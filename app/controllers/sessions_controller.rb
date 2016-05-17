@@ -6,12 +6,12 @@ class SessionsController < ApplicationController
   	user = User.authenticate(params[:session][:username], params[:session][:password])
 
   	if user.nil?
-  		flash.now[:error] = "Invalid username or password"
+  		flash.now[:error] = "Invalid username or password!"
   		render :new
   	else
   		sign_in user
   		#redirect_to user
-      redirect_to url_for(:controller => :welcome, :action => :logged_in_index)
+      redirect_to url_for(:controller => :welcome, :action => :index)
     end
 end
   def destroy

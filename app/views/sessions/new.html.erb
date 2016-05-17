@@ -1,3 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Log In</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <%= stylesheet_link_tag "login.css" %> 
+
+</head>
+
+<body>
+
+<div class="container">
+ 	
+
+	<div class="row row-center ">
+    <div class="col-md-4">
+    </div>
+		<div class="col-md-4">
+			<%= form_for :session, url: 'create' do |f| %>
+      <div>
+			<h2 style="text-align:left;float:left;">Login to your account</h2>
+      <h3 style="text-align:right; float: right;"><%= link_to "Create account", {:action => 'new', :controller=>"users" } %> </h3> 
+      <hr style="clear:both;"/>
+    </div>
+
+			<% if flash[:error] %>
+				<div class="error"><%= flash[:error] %></div>
+			<% end %>
+      <div class="box">
+        <p>EMAIL</p>
+				<div class="field">
+					<%= f.text_field :username, class: "form-control", placeholder: "Email", autofocus: :true%>
+				</div> </br>
+        <p>PASSWORD</p>
+				<div class="field">
+					<%= f.password_field :password, class: "form-control", placeholder: "Password"%> </br>
+				</div> </div> </br>
+        	<div class="field">
+        			<%= f.check_box :remember_me %>
+        			<span class="remember">REMEMBER ME</span> 
+              <span><%= f.submit "LOGIN", class: "btn pull-right button-css", id: "submit"%></span>
+        		</div>
+        		 
+  			<%end%>
+			
+			
+		</div> 
+    <div class="col-md-4">
+    </div>
+	</div>
+</body>
+</html>
+
+<!--
+<form class = "form-horizontal" role = "form">
+   
+   <div class = "form-group">
+      <label for = "firstname" class = "col-sm-2 control-label">First Name</label>
+		
+      <div class = "col-sm-10">
+         <input type = "text" class = "form-control" id = "firstname" placeholder = "Enter First Name">
+      </div>
+   </div>
+   
+   <div class = "form-group">
+      <label for = "lastname" class = "col-sm-2 control-label">Last Name</label>
+		
+      <div class = "col-sm-10">
+         <input type = "text" class = "form-control" id = "lastname" placeholder = "Enter Last Name">
+      </div>
+   </div>
+   
+   <div class = "form-group">
+      <div class = "col-sm-offset-2 col-sm-10">
+         <div class = "checkbox">
+            <label><input type = "checkbox"> Remember me</label>
+         </div>
+      </div>
+   </div>
+   
+   <div class = "form-group">
+      <div class = "col-sm-offset-2 col-sm-10">
+         <button type = "submit" class = "btn btn-default">Sign in</button>
+      </div>
+   </div>
+	
+</form> -->
+
+<!--
 <h1>Log in</h1>
 
 <% if flash[:error] %>
@@ -10,3 +103,4 @@
 	<%= f.input :password, placeholder: "password" %></p>
 	<%= f.button :submit, "Log In" %>
 	<% end %>
+-->
