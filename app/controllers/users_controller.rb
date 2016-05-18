@@ -17,7 +17,7 @@ class UsersController < ApplicationController
      else
         
       render 'new'
-      flash[:error] = "Sorry, your registration attempt was unsuccessful."
+      #flash[:error] = "Sorry, your registration attempt was unsuccessful."
     end
   end
 
