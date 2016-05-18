@@ -30,13 +30,25 @@
 			
 			<div>
 			<h2 style="text-align:left;float:left;">Create your account</h2>
-      		<h3 style="text-align:right; float: right;"><%= link_to "Login to your account", {:action => 'new', :controller=>"sessions" } %> </h3> 
+      		<h4 style="text-align:right; float: right;"><%= link_to "Login to your account", {:action => 'new', :controller=>"sessions" } %> </h4> 
      		 <hr style="clear:both;"/>
     		</div>
 
-    		<% if flash[:error] %>
+    		<!--<% if flash[:error] %>
 				<p class="error"><%= flash[:error] %> </p> 
-			<% end %>
+			<% end %> -->
+			<div class="error">
+			<% if  @user.errors.any? %>
+				<h2>Errors:</h2>
+				<ul>
+					<% @user.errors.full_messages.each do |message| %>
+					<li>  <%= message %></li>
+					<% end %>
+
+				</ul>
+
+				<% end %>
+			</div>
 
 				<div class="box">
         		<p>EMAIL</p>
