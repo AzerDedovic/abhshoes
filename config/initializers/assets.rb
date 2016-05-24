@@ -12,3 +12,4 @@ Rails.application.config.assets.version = '1.0'
 Rails.application.config.assets.precompile += %w( header.css )
 Rails.application.config.assets.precompile += %w( images.css )
 Rails.application.config.assets.precompile += %w( login.css )
+Rails.application.config.assets.precompile += %w( featuredProducts.css )

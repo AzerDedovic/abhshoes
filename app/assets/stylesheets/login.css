@@ -30,6 +30,7 @@ a:hover {
     background-color: rgba(85, 85, 85, 0.05);
     border: 1px solid rgba(0, 0, 128, 0.11);
     margin: 0px;
+    height:inherit;
 }
 
 p{
@@ -53,7 +54,9 @@ p{
  	width: 118px;
 
 }
-
+.button-css:hover{
+	color: rgba(255, 167, 0, 0.74);
+}
 .error {
 	font-size: 12px;
 	font-family: sans-serif;

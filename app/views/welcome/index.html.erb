@@ -7,11 +7,34 @@
   	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> 
   	<%= stylesheet_link_tag "images.css" %> 
+  	<%= stylesheet_link_tag "featuredProducts.css" %> 
 </head>
 <body>
 <div class="col-md-8 col-sm-6 col-xs-4 coverImage">  
     
-</div>  
+</div> 
+<h4> Featured Products </h4>
+<div class="container products">
+
+<div class="row">
+	<% @featured_product.each do |f| %>
+  <div class="col-xs-6 col-sm-3">
+  	<div class="image hovereffect"><%= image_tag f.image, :size => "180x180" %>
+  		<a href="#"><div class="overlay">
+           <h2><%= f.name %></h2>
+           <p class="info" href="#"><%= f.price.round(2) %> KM</p>
+        </div> </a>
+  	</div>
+  </div>
+  <% end %>
+ 
+</div>
+ 
+
+
+
+
+
 
 </body>
 

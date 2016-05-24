@@ -14,7 +14,7 @@
 
 
 <div class="container">
-	<div class="container">
+	
  	
 
 	<div class="row row-center ">
@@ -49,25 +49,28 @@
 
 				<% end %>
 			</div>
+			
 
 				<div class="box">
-        		<p>EMAIL</p>
-				<div class="field">
-					<%= f.text_field "username", class: "form-control", placeholder: "Email", autofocus: :true%>
-				</div> </br>
-				<p>PASSWORD</p>
-				<div class="field">
-					<%= f.password_field  "password", class: "form-control", placeholder: "Password"%>
-				</div> </br>
-				<p>CONFIRM PASSWORD</p>
-				<div class="field">
-					<%= f.password_field "password_confirmation", class: "form-control", placeholder: "Confirm Password"%>
-				</div> </br> </div> </br>
+        			<p>EMAIL</p>
+					<div class="field">
+						<%= f.text_field "username", class: "form-control", placeholder: "Email", autofocus: :true%>
+					</div> </br>
+					<p>PASSWORD</p>
+					<div class="field">
+						<%= f.password_field  "password", class: "form-control", placeholder: "Password"%>
+					</div> </br>
+					<p>CONFIRM PASSWORD</p>
+					<div class="field">
+						<%= f.password_field "password_confirmation", class: "form-control", placeholder: "Confirm Password"%>
+					</div> </br> 
+				  </div> </br>
+			
 				
         		<div class="field">
   				
 					<%= f.submit "CREATE ACCOUNT", class: "btn pull-right button-css", id: "create"%>
-				</div>
+				</div> 
 			<%end%>
 			
 		</div>

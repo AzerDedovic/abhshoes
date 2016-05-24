@@ -3,8 +3,21 @@
  	font-size: 10px;
  	font-family: sans-serif;
  	font-weight: bolder;
+ 	text-transform: uppercase;
  
  }
+.cart {
+	font-size: 12.5px;
+}
 
-
-
+.footer{
+	color: rgba(128, 128, 128, 0.7);
+ 	font-size: 10px;
+ 	font-family: sans-serif;
+ 	margin-left: 40px;
+}
+.hr{
+	margin: 45px -185px 20px;
+    border: 0;
+    border-top: 1px solid #EEE;
+}
