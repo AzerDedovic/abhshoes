@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>abhShoes</title>
+	<meta charset="utf-8">
+  	<meta name="viewport" content="width=device-width, initial-scale=1">
+  	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> 
+  	<%= stylesheet_link_tag "detail.css" %> 
+</head>
+<body>
+</br>
+
+	<div class="container ">
+
+		<div class="row">
+			<% @product.each do  |product| %>
+  			<div class="col-md-1">
+  			</div>
+
+  			<div class="col-md-5">
+  				<div class="detailImage">
+				<%= image_tag product.image, :size => "300x300" %>
+			</div>
+
+           		
+            	
+  			</div>
+
+  			<div class="col-md-5">
+  				<p class="title"><%= product.name %> </p>
+  				<p class="description"><%= product.description %></p>
+
+  				<div class="btn-group">
+  					<p class="detail-button-text">Size:</p>
+  					<button type="button" class="btn btn-default btn-sm dropdown-toggle filter-button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width: 100px;margin-left:2px; text-align: left">
+    				<% if @chosenS.present? %>
+              <% @chosenS.each do |s| %>
+              <%= s.size %>
+              <% end %>
+              <% end %>
+             <span class="pull-right"><span class="caret" ></span></span>
+  					</button>
+  					<ul class="dropdown-menu">
+              <% @sizes.each do |size| %>
+              <% if @chosenC.present? %>
+              <% @chosenC.each do |c| %>
+              <li><%= link_to size.size, :size_id => size.id, :id => product.id, :color_id => c.id %> </li>
+              <%end %>
+              <%else%>
+  						<li><%= link_to size.size, :size_id => size.id, :id => product.id  %></li>
+              <% end %>
+              <% end %>
+    
+  					</ul>
+
+
+				</div>
+
+				<div class="btn-group">
+  					<p class="detail-button-text" style="margin-left:13px">Color:</p>
+  			
+            <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width: 100px;margin-left:14px; text-align: left">
+              <% if @chosenC.present? %>
+              <% @chosenC.each do |c| %>
+              <%= c.color %>
+              <% end %>
+              <% end %>
+    				<span class="pull-right"><span class="caret" ></span></span>
+            </button>
+  					<ul class="dropdown-menu" >
+  						<% @colors.each do |color| %>
+              <% if @chosenS.present? %>
+              <% @chosenS.each do |s| %>
+              <li><%= link_to color.color, :id => product.id, :color_id => color.id, :size_id => s.id %> </li>
+              <% end %>
+              <% else %>
+              <li><%= link_to color.color, :id => product.id,  :color_id => color.id %></li>
+              <% end %>
+              <% end %>
+    
+  					</ul>
+
+
+				</div>
+
+       
+
+				<div class="btn-group">
+  					<p class="detail-button-text" style="margin-left:13px">Quantity:</p>
+  					<button type="button" class="btn btn-default btn-sm dropdown-toggle"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width: 70px;margin-left:14px; text-align: left">
+    				 
+             <span class="pull-right"><span class="caret" ></span></span>
+  					</button>
+  					<ul class="dropdown-menu">
+              <li><%= link_to 1 %></li>
+              <li><%= link_to 2 %></li>
+              <li><%= link_to 3 %></li>
+              <li><%= link_to 4 %></li>
+              <li><%= link_to 5 %></li>
+    
+  					</ul>
+
+  					
+				</div>
+			</br>
+				<div class="btn-group">
+					<button type="button" class="btn btn-default btn-sm addtoCartButton" style="width: 116px;margin-left:2px; text-align: center; margin-top: 15px">Add to Cart</button>
+
+					<button type="button" class="btn btn-primary btn-sm background buyButton" style="width: 103px; margin-left:18px; text-align: center; margin-top: 15px">Buy it now</button>
+				</div>
+
+  			</div>
+  			<% end %>
+
+  			<div class="col-md-1">
+  			</div>
+
+  		</div>
+  	</div>
+  </br>
+
+<h5 class="text_like"> You may also like </h5>
+
+  <div class="container suggestedPart">
+<div class="row">
+  <div class="col-md-1">
+  </div>
+  
+ <div class="col-md-10">
+    
+    <% @featured_product.each do |f| %>
+    <div class="image hovereffect">
+     <%= image_tag f.image, :size => "180x180" %>
+      <div class="overlay">
+        <h2> <%= link_to f.name, :controller => "product", :action => "detail", :id => f.id %></h2>
+           <p class="info" href="#"><%= f.price.round(2) %> KM</p>
+        </div> 
+    </div>
+     <% end %>
+    </div>
+  
+ <div class="col-md-1">
+ </div>
+</div>
+</div>
+	
+
+
+
+
+
+  </body>
+
+</html>
+
+
+
+
+

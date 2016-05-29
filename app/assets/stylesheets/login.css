@@ -1,23 +1,25 @@
 h2{
 	font-size: 18px;
-	font-family: sans-serif;
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 h3{
 	font-size: 14px;
-	font-family: sans-serif;
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 
 }
-h4{
+h5{
 	font-size: 13px;
-	font-family: sans-serif;
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 	
 	padding-top: 13px;
+	text-align: right;
 
 
 }
 a{
 	color: rgba(255, 167, 0, 0.74);
 	text-decoration: none !important;
+
 }
 a:hover {
     color: #555;
@@ -35,13 +37,13 @@ a:hover {
 
 p{
 	font-size: 10px;
-	font-family: sans-serif;
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
  	font-weight: bolder;
  	color: #555;
 }
 .remember{
 	font-size: 10px;
-	font-family: sans-serif;
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
  	font-weight: bolder;
  	color: #555;
 }
@@ -49,7 +51,7 @@ p{
 	background: rgba(51, 50, 50, 0.95);
 	color: white;
 	font-size: 10px;
-	font-family: sans-serif;
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
  	font-weight: bolder;
  	width: 118px;
 
@@ -59,7 +61,7 @@ p{
 }
 .error {
 	font-size: 12px;
-	font-family: sans-serif;
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 	font-weight: bolder;
 	color: red;
 	text-align: left;

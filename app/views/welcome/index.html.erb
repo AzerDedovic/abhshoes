@@ -13,21 +13,29 @@
 <div class="col-md-8 col-sm-6 col-xs-4 coverImage">  
     
 </div> 
-<h4> Featured Products </h4>
-<div class="container products">
+
+<div class="container ">
 
 <div class="row">
-	<% @featured_product.each do |f| %>
-  <div class="col-xs-6 col-sm-3">
-  	<div class="image hovereffect"><%= image_tag f.image, :size => "180x180" %>
-  		<a href="#"><div class="overlay">
-           <h2><%= f.name %></h2>
-           <p class="info" href="#"><%= f.price.round(2) %> KM</p>
-        </div> </a>
-  	</div>
+  <div class="col-md-1">
   </div>
-  <% end %>
- 
+	
+ <div class="col-md-10">
+    <h4 style="margin-right:10px"> Featured Products </h4>
+    <% @featured_product.each do |f| %>
+    <div class="image hovereffect">
+     <%= image_tag f.image, :size => "180x180" %>
+      <div class="overlay">
+        <h2> <%= link_to f.name, :controller => "product", :action => "detail", :id => f.id %></h2>
+           <p class="info" href="#"><%= f.price.round(2) %> KM</p>
+        </div> 
+    </div>
+     <% end %>
+    </div>
+  
+ <div class="col-md-1">
+ </div>
+</div>
 </div>
  
 
@@ -76,4 +84,4 @@
 <p><%= link_to "Sign Up", {:action => 'new', :controller=>"users" }%></p>
 <p><%= link_to "Log In", {:action => 'new', :controller=>"sessions" }%></p>
                  <%= yield %>                                         
--->                                                          
+-->   

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>abhShoes</title>
+  <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> 
+    <%= stylesheet_link_tag "product.css" %> 
+</head>
+<body>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-1">
+      </div>
+
+      <div class="col-md-3">
+
+        <h2 class="category_title" style="margin-left:0px">Filter</h2>
+
+        
+          <p class="filter-text">Brand</p>
+          <div class="btn-group">
+              <button type="button" class="btn btn-default dropdown-toggle filter-button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width:160px; text-align:left">
+              All Brands <span class="pull-right"><span class="caret" ></span></span>
+              </button>
+              <ul class="dropdown-menu">
+                <li><a href="#">Converse</a></li>
+                <li><a href="#">Vans</a></li>
+                
+            </ul>
+       
+      </div>
+
+
+          <p class="filter-text">Size</p>
+          <div class="btn-group">
+              <button type="button" class="btn btn-default dropdown-toggle filter-button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width:160px; text-align:left">
+              All Sizes <span class="pull-right"><span class="caret" ></span></span>
+              </button>
+              <ul class="dropdown-menu">
+                <li><a href="#">35</a></li>
+                <li><a href="#">36</a></li>
+                <li><a href="#">37</a></li>
+                <li><a href="#">38</a></li>
+                <li><a href="#">39</a></li>
+                <li><a href="#">40</a></li>
+                <li><a href="#">41</a></li>
+                <li><a href="#">42</a></li>
+                <li><a href="#">43</a></li>
+                <li><a href="#">44</a></li>
+                <li><a href="#">45</a></li>
+                <li><a href="#">46</a></li>
+                
+              
+            </ul>
+        </div>
+
+
+
+          <p class="filter-text">Color</p>
+          <div class="btn-group">
+              <button type="button" class="btn btn-default dropdown-toggle filter-button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width:160px; text-align:left">
+              All Colors <span class="pull-right"><span class="caret" ></span></span>
+              </button>
+              <ul class="dropdown-menu">
+                <li><a href="#">Black</a></li>
+                <li><a href="#">White</a></li>
+                <li><a href="#">Red</a></li>
+                <li><a href="#">Blue</a></li>
+                <li><a href="#">Green</a></li>
+                <li><a href="#">Brown</a></li>
+                
+            </ul>
+        </div>
+      
+
+     
+          <p class="filter-text">Style</p>
+          <div class="btn-group">
+              <button type="button" class="btn btn-default dropdown-toggle filter-button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width:160px; text-align:left">
+              All Styles <span class="pull-right"><span class="caret" ></span></span>
+              </button>
+              <ul class="dropdown-menu">
+                <li><a href="#">Style</a></li>
+            </ul>
+      
+      </div>
+
+
+          <p class="filter-text">Price</p>
+          <div class="btn-group">
+              <button type="button" class="btn btn-default dropdown-toggle filter-button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width:160px; text-align:left">
+              All Prices <span class="pull-right"><span class="caret" ></span></span>
+              </button>
+              <ul class="dropdown-menu">
+                <li><a href="#">30KM - 60KM</a></li>
+                <li><a href="#">60KM - 90KM</a></li>
+                <li><a href="#">90KM - 120KM</a></li>
+                <li><a href="#">120KM< </a></li>
+             
+            </ul>
+        </div>
+     
+
+
+
+
+      </div>
+
+
+     
+
+      <div class="col-md-8">
+
+        <% @category.each do |c| %>
+        <h2 class="category_title"> <%= c.name %> 
+        <% end %>
+        <small>
+
+        <span class="btn-group btn pull-right buttonText" style="padding-right:63px">
+
+            <button class="btn btn-mini" >Price</button>
+            <button class="btn btn-mini dropdown-toggle" data-toggle="dropdown" >
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a href="#">Price: lowest first</a></li>
+                <li><a href="#">Price: highest first</a></li>
+            </ul>
+        </span>
+    </small>
+      </h2>
+     
+
+      <% @products.each do |product| %>
+
+      <div class="imageProduct">
+
+        <%= link_to (image_tag product.image, :size => "120x120"), :controller => "product", :action => "detail", :id => product.id %>
+
+       
+          <h4> <%= product.name %> </br> <%= product.price.round(2) %> KM 
+          </h4>
+
+          <% @color_id=Variant.where(product_id: product.id).select('color_id') %>
+          <% @color_name=Color.where(id: @color_id).to_a %>
+
+          <div class="positionColors">
+            <% @color_name.each do |i| %>
+            <div class="circle" style="background: <%= i.code %>;">
+            </div>
+            <% end %>
+          </div>
+
+        
+
+
+
+
+
+      </div>
+      <% end %>
+
+      
+
+
+     
+    </div>
+  </div>
+</body>

@@ -12,8 +12,12 @@
 
   <nav class="navbar navbar-inverse navbar-static-top " role = "navigation" style="color: #fcf8e3">
   <div class="container-fluid">
+    <div class="row">
     <!-- Brand and toggle get grouped for better mobile display -->
-    
+    <div class="col-md-1">
+    </div>
+    <div class="col-md-10">
+
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
         <span class="sr-only">Toggle navigation</span>
@@ -21,7 +25,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/" style="margin-left: 150px; margin-right: 50px; color: #fcf8e3">abhShoes</a>
+      <a class="navbar-brand" href="/" style="margin-left:60px; margin-right: 50px; color: #fcf8e3">abhShoes</a>
     </div> 
 
     <!-- Collect the nav links, forms, and other content for toggling --> 
@@ -29,14 +33,12 @@
       <ul class="nav navbar-nav">
         <% categories=Category.all %>
         <% categories.each do |f| %>
-        <li class ="nav-menu"><a href="#" ><%= f.name %></a></li>
-        <!--<li class ="nav-menu"><a href="#">MENS</a></li>
-        <li class ="nav-menu"><a href="#" >KIDS</a></li>
-        <li class ="nav-menu"><a href="#" >SPORTS</b></a></li>--> 
+        <li class ="nav-menu"><%= link_to f.name ,{:action => 'show', :controller=>"product", :tag => f.tag }%></li> 
+        
         <% end %>
       </ul>
       
-      <ul class="nav navbar-nav navbar-right">
+      <ul class="nav navbar-nav navbar-right nav-pills" role="tablist">
         <% if signed_in? %>
           <li class ="nav-menu"><a><b> Welcome <%= @user.username %></b></a></li>
           <li class ="nav-menu"><%= link_to "LOGOUT", {:action => 'destroy', :controller=>"sessions" }%></li>
@@ -44,12 +46,16 @@
           <li class ="nav-menu"><%= link_to "LOGIN", {:action => 'new', :controller=>"sessions" }%></li>
           <li class ="nav-menu"><%= link_to "REGISTER", {:action => 'new', :controller=>"users" }%></li>
         <% end %>
-        <li class ="nav-menu"><a href="#" ><i class="glyphicon glyphicon-shopping-cart cart" style="margin-right: 160px; margin-left:30px"></i></a></li>
+        <li class ="nav-menu"><a href="#" ><i class="glyphicon glyphicon-shopping-cart cart " style="margin-left:30px"></i><span class="badge" style="font-size:10px; position: inherit; top: -1px; margin-right:60px">3</span></a></li>
 
        
     
       </ul>
     </div><!-- /.navbar-collapse --> 
+  </div>
+  <div class="col-md-1">
+  </div>
+</div>
 
   </div><!-- /.container-fluid --> 
 
@@ -101,7 +107,7 @@
 <%= yield %>
 
 <footer>
-  <hr class="hr col-md-12"/>
+  <hr class="hr"/>
   <p class="footer"> Copyright&copy;abhShoes. All rights reserved. </p>
 </footer>
 
