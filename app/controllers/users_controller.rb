@@ -13,7 +13,8 @@ class UsersController < ApplicationController
     @user.admin = false
     #@user.password = BCrypt::Password.create(:password)
      if @user.save
-       flash[:success] = "Registration successful!"
+      @cart = Cart.create(user_id: @user.id)
+      flash[:success] = "Registration successful!"
      else
         
       render 'new'
