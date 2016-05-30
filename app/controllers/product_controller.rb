@@ -33,6 +33,7 @@ class ProductController < ApplicationController
 		@chosenColor=params[:color_id]
 		@chosenSize=params[:size_id]
 
+
 		#@sizes_id=Variant.where(product_id: @id).select('size_id')
 		#@sizes=Size.where(id: @sizes_id).to_a
 
@@ -52,34 +53,40 @@ class ProductController < ApplicationController
 
 		if !@chosenColor.present? and !@chosenSize.present?
 			@sizes_id=Variant.where(product_id: @id).select('size_id')
-			@sizes=Size.where(id: @sizes_id).to_a
+			@sizes=Size.where(id: @sizes_id).order('size ASC').to_a
 
 			@colors_id=Variant.where(product_id: @id).select('color_id')
-			@colors=Color.where(id: @colors_id).to_a
+			@colors=Color.where(id: @colors_id).order('color ASC').to_a
 
 
-		elsif @chosenColor.present? and !@choesnSize.present?
-			@sizes_id=Variant.where(product_id: @id, color_id: @chosenColor.to_i).select('size_id')
-			@sizes=Size.where(id: @sizes_id).to_a
-			@colors_id=Variant.where(product_id: @id).select('color_id')
-			@colors=Color.where(id: @colors_id).to_a
-			@chosenC=Color.where(id: @chosenColor).to_a
 		
-		elsif !@chosenColor.present? and @chosenSize.present?
+		
+		elsif @chosenSize.present? and !@chosenColor.present? 
 			@colors_id=Variant.where(product_id: @id, size_id: @chosenSize.to_i).select('color_id')
-			@colors=Color.where(id: @colors_id).to_a
+			@colors=Color.where(id: @colors_id).order('color ASC').to_a
 			@sizes_id=Variant.where(product_id: @id).select('size_id')
-			@sizes=Size.where(id: @sizes_id).to_a
+			@sizes=Size.where(id: @sizes_id).order('size ASC').to_a
 			@chosenS=Size.where(id: @chosenSize).to_a
-		#elsif @chosenColor.present? and @chosenSize.present?
-		else 
+			
+
+		elsif @chosenColor.present? and !@chosenSize.present?
+			@sizes_id=Variant.where(product_id: @id, color_id: @chosenColor.to_i).select('size_id')
+			@sizes=Size.where(id: @sizes_id).order('size ASC').to_a
+			@colors_id=Variant.where(product_id: @id).select('color_id')
+			@colors=Color.where(id: @colors_id).order('color ASC').to_a
 			@chosenC=Color.where(id: @chosenColor).to_a
-			@chosenS=Size.where(id: @chosenSize).to_a
+			
+		#elsif @chosenColor.present? and @chosenSize.present?
+		elsif @chosenColor.present? and @chosenSize.present?
+			
+			@chosenC=Color.where(id: @chosenColor)
+			@chosenS=Size.where(id: @chosenSize)
+			
 			@sizes_id=Variant.where(product_id: @id).select('size_id')
-			@sizes=Size.where(id: @sizes_id).to_a
+			@sizes=Size.where(id: @sizes_id).order('size ASC').to_a
 
 			@colors_id=Variant.where(product_id: @id).select('color_id')
-			@colors=Color.where(id: @colors_id).to_a
+			@colors=Color.where(id: @colors_id).order('color ASC').to_a
 		end
 
 

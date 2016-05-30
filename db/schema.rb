@@ -11,10 +11,48 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160523100244) do
+ActiveRecord::Schema.define(version: 20160530015431) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bills", force: :cascade do |t|
+    t.string   "full_name"
+    t.string   "address"
+    t.string   "city"
+    t.string   "region"
+    t.string   "zip"
+    t.string   "country"
+    t.string   "phone"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "order_id"
+    t.integer  "delivery_id"
+  end
+
+  add_index "bills", ["delivery_id"], name: "index_bills_on_delivery_id", using: :btree
+  add_index "bills", ["order_id"], name: "index_bills_on_order_id", using: :btree
+
+  create_table "cart_items", force: :cascade do |t|
+    t.integer  "cart_id"
+    t.integer  "product_id"
+    t.integer  "size"
+    t.integer  "quantity"
+    t.string   "color"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "cart_items", ["cart_id"], name: "index_cart_items_on_cart_id", using: :btree
+  add_index "cart_items", ["product_id"], name: "index_cart_items_on_product_id", using: :btree
+
+  create_table "carts", force: :cascade do |t|
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "carts", ["user_id"], name: "index_carts_on_user_id", using: :btree
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -30,6 +68,23 @@ ActiveRecord::Schema.define(version: 20160523100244) do
     t.string   "code"
   end
 
+  create_table "deliveries", force: :cascade do |t|
+    t.string   "full_name"
+    t.string   "address"
+    t.string   "city"
+    t.string   "region"
+    t.string   "zip"
+    t.string   "country"
+    t.string   "phone"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "order_id"
+    t.integer  "cart_id"
+  end
+
+  add_index "deliveries", ["cart_id"], name: "index_deliveries_on_cart_id", using: :btree
+  add_index "deliveries", ["order_id"], name: "index_deliveries_on_order_id", using: :btree
+
   create_table "images", force: :cascade do |t|
     t.integer  "product_id"
     t.boolean  "default"
@@ -40,6 +95,31 @@ ActiveRecord::Schema.define(version: 20160523100244) do
   end
 
   add_index "images", ["product_id"], name: "index_images_on_product_id", using: :btree
+
+  create_table "order_items", force: :cascade do |t|
+    t.string   "name"
+    t.decimal  "price"
+    t.string   "image"
+    t.integer  "size"
+    t.string   "color"
+    t.integer  "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "order_id"
+  end
+
+  add_index "order_items", ["order_id"], name: "index_order_items_on_order_id", using: :btree
+
+  create_table "orders", force: :cascade do |t|
+    t.integer  "user_id"
+    t.decimal  "total_price"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "delivery_id"
+  end
+
+  add_index "orders", ["delivery_id"], name: "index_orders_on_delivery_id", using: :btree
+  add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
 
   create_table "product_categories", force: :cascade do |t|
     t.integer  "product_id"
@@ -91,7 +171,17 @@ ActiveRecord::Schema.define(version: 20160523100244) do
   add_index "variants", ["product_id"], name: "index_variants_on_product_id", using: :btree
   add_index "variants", ["size_id"], name: "index_variants_on_size_id", using: :btree
 
+  add_foreign_key "bills", "deliveries"
+  add_foreign_key "bills", "orders"
+  add_foreign_key "cart_items", "carts"
+  add_foreign_key "cart_items", "products"
+  add_foreign_key "carts", "users"
+  add_foreign_key "deliveries", "carts"
+  add_foreign_key "deliveries", "orders"
   add_foreign_key "images", "products"
+  add_foreign_key "order_items", "orders"
+  add_foreign_key "orders", "deliveries"
+  add_foreign_key "orders", "users"
   add_foreign_key "product_categories", "categories"
   add_foreign_key "product_categories", "products"
   add_foreign_key "variants", "colors"

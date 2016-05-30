@@ -33,11 +33,10 @@
 
   				<div class="btn-group">
   					<p class="detail-button-text">Size:</p>
-  					<button type="button" class="btn btn-default btn-sm dropdown-toggle filter-button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width: 100px;margin-left:2px; text-align: left">
+  					<button type="button" class="btn btn-default btn-sm dropdown-toggle filter-button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width: 100px;margin-left:2px; text-align: left; border-radius: 2px">
     				<% if @chosenS.present? %>
-              <% @chosenS.each do |s| %>
-              <%= s.size %>
-              <% end %>
+              <%= @chosenS.size  %>
+              
               <% end %>
              <span class="pull-right"><span class="caret" ></span></span>
   					</button>
@@ -45,9 +44,9 @@
               <% @sizes.each do |size| %>
               <% if @chosenC.present? %>
               <% @chosenC.each do |c| %>
-              <li><%= link_to size.size, :size_id => size.id, :id => product.id, :color_id => c.id %> </li>
-              <%end %>
-              <%else%>
+              <li><%= link_to size.size, :id => product.id, :color_id => c.id, :size_id => size.id %> </li>
+              <% end %>
+              <% else %>
   						<li><%= link_to size.size, :size_id => size.id, :id => product.id  %></li>
               <% end %>
               <% end %>
@@ -60,10 +59,11 @@
 				<div class="btn-group">
   					<p class="detail-button-text" style="margin-left:13px">Color:</p>
   			
-            <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width: 100px;margin-left:14px; text-align: left">
+            <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width: 100px;margin-left:14px; text-align: left; border-radius: 2px">
               <% if @chosenC.present? %>
               <% @chosenC.each do |c| %>
               <%= c.color %>
+              <% @color=c.color %>
               <% end %>
               <% end %>
     				<span class="pull-right"><span class="caret" ></span></span>
@@ -84,30 +84,33 @@
 
 				</div>
 
-       
+      <div>
+        <form role="form">
+          <div class="form-group">
+            <label for="quantity" class="detail-button-text" style="margin-left:3px; margin-top: 16px;">Quantity:</label>
+            <select input type="quantity" class="form-control" id="quantity" style="width: 70px;margin-left:3px; margin-bottom: -5px; text-align: left; border-radius: 2px; margin-top: 1px; height: 31px; ">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </select>
+        </div>
+      </form>
+  </div>
+  <p class="price">Unit Price: <span style="color: green"><%= product.price.round(2) %></span> KM</h4>
+        
 
-				<div class="btn-group">
-  					<p class="detail-button-text" style="margin-left:13px">Quantity:</p>
-  					<button type="button" class="btn btn-default btn-sm dropdown-toggle"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width: 70px;margin-left:14px; text-align: left">
-    				 
-             <span class="pull-right"><span class="caret" ></span></span>
-  					</button>
-  					<ul class="dropdown-menu">
-              <li><%= link_to 1 %></li>
-              <li><%= link_to 2 %></li>
-              <li><%= link_to 3 %></li>
-              <li><%= link_to 4 %></li>
-              <li><%= link_to 5 %></li>
-    
-  					</ul>
-
-  					
-				</div>
 			</br>
 				<div class="btn-group">
-					<button type="button" class="btn btn-default btn-sm addtoCartButton" style="width: 116px;margin-left:2px; text-align: center; margin-top: 15px">Add to Cart</button>
 
-					<button type="button" class="btn btn-primary btn-sm background buyButton" style="width: 103px; margin-left:18px; text-align: center; margin-top: 15px">Buy it now</button>
+          
+
+          <%= link_to raw('<button type="button" class="btn btn-default btn-sm addtoCartButton" style="width: 116px;margin-left:2px; text-align: center; margin-top: 15px">Add to Cart</button>'), {:controller =>'cart', :action => 'add', :method => :post, :id => product.id, :color => @color, :size => @size} %> 
+
+					<!--<button type="button" class="btn btn-default btn-sm addtoCartButton" style="width: 116px;margin-left:2px; text-align: center; margin-top: 15px">Add to Cart</button>--> 
+
+					<%= link_to raw('<button type="button" class="btn btn-primary btn-sm background buyButton" style="width: 103px; margin-left:18px; text-align: center; margin-top: 15px">Buy it now</button>') %>
 				</div>
 
   			</div>
