@@ -47,14 +47,10 @@
         <% else %>
           <li class ="nav-menu"><%= link_to "LOGIN", {:action => 'new', :controller=>"sessions" }%></li>
           <li class ="nav-menu"><%= link_to "REGISTER", {:action => 'new', :controller=>"users" }%></li>
-          <li> <%= link_to raw('<span class="glyphicon glyphicon-shopping-cart cart" style="margin-left:30px" ></span><span class="badge" style="font-size:10px; position: inherit; top: -1px; margin-right:60px">3</span>'),   {:controller =>'sessions', :action => 'new', :error => "Please login to view your cart"} %>
+          <li> <%= link_to raw('<span class="glyphicon glyphicon-shopping-cart cart" style="margin-left:30px" ></span><span class="badge" style="font-size:10px; position: inherit; top: -1px; margin-right:60px">3</span>'), {:controller =>'sessions', :action => 'new'} %> 
         <% end %>
         
-        <!--<li class ="nav-menu">
-          <span ><%= link_to "", :action => "show", :controller => "cart"  %></span>
-          <i class="glyphicon glyphicon-shopping-cart cart " style="margin-left:30px;top: -1px;"></i><span class="badge" style="font-size:10px; position: inherit; top: -1px; margin-right:60px">3</span>
-      
-      </li>-->
+        
      
 
      
