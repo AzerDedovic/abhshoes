@@ -40,30 +40,13 @@
       
       <ul class="nav navbar-nav navbar-right nav-pills" role="tablist">
         <% if signed_in? %>
-          <li class ="nav-menu"><b> <p class="username">Welcome <%= @user.username %></p></b></li>
+          <li class ="nav-menu"><a><b> Welcome <%= @user.username %></b></a></li>
           <li class ="nav-menu"><%= link_to "LOGOUT", {:action => 'destroy', :controller=>"sessions" }%></li>
-          <li> <%= link_to raw('<span class="glyphicon glyphicon-shopping-cart cart" style="margin-left:30px" ></span><span class="badge" style="font-size:10px; position: inherit; top: -1px; margin-right:60px">3</span>'),   {:controller =>'cart', :action => 'show'} %> 
-        </li>
         <% else %>
           <li class ="nav-menu"><%= link_to "LOGIN", {:action => 'new', :controller=>"sessions" }%></li>
           <li class ="nav-menu"><%= link_to "REGISTER", {:action => 'new', :controller=>"users" }%></li>
-          <li> <%= link_to raw('<span class="glyphicon glyphicon-shopping-cart cart" style="margin-left:30px" ></span><span class="badge" style="font-size:10px; position: inherit; top: -1px; margin-right:60px">3</span>'),   {:controller =>'sessions', :action => 'new', :error => "Please login to view your cart"} %>
         <% end %>
-        
-        <!--<li class ="nav-menu">
-          <span ><%= link_to "", :action => "show", :controller => "cart"  %></span>
-          <i class="glyphicon glyphicon-shopping-cart cart " style="margin-left:30px;top: -1px;"></i><span class="badge" style="font-size:10px; position: inherit; top: -1px; margin-right:60px">3</span>
-      
-      </li>-->
-     
-
-     
-      
-    
-
-
-
-       <!-- <li class ="nav-menu"><a href="#" ><i class="glyphicon glyphicon-shopping-cart cart " style="margin-left:30px"></i><span class="badge" style="font-size:10px; position: inherit; top: -1px; margin-right:60px">3</span></a></li>-->
+        <li class ="nav-menu"><a href="#" ><i class="glyphicon glyphicon-shopping-cart cart " style="margin-left:30px"></i><span class="badge" style="font-size:10px; position: inherit; top: -1px; margin-right:60px">3</span></a></li>
 
        
     

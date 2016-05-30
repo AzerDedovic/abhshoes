@@ -1,8 +1,5 @@
 class User < ActiveRecord::Base
 
-   has_many :cart
-   has_many :orders
-
    #attr_accessible :username, :password
    validates :username, :presence => true
    validates :password, :presence =>true
