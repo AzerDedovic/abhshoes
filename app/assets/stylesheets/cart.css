@@ -1,0 +1,209 @@
+.category_title{
+	font-size: 15px;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    text-align: left;
+    margin-left: 8px;
+    text-transform: none;
+    font-weight: bolder;
+    color: rgba(0, 0, 0, 0.61);
+    margin-bottom: 34px;
+}
+
+.imageProduct{
+
+      border: 1px solid rgba(2, 26, 64, 0.25);
+    width: 160px;
+    height: 149px;
+    margin: 2px;
+    padding-left: 20px;
+    padding-bottom: 0px;
+    padding-top: 14px;
+    margin-bottom: 33px;
+    display: inherit;
+}
+.description_cart{
+	display: inline;
+    position: absolute;
+    font-size: 12px;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    text-align: left;
+    margin-left: 187px;
+    text-transform: none;
+    font-weight: bolder;
+    color: rgba(0, 0, 0, 0.61);
+    margin-bottom: -4px;
+    margin-top: -142px
+
+}
+.price{
+	display: inline;
+	position: absolute;
+    font-size: 12px;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    text-align: right;
+    text-transform: none;
+    font-weight: bolder;
+    color: rgba(0, 0, 0, 0.61);
+    margin-bottom: -4px;
+    margin-top: -142px;
+    text-align: right;
+    padding-left: 460px
+
+
+}
+.price_item{
+	display: inline;
+	position: absolute;
+    font-size: 14px;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    text-align: right;
+    text-transform: none;
+    font-weight: bolder;
+    color: black;
+    margin-bottom: -4px;
+    margin-top: -125px;
+    text-align: right;
+    padding-left: 460px
+
+}
+.quantity_cart{
+	display: inline;
+	position: absolute;
+    font-size: 10px;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    text-align: right;
+    text-transform: none;
+    font-weight: bolder;
+    color: rgba(0, 0, 0, 0.61);
+    margin-bottom: -4px;
+    margin-top: -89px;
+    text-align: right;
+    padding-left: 413px
+
+}
+.quantity_item{
+	
+    display: inline;
+    position: absolute;
+    font-size: 12px;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    text-align: right;
+    text-transform: none;
+    font-weight: bolder;
+    color: rgba(0, 0, 0, 0.61);
+    margin-bottom: -4px;
+    margin-top: -92px;
+    text-align: right;
+    border-radius: 3px;
+    border-color: rgba(0, 0, 0, 0.61);
+    padding-left: 16px;
+    padding-right: 16px;
+    border: solid;
+    margin-left: 460px;
+    border-width: thin;
+
+    
+}
+.box_order{
+	position: inherit;
+    padding-top: 23px;
+    padding: 34px;
+    border-radius: 2px;
+    border: 1px solid #CCC;
+    margin: 0px;
+    height:inherit;
+}
+.order_title{
+	font-size: 15px;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    text-align: left;
+    margin-left: 0px;
+    text-transform: none;
+    font-weight: bolder;
+    color: rgba(0, 0, 0, 0.68);
+    margin-bottom: 0px;
+}
+.order_quantity{
+	font-size: 15px;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    text-align: left;
+    margin-left: 0px;
+    text-transform: none;
+    font-weight: bolder;
+    color: #999;
+    margin-bottom: 0px;
+
+}
+.order_price{
+	font-size: 15px;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    text-align: right;
+    margin-left: 0px;
+    text-transform: none;
+    font-weight: bolder;
+    color: rgba(0, 0, 0, 0.61);
+    margin-bottom: 0px;
+    margin-top: 7px;
+}
+.order_sum{
+	font-size: 18px;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    text-align: right;
+    margin-left: 0px;
+    text-transform: none;
+    font-weight: bolder;
+    color: black;
+    margin-bottom: 0px;
+    margin-top: 1px;
+
+}
+.hr_order{
+	border-top: 1px solid #999;
+}
+.total{
+	font-size: 15px;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    text-align: right;
+    margin-left: 0px;
+    text-transform: none;
+    font-weight: bolder;
+    color: rgba(0, 0, 0, 0.61);
+    margin-bottom: 0px;
+    margin-top: 7px;
+
+}
+.continueButton{
+	font-size: 13px;
+	text-transform: uppercase;
+	font-weight: bolder;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        margin-top: 0px;
+    position: absolute;
+    top: 13px;
+    left: 136px;
+
+}
+.continueButton:hover{
+	background: rgba(0, 0, 0, 0.61);
+}
+.background{
+	background-color: #222222;
+	
+
+}
+.dropButton{
+	font-size: 13px;
+	text-transform: uppercase;
+	font-weight: bolder;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    color: rgba(0, 0, 0, 0.61);
+    position: absolute;
+    top: 13px;
+    left: 10px;
+    background: white;
+
+}
+.dropButton:hover{
+	background-color:rgba(0, 0, 0, 0.61);
+
+}

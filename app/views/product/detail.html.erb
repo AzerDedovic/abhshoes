@@ -30,13 +30,25 @@
   			<div class="col-md-5">
   				<p class="title"><%= product.name %> </p>
   				<p class="description"><%= product.description %></p>
+          
+          
+          <%= form_for :cart_item, :url=>{:action => "add", :controller => "cart"} do |f| %>
+          
+          <%= f.hidden_field :product_id, :value => product.id %>
+          
+         
+          
+          <p class="error"><%= flash[:error] %></p>
 
   				<div class="btn-group">
   					<p class="detail-button-text">Size:</p>
   					<button type="button" class="btn btn-default btn-sm dropdown-toggle filter-button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width: 100px;margin-left:2px; text-align: left; border-radius: 2px">
     				<% if @chosenS.present? %>
-              <%= @chosenS.size  %>
-              
+              <% @chosenS.each do |s| %>
+              <%= s.size %>
+              <% @size=s.size %>
+              <%= f.hidden_field :size, :value => @size %>
+              <% end %>
               <% end %>
              <span class="pull-right"><span class="caret" ></span></span>
   					</button>
@@ -64,6 +76,7 @@
               <% @chosenC.each do |c| %>
               <%= c.color %>
               <% @color=c.color %>
+              <%= f.hidden_field :color, :value => @color %>
               <% end %>
               <% end %>
     				<span class="pull-right"><span class="caret" ></span></span>
@@ -84,34 +97,33 @@
 
 				</div>
 
-      <div>
-        <form role="form">
-          <div class="form-group">
-            <label for="quantity" class="detail-button-text" style="margin-left:3px; margin-top: 16px;">Quantity:</label>
-            <select input type="quantity" class="form-control" id="quantity" style="width: 70px;margin-left:3px; margin-bottom: -5px; text-align: left; border-radius: 2px; margin-top: 1px; height: 31px; ">
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
-            </select>
+
+        <div class="btn-group">
+            <p class="detail-button-text", style="margin-left:13px">Quantity:</p>
+        <div style="width: 70px;margin-left:14px; margin-bottom: -5px; text-align: left; border-radius: 2px; margin-top: 1px; height: 33px;">
+        <%= f.number_field :quantity, :min => '1', :max => '5', :class => "quantity", :value => '1' %>
+          </div>
         </div>
-      </form>
-  </div>
-  <p class="price">Unit Price: <span style="color: green"><%= product.price.round(2) %></span> KM</h4>
+
         
+        
+      
+      
+  <p class="price">Unit Price: <span style="color: green"><%= product.price.round(2) %></span> KM</h4>
+    
+  
+        <p class="success"><%= flash[:success] %></p>
 
 			</br>
+        <div>
+          <%= submit_tag "Add to Cart", class: "btn btn-default btn-sm addtoCartButton", id: "addToCart"%>
+          <% end %>
+        </div>
 				<div class="btn-group">
 
-          
-
-          <%= link_to raw('<button type="button" class="btn btn-default btn-sm addtoCartButton" style="width: 116px;margin-left:2px; text-align: center; margin-top: 15px">Add to Cart</button>'), {:controller =>'cart', :action => 'add', :method => :post, :id => product.id, :color => @color, :size => @size} %> 
-
-					<!--<button type="button" class="btn btn-default btn-sm addtoCartButton" style="width: 116px;margin-left:2px; text-align: center; margin-top: 15px">Add to Cart</button>--> 
-
-					<%= link_to raw('<button type="button" class="btn btn-primary btn-sm background buyButton" style="width: 103px; margin-left:18px; text-align: center; margin-top: 15px">Buy it now</button>') %>
+					<%= link_to raw('<button type="button" class="btn btn-primary btn-sm background buyButton" style="width: 103px; margin-left:120px; text-align: center; margin-top: 0px"; position: absolute; top: -42px>Buy it now</button>') %>
 				</div>
+
 
   			</div>
   			<% end %>

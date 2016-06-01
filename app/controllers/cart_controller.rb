@@ -1,11 +1,44 @@
 class CartController < ApplicationController
 
+
 	def show
 		@user=current_user
+		if !signed_in?
+			flash[:error] = "Please login to view your cart"
+			redirect_to url_for(:controller => :sessions, :action => :new)
+			
+		end
+		@cart_id=Cart.find_by(user_id: @user.id).id
+		@items=CartItem.where(cart_id: @cart_id).order(created_at: :desc).to_a
+		@item_quantity=@items.count
+		
 	end
+	def cart_params
+	@user_id=current_user.id
+	@cart = Cart.find_by(user_id: @user_id).id
+  	params.require(:cart_item).permit(:product_id, :color, :size, :quantity).merge(cart_id: @cart)
+  end
+
 	def add
+		if signed_in?
 		@user=current_user
-		@id=params[:id]
-		redirect_to url_for(:controller => :product, :action => :detail, :id => @id )
+		@id = params[:product_id]
+		@item = CartItem.new(cart_params)
+		if @item.save
+			flash[:success] = Product.find_by(id: @item.product_id).name + " was just added to your cart."
+		else
+			flash[:error] = "Please choose size and color."
+		end
+		
+		redirect_to url_for(:controller => :product, :action => :detail, :id => @item.product_id )
+		else 
+			flash[:error] ="Please Login to Add Item to Your Cart."
+		redirect_to url_for(:controller => :sessions, :action => :new)
+
 	end
+		
+		
+	end
+	
 end
+
