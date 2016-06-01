@@ -8,6 +8,26 @@
     color: rgba(0, 0, 0, 0.61);
     margin-bottom: 34px;
 }
+.delivery_address_title{
+	font-size: 13px;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    text-align: left;
+    text-transform: none;
+    font-weight: bolder;
+    color: rgba(0, 0, 0, 0.61);
+    margin-bottom: 15px;
+
+}
+.delivery_address_field{
+	font-size: 12px;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    text-align: left;
+    text-transform: none;
+    font-weight: bolder;
+    color: rgba(0, 0, 0, 0.61);
+    margin-bottom: 15px;
+
+}
 
 .imageProduct{
 
@@ -35,7 +55,7 @@
     margin-top: -142px
 
 }
-.price{
+.price_o{
 	display: inline;
 	position: absolute;
     font-size: 12px;
@@ -186,6 +206,10 @@
 .continueButton:hover{
 	background: rgba(0, 0, 0, 0.61);
 }
+.continue_delivery:hover{
+	background: rgba(0, 0, 0, 0.61);
+
+}
 .background{
 	background-color: #222222;
 	
@@ -205,5 +229,36 @@
 }
 .dropButton:hover{
 	background-color:rgba(0, 0, 0, 0.61);
+
+}
+.delivery_field{
+	width:380px;
+}
+
+.continue_delivery {
+	font-size: 13px;
+    text-transform: uppercase;
+    font-weight: bolder;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    margin-top: 0px;
+    position: absolute;
+    top: 13px;
+    left: 257px;
+    width: 102px;
+    border-radius: 2px;
+}
+.payButton{
+	font-size: 13px;
+	text-transform: uppercase;
+	font-weight: bolder;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        margin-top: 0px;
+    position: absolute;
+    top: 13px;
+    left: 136px;
+
+}
+.payButton:hover{
+	background: #31708F;
 
 }

@@ -26,6 +26,10 @@ Rails.application.routes.draw do
    get 'cart/show'
    post 'cart/add'
    get 'cart/add'
+   get 'cart/delivery'
+   get 'cart/delivery_address'
+   post 'cart/delivery_address'
+   get 'cart/confirmation'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

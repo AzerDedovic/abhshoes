@@ -107,14 +107,14 @@
 
         
         
-      
-      
-  <p class="price">Unit Price: <span style="color: green"><%= product.price.round(2) %></span> KM</h4>
+        </br>
+      <div>
+        <p class="price">Unit Price: <span style="color: green"><%= product.price.round(2) %></span> KM</p>
     
   
         <p class="success"><%= flash[:success] %></p>
+      </div>
 
-			</br>
         <div>
           <%= submit_tag "Add to Cart", class: "btn btn-default btn-sm addtoCartButton", id: "addToCart"%>
           <% end %>

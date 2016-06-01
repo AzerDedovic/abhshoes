@@ -35,10 +35,44 @@ class CartController < ApplicationController
 			flash[:error] ="Please Login to Add Item to Your Cart."
 		redirect_to url_for(:controller => :sessions, :action => :new)
 
+		end
 	end
-		
-		
+
+	def delivery
+		@user=current_user
+		@cart_id=Cart.find_by(user_id: @user.id).id
+		@items=CartItem.where(cart_id: @cart_id).order(created_at: :desc).to_a
+		@item_quantity=@items.count
 	end
+
+	def delivery_params
+	@user=current_user
+	@cart_id=Cart.find_by(user_id: @user.id).id
+  	params.require(:delivery).permit(:full_name, :address, :city, :region, :zip, :country, :phone).merge(cart_id: @cart_id)
+  	end
+
+  	def delivery_address
+  		@user=current_user
+  		@delivery = Delivery.new(delivery_params)
+  		@delivery.save
+  		@cart_id=Cart.find_by(user_id: @user.id).id
+		@items=CartItem.where(cart_id: @cart_id).order(created_at: :desc).to_a
+		@item_quantity=@items.count
+		@delivery_address=Delivery.where(cart_id: @cart_id).to_a.first
+		redirect_to url_for(:controller => :cart, :action => :confirmation)
+
+
+  	end
+
+  	def confirmation
+  		@user=current_user
+  		
+  		@cart_id=Cart.find_by(user_id: @user.id).id
+		@items=CartItem.where(cart_id: @cart_id).order(created_at: :desc).to_a
+		@item_quantity=@items.count
+		@delivery_address=Delivery.where(cart_id: @cart_id).to_a.first
+
+  	end
 	
 end
 

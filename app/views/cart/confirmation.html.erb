@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>abhShoes</title>
+  <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> 
+    <%= stylesheet_link_tag "cart.css" %> 
+</head>
+<body>
+	<div class="container">
+    <div class="row">
+      <div class="col-md-1">
+      </div>
+
+      <div class="col-md-6">
+        <h2 class="category_title" style="margin-left:0px">Confirmation</h2>
+        <% @delivery_address %>
+        <% #@delivery_address.each do |address| %>
+
+
+        <div>
+          <p class="delivery_address_title"> Delivery Address </p>
+          <p class="delivery_address_field"> <%= @delivery_address.full_name %> </br>
+            <%= @delivery_address.address %> </br>
+            <%= @delivery_address.city %>, <%= @delivery_address.region %> <%= @delivery_address.zip %></br>
+            <%= @delivery_address.country %> </br>
+            Phone: <%= @delivery_address.phone %> </br> </p>
+        </div>
+        
+        <% #end %>
+        </div>
+
+
+
+
+      
+
+      <div class="col-md-4">
+        <% @items %>
+        <% @sum=0 %>
+        <% @items.each do |item| %>
+        <% @sum=@sum+(Product.find_by(id: item.product_id).price.round(2) * item.quantity) %>
+        <% end %>
+
+        <h2 class="category_title" style="margin-left:0px">Cart</h2>
+        <% @item_quantity %>
+        <div class="box_order">
+          <span class="order_title"> Order: </span>
+          <span class="order_quantity"> <%= @item_quantity %> items </span>
+          <p class="order_price"> Price: </p>
+          <p class="order_sum"> <%= @sum %>KM </p>
+          <p class="order_price"> Delivery: </p>
+          <p class="order_sum"> 30.00KM </p>
+          <hr class="hr_order"/> 
+          
+          <p class="order_price"> Total: </p>
+          <p class="order_sum"> <%= @sum+30 %>KM </p>   
+
+        </div>
+
+        <div class="btn-group" style="margin-bottom:100px">
+
+          <%= link_to raw('<button type="button" class="btn btn-primary btn-sm payButton" style="width: 103px; margin-left:120px; text-align: center; margin-top: 0px"; position: absolute; top: -42px>Pay</button>') %>
+
+      
+    </div>
+
+
+      </div>
+      <div class="col-md-1">
+      </div>
+
+  </div>
+</div>
+</body>
