@@ -18,6 +18,7 @@
       	<h2 class="category_title" style="margin-left:0px">Delivery Address</h2>
 
         <%= form_for :delivery, :url=>{:action => "delivery_address", :controller => "cart"} do |f| %>
+
         
 
       
@@ -96,7 +97,7 @@
 
       		<%= link_to raw('<button type="button" class="btn btn-primary btn-sm dropButton" style="width: 103px; margin-left:120px; text-align: center; margin-top: 0px"; position: absolute; top: -42px>Drop</button>') %>
 
-			<%= submit_tag "Continue", class: "btn btn-primary btn-sm background continue_delivery ",  id: "Continue"%>
+			<%= submit_tag "Continue", class: "btn btn-primary btn-sm background continue_delivery ",  id: "Continue" %>
       
       <% end %>
 		</div>
