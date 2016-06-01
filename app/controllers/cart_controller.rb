@@ -55,12 +55,17 @@ class CartController < ApplicationController
   	def delivery_address
   		@user=current_user
   		@delivery = Delivery.new(delivery_params)
-  		@delivery.save
-  		@cart_id=Cart.find_by(user_id: @user.id).id
-		@items=CartItem.where(cart_id: @cart_id).order(created_at: :desc).to_a
-		@item_quantity=@items.count
-		@delivery_address=Delivery.where(cart_id: @cart_id).to_a.first
-		redirect_to url_for(:controller => :cart, :action => :confirmation)
+  		if @delivery.save
+  			@cart_id=Cart.find_by(user_id: @user.id).id
+			@items=CartItem.where(cart_id: @cart_id).order(created_at: :desc).to_a
+			@item_quantity=@items.count
+			@delivery_address=Delivery.where(cart_id: @cart_id).to_a.last
+			redirect_to url_for(:controller => :cart, :action => :confirmation)
+		else
+			flash[:error] = "Please enter address in correct format."
+			redirect_to url_for(:controller => :cart, :action => :delivery)
+		end
+
 
 
   	end
@@ -71,7 +76,7 @@ class CartController < ApplicationController
   		@cart_id=Cart.find_by(user_id: @user.id).id
 		@items=CartItem.where(cart_id: @cart_id).order(created_at: :desc).to_a
 		@item_quantity=@items.count
-		@delivery_address=Delivery.where(cart_id: @cart_id).to_a.first
+		@delivery_address=Delivery.where(cart_id: @cart_id).to_a.last
 
   	end
 	

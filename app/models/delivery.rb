@@ -5,12 +5,12 @@ class Delivery < ActiveRecord::Base
 	accepts_nested_attributes_for :bills
 
 	validates :full_name, :presence => true
-   	validates :address, :presence =>true
-   	validates :city, :presence =>true
-   	validates :region, :presence =>true
-   	validates :country, :presence =>true
-   	validates :zip, :presence =>true
-   	validates :phone, :presence =>true
+   validates :address, :presence =>true
+   validates :city, :presence =>true
+   validates :region, :presence =>true
+   validates :country, :presence =>true
+   validates :zip, :presence =>true
+   validates :phone, :presence =>true
 
    	
    	
