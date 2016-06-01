@@ -7,10 +7,11 @@ class CartController < ApplicationController
 			flash[:error] = "Please login to view your cart"
 			redirect_to url_for(:controller => :sessions, :action => :new)
 			
-		end
+		else
 		@cart_id=Cart.find_by(user_id: @user.id).id
 		@items=CartItem.where(cart_id: @cart_id).order(created_at: :desc).to_a
 		@item_quantity=@items.count
+	end
 		
 	end
 	def cart_params
