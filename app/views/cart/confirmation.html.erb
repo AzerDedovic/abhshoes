@@ -74,7 +74,8 @@
             
           </article>
 
-          <input type="hidden" name="total" />
+          <%= hidden_field_tag :total, :value => @total %>
+
           <script src="https://checkout.stripe.com/checkout.js" class="stripe-button" 
             data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
             data-description="abhShoes"
@@ -82,6 +83,7 @@
             data-amount= <%= @total *100 %> 
             data-locale="auto">
             </script>
+            
 
           <% end %>
 
