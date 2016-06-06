@@ -54,15 +54,33 @@
           <p class="order_price"> Delivery: </p>
           <p class="order_sum"> 30.00KM </p>
           <hr class="hr_order"/> 
+          <% @total=@sum+30 %>
           
           <p class="order_price"> Total: </p>
-          <p class="order_sum"> <%= @sum+30 %>KM </p>   
+          <p class="order_sum"> <%= @total %>KM </p>   
 
         </div>
 
         <div class="btn-group" style="margin-bottom:100px">
+          </br>
+          <%= form_tag charges_path do %>
+            <article>
 
-          <%= link_to raw('<button type="button" class="btn btn-primary btn-sm payButton" style="width: 103px; margin-left:120px; text-align: center; margin-top: 0px"; position: absolute; top: -42px>Pay</button>') %>
+            <% if flash[:error].present? %>
+              <div id="error_explanation">
+              <p><%= flash[:error] %></p>
+              </div>
+            <% end %>
+            
+          </article>
+          
+
+          <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+            data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+            data-description="abhShoes"
+            data-amount="{{ @total * 100}}"
+            data-locale="auto"></script>
+          <% end %>
 
       
     </div>
