@@ -32,8 +32,6 @@ Rails.application.routes.draw do
    get 'cart/confirmation'
    post 'cart/delivery'
 
-   resources :charges
-
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
