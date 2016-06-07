@@ -6,7 +6,7 @@ def create
   # Amount in cents
   
   #@total = params[:total]
-  @total = params[:total]
+  @total = param[:total]
   @amount = @total*100
 
   customer = Stripe::Customer.create(
