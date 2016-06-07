@@ -7,7 +7,7 @@ def create
   
   #@total = params[:total]
   @total = params[:total]
-  #@amount = @total*100
+  @amount = @total.to_i
 
   customer = Stripe::Customer.create(
     :email => params[:stripeEmail],
@@ -16,7 +16,7 @@ def create
 
   charge = Stripe::Charge.create(
     :customer    => customer.id,
-    :amount      => @total,
+    :amount      => @amount,
     :description => 'Rails Stripe customer',
     :currency    => 'bam'
   )
