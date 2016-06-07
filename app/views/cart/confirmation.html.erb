@@ -74,7 +74,7 @@
             
           </article>
 
-          <%= hidden_field_tag :total => @total %>
+          <%= hidden_field_tag "total", @total  %>
 
           <script src="https://checkout.stripe.com/checkout.js" class="stripe-button" 
             data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
