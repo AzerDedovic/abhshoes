@@ -6,6 +6,7 @@ def create
   # Amount in cents
   
   #@total = params[:total]
+  @user=current_user
   @total = params[:amount]
   @amount = @total.to_i
 
