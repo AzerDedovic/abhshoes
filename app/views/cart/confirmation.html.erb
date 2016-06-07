@@ -55,10 +55,12 @@
           <p class="order_sum"> 30.00KM </p>
           <hr class="hr_order"/> 
           <% @total=@sum+30 %>
+          <% @amount=@total*100 %>
+          <%= @amount %>
           
           <p class="order_price"> Total: </p>
           <p class="order_sum"> <%= @total %>KM </p> 
-           
+
 
         </div>
 
@@ -75,7 +77,7 @@
             
           </article>
 
-          <%= hidden_field_tag "total", @total  %>
+          <%= hidden_field_tag "amount", @amount  %>
 
           <script src="https://checkout.stripe.com/checkout.js" class="stripe-button" 
             data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
