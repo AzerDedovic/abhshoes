@@ -57,7 +57,8 @@
           <% @total=@sum+30 %>
           
           <p class="order_price"> Total: </p>
-          <p class="order_sum"> <%= @total %>KM </p>   
+          <p class="order_sum"> <%= @total %>KM </p> 
+           
 
         </div>
 
@@ -83,7 +84,7 @@
             data-amount= <%= @total *100 %> 
             data-locale="auto">
             </script>
-            <%= submit_tag "Submit" %>
+           
 
           <% end %>
 
