@@ -33,6 +33,8 @@ Rails.application.routes.draw do
    post 'cart/delivery'
 
    resources :charges
+   get 'charges/create'
+   post 'charges/create'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
