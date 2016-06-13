@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>abhShoes</title>
-	<meta charset="utf-8">
-  	<meta name="viewport" content="width=device-width, initial-scale=1">
-  	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-  	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> 
-  	<%= stylesheet_link_tag "images.css" %> 
-  	<%= stylesheet_link_tag "featuredProducts.css" %> 
+  <title>abhShoes</title>
+  <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> 
+    <%= stylesheet_link_tag "images.css" %> 
+    <%= stylesheet_link_tag "featuredProducts.css" %> 
 </head>
 <body>
 <div class="col-md-8 col-sm-6 col-xs-4 coverImage">  
@@ -19,7 +19,7 @@
 <div class="row">
   <div class="col-md-1">
   </div>
-	
+  
  <div class="col-md-10">
     <h4 style="margin-right:10px"> Featured Products </h4>
     <% @featured_product.each do |f| %>
@@ -49,23 +49,23 @@
 </html>
 
  <!--<body>
- 	<div class="coverShoes" style="background-image">
-	
+  <div class="coverShoes" style="background-image">
+  
  <%= image_tag("coverShoes.jpg") %> 
 </div>
 </body>  -->
 
 <!--<body>
-	<div class="container">
-	<ul class="nav nav-tabs">
-		<li><%= link_to "Log In", {:action => 'new', :controller=>"sessions" }%></li>
-		<li><%= link_to "Register", {:action => 'new', :controller=>"users" }%></li>
+  <div class="container">
+  <ul class="nav nav-tabs">
+    <li><%= link_to "Log In", {:action => 'new', :controller=>"sessions" }%></li>
+    <li><%= link_to "Register", {:action => 'new', :controller=>"users" }%></li>
 
 
-		<li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+    <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
       <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-	</ul>
-	
+  </ul>
+  
 </div>
 </body>
 </html>

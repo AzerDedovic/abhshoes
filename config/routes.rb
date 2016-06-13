@@ -31,10 +31,13 @@ Rails.application.routes.draw do
    post 'cart/delivery_address'
    get 'cart/confirmation'
    post 'cart/delivery'
+   get'cart/drop'
 
    resources :charges
    get 'charges/create'
-   post 'charges/create'
+   post 'charges/create
+
+   '
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

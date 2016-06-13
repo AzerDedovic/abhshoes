@@ -47,19 +47,43 @@ class CartController < ApplicationController
 	end
 
 	def delivery_params
-	@user=current_user
-	@cart_id=Cart.find_by(user_id: @user.id).id
-  	params.require(:delivery).permit(:full_name, :address, :city, :region, :zip, :country, :phone).merge(cart_id: @cart_id)
+		@user=current_user
+		@cart_id=Cart.find_by(user_id: @user.id).id
+  		params.require(:delivery).permit(:full_name, :address, :city, :region, :zip, :country, :phone).merge(cart_id: @cart_id)
+  	end
+
+  	def billing_address_params
+  		@user=current_user
+  		@cart_id=Cart.find_by(user_id: @user.id).id
+  		params.require(:delivery).permit(:full_name_bill, :address_bill, :city_bill, :region_bill, :zip_bill, :country_bill, :phone_bill).merge(cart_id: @cart_id)
   	end
 
   	def delivery_address
   		@user=current_user
   		@delivery = Delivery.new(delivery_params)
-  		if @delivery.save
+  		puts params[:billingCheckbox]
+  		if params[:billingCheckbox]=="on"
+  			@billing = Bill.new()
+  			#@billing=@delivery
+  			@billing.full_name_bill=@delivery.full_name
+  			@billing.address_bill=@delivery.address
+  			@billing.city_bill=@delivery.city
+  			@billing.region_bill=@delivery.region
+  			@billing.zip_bill=@delivery.zip
+  			@billing.country_bill=@delivery.country
+  			@billing.phone_bill=@delivery.phone
+  			@billing.cart_id=@delivery.cart_id
+  		else
+
+  			@billing = Bill.new(billing_address_params)
+  		end
+
+  		if @delivery.save && @billing.save
   			@cart_id=Cart.find_by(user_id: @user.id).id
 			@items=CartItem.where(cart_id: @cart_id).order(created_at: :desc).to_a
 			@item_quantity=@items.count
 			@delivery_address=Delivery.where(cart_id: @cart_id).to_a.last
+			@billing_address=Bill.where(cart_id: @cart_id).to_a.last
 			redirect_to url_for(:controller => :cart, :action => :confirmation)
 		else
 			flash[:error] = "Please enter address in correct format."
@@ -72,12 +96,24 @@ class CartController < ApplicationController
 
   	def confirmation
   		@user=current_user
+
   		
   		@cart_id=Cart.find_by(user_id: @user.id).id
 		@items=CartItem.where(cart_id: @cart_id).order(created_at: :desc).to_a
 		@item_quantity=@items.count
-		@delivery_address=Delivery.where(cart_id: @cart_id).to_a.last
+		#@delivery_address=Delivery.where(cart_id: @cart_id).to_a.last
+		#@billing_address=Bill.where(cart_id: @cart_id).to_a.last
+		@delivery_address=Delivery.where(cart_id: @cart_id).order("created_at").last
+		@billing_address=Bill.where(cart_id: @cart_id).order("created_at").last
 
+  	end
+
+  	def drop
+  		@user=current_user
+  		@cart_id=Cart.find_by(user_id: @user.id).id
+  		CartItem.destroy_all(cart_id: @cart_id)
+
+  		redirect_to url_for(:controller => :welcome, :action => :index)
   	end
 	
 end

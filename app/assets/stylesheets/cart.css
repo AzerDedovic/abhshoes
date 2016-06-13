@@ -8,6 +8,17 @@
     color: rgba(0, 0, 0, 0.61);
     margin-bottom: 34px;
 }
+.paymentProgress{
+    font-size: 15px;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    text-align: left;
+    
+    text-transform: none;
+    font-weight: bolder;
+    
+    margin-bottom: 34px;
+
+}
 .delivery_address_title{
 	font-size: 13px;
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -262,3 +273,55 @@
 	background: #31708F;
 
 }
+
+.checkbox-text{
+    font-size: 12px;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    color: #555;
+
+}
+
+
+
+.reveal-if-active {
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  font-size: 16px;
+  -webkit-transform: scale(0.8);
+          transform: scale(0.8);
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+.reveal-if-active label {
+  display: block;
+  margin: 0 0 3px 0;
+}
+.reveal-if-active input[type=text] {
+  width: 100%;
+}
+input[type="radio"]:not(:checked) ~ .reveal-if-active, input[type="checkbox"]:not(:checked) ~ .reveal-if-active {
+  opacity: 1;
+  max-height: 600px;
+  
+  -webkit-transform: scale(1);
+          transform: scale(1);
+  overflow: visible;
+}
+
+
+.progress {
+    background: rgba(245, 245, 245, 0.64); 
+    border: 0px solid rgba(84, 65, 65, 0.38); 
+    border-radius: 4px; 
+    height: 3px;
+}
+.progress-bar-custom {
+    background: rgba(39, 45, 51, 1);
+}
+
+
+
+
+

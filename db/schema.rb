@@ -11,26 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160530015431) do
+ActiveRecord::Schema.define(version: 20160610142919) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "bills", force: :cascade do |t|
-    t.string   "full_name"
-    t.string   "address"
-    t.string   "city"
-    t.string   "region"
-    t.string   "zip"
-    t.string   "country"
-    t.string   "phone"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
     t.integer  "order_id"
-    t.integer  "delivery_id"
+    t.integer  "cart_id"
+    t.string   "full_name_bill"
+    t.string   "address_bill"
+    t.string   "city_bill"
+    t.string   "region_bill"
+    t.string   "zip_bill"
+    t.string   "country_bill"
+    t.string   "phone_bill"
   end
 
-  add_index "bills", ["delivery_id"], name: "index_bills_on_delivery_id", using: :btree
+  add_index "bills", ["cart_id"], name: "index_bills_on_cart_id", using: :btree
   add_index "bills", ["order_id"], name: "index_bills_on_order_id", using: :btree
 
   create_table "cart_items", force: :cascade do |t|
@@ -116,8 +116,10 @@ ActiveRecord::Schema.define(version: 20160530015431) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.integer  "delivery_id"
+    t.integer  "bill_id"
   end
 
+  add_index "orders", ["bill_id"], name: "index_orders_on_bill_id", using: :btree
   add_index "orders", ["delivery_id"], name: "index_orders_on_delivery_id", using: :btree
   add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
 
@@ -171,7 +173,7 @@ ActiveRecord::Schema.define(version: 20160530015431) do
   add_index "variants", ["product_id"], name: "index_variants_on_product_id", using: :btree
   add_index "variants", ["size_id"], name: "index_variants_on_size_id", using: :btree
 
-  add_foreign_key "bills", "deliveries"
+  add_foreign_key "bills", "carts"
   add_foreign_key "bills", "orders"
   add_foreign_key "cart_items", "carts"
   add_foreign_key "cart_items", "products"
@@ -180,6 +182,7 @@ ActiveRecord::Schema.define(version: 20160530015431) do
   add_foreign_key "deliveries", "orders"
   add_foreign_key "images", "products"
   add_foreign_key "order_items", "orders"
+  add_foreign_key "orders", "bills"
   add_foreign_key "orders", "deliveries"
   add_foreign_key "orders", "users"
   add_foreign_key "product_categories", "categories"

@@ -49,8 +49,9 @@
           
         <% end %>
 
-        <li> <%= link_to raw('<span class="glyphicon glyphicon-shopping-cart cart" style="margin-left:30px" ></span><span class="badge" style="font-size:10px; position: inherit; top: -1px; margin-right:60px">3</span>'),   {:controller =>'cart', :action => 'show'} %> 
+        <li style="padding-top:16px;"> <span><%= link_to raw('<span class="glyphicon glyphicon-shopping-cart cart" style="margin-left:30px" ></span>'),   {:controller =>'cart', :action => 'show'} %></span> <span class="badge" style="font-size:10px; position: inherit; top: -1px; margin-right:60px"><%=cartQuantity %></span>
         </li>
+        
         
         
      
