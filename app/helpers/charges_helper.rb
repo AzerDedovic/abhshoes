@@ -1,5 +1,5 @@
 module ChargesHelper
-	def CreateOrderItems
+	def createOrderItems
 		@order=Order.where(user_id: @user.id).order("created_at").last
 		@order_id=@order.id
 		@user=current_user
