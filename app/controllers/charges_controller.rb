@@ -32,7 +32,9 @@ def create
   @order.bill_id=@billing_address.id
   @order.save
 
-  #CreateOrderItems(@order)
+  @order_id=Order.where(user_id: @user.id).order("created_at").last
+
+  CreateOrderItems(@order_id)
 
 rescue Stripe::CardError => e
   flash[:error] = e.message

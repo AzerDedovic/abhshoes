@@ -1,6 +1,6 @@
 module OrderHelper
-	def CreateOrderItems(order)
-		@current_order=order
+	def CreateOrderItems(order_id)
+		@order_id=order_id
 		@user=current_user
 		@cart_id=Cart.find_by(user_id: @user.id).id
 
@@ -15,7 +15,7 @@ module OrderHelper
 			@order_item.size=item.size
 			@order_item.color=item.color
 			@order_item.quantity=item.quantity
-			@order_item.order_id=@current_order.id
+			@order_item.order_id=@order_id
 
 			@order_item.save
 
