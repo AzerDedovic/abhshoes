@@ -23,8 +23,8 @@
 
 
 		<% @sum = @total.to_f/100 %>
-		<h2 style="margin-bottom: 500px">Thanks, you paid <strong><%= @sum %> KM</strong>!</h2>
-    
+		<h2 style="margin-bottom: 100px">Thanks, you paid <strong><%= @sum %> KM</strong>!</h2>
+    <h5 style="margin-bottom: 500px"><%= link_to "Login to your account", {:action => '', :controller=>'' } %> </h5>
 
 		</div>
 		<div class="col-md-4">
