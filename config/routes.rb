@@ -37,7 +37,8 @@ Rails.application.routes.draw do
    get 'charges/create'
    post 'charges/create'
 
-   get'order/detail'
+   get 'order/detail'
+   get 'order/history'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

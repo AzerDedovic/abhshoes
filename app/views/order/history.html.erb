@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>abhShoes</title>
+  <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> 
+    <%= stylesheet_link_tag "cart.css" %> 
+</head>
+<body>
+	<div class="container">
+    <div class="row">
+      <div class="col-md-1">
+      </div>
+      <div class="col-md-10">
+      	<div style="display:inline-block;"><h2 class="category_title" style="margin-left:0px">Purchase history</h2></div>
+      	<div style="display:inline-block; position: absolute; right: 13px;"><h2 class="category_title purchase_history" style="margin-left:0px"><%= link_to "View your cart", {:action => 'show', :controller=>'cart' } %></h2></div>
+      	<div class="table-responsive">
+      	<table class="table"  style="margin-bottom:300px;">
+    <thead>
+      <tr>
+      	<th>Order ID</th>
+        <th>Date</th>
+        <th>Total price</th>
+        <th>Items</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @orders.each do |order| %>
+      <tr>
+        <td><%= order.id %></td>
+        <td><%= order.created_at.strftime("%b %d, %Y") %></td>
+		<td><%= order.total_price%> KM</td>
+		<td><%= OrderItem.where(order_id: order.id).count %></td>
+		<td><%= link_to "Detail", {:action => 'detail', :controller=>'order', :order_id => order.id } %></td>
+      </tr>
+
+    <% end %>
+      
+    </tbody>
+  </table>
+</div>
+      </div>
+      <div class="col-md-1">
+      </div>
+
+  </div>
+</div>
+</body>

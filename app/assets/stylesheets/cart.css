@@ -321,7 +321,17 @@ input[type="radio"]:not(:checked) ~ .reveal-if-active, input[type="checkbox"]:no
     background: rgba(39, 45, 51, 1);
 }
 
+.purchase_history{
 
+}
+a{
+    color: rgba(255, 167, 0, 0.74);
+    text-decoration: none !important;
+
+}
+a:hover {
+    color:  rgba(0, 0, 0, 0.61);
+}
 
 
 
