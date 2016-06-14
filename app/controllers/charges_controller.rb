@@ -32,6 +32,8 @@ def create
   @order.bill_id=@billing_address.id
   @order.save
 
+  CreateOrderItems(@order)
+
 rescue Stripe::CardError => e
   flash[:error] = e.message
   redirect_to new_charge_path
