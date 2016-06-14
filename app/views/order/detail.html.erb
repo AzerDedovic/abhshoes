@@ -15,7 +15,8 @@
       </div>
 
       <div class="col-md-6">
-      	<h2 class="category_title" style="margin-left:0px">Your order</h2>
+      	<div style="display: inline-block"><h2 class="category_title" style="margin-left:0px">Your order</h2></div>
+        <div style="display: inline-block; position: absolute; right: 38px;"><h2 class="category_title purchase_history" style="margin-left:0px"><%= link_to "Purchase history", {:action => 'history', :controller=>'order' } %></h2></div>
 
       	<% @items %>
 
@@ -47,8 +48,8 @@
       	</div>
 
       <div class="col-md-4">
-      	<h2 class="category_title purchase_history" style="margin-left:0px"><%= link_to "Purchase history", {:action => 'history', :controller=>'order' } %></h2>
-      	<div class="box_order" >
+      	
+      	<div class="box_order" style="margin-top:60px" >
       	<span class="order_title"> Order: </span>
       	<span class="order_quantity"> <%= @items.count %> items </span>
       	<p class="order_price"> Price: </p>
