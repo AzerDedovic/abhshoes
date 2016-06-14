@@ -32,7 +32,8 @@ def create
   @order.bill_id=@billing_address.id
   @order.save
 
-  @order_id=Order.where(user_id: @user.id).order("created_at").last
+  @current_order=Order.where(user_id: @user.id).order("created_at").last
+  @order_id=@current_order.id
 
   @cart_id=Cart.find_by(user_id: @user.id).id
   @items=CartItem.where(cart_id: @cart_id).order(created_at: :desc).to_a
