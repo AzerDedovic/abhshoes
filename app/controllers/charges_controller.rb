@@ -27,7 +27,7 @@ def create
   )
   @order=Order.new()
   @order.user_id=@user.id
-  @order.total_price=(@total.to_f/100)
+  @order.total_price=@total.to_f
   @order.delivery_id=@delivery_address.id
   @order.bill_id=@billing_address.id
   @order.save
