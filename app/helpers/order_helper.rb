@@ -23,6 +23,8 @@ module OrderHelper
 
 		CartItem.destroy_all(cart_id: @cart_id)
 
+	end
+
 
 
 
