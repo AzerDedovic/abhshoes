@@ -32,7 +32,7 @@ def create
   @order.bill_id=@billing_address.id
   @order.save
 
-  CreateOrderItems(@order)
+  #CreateOrderItems(@order)
 
 rescue Stripe::CardError => e
   flash[:error] = e.message
