@@ -35,9 +35,7 @@ Rails.application.routes.draw do
 
    resources :charges
    get 'charges/create'
-   post 'charges/create
-
-   '
+   post 'charges/create'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
