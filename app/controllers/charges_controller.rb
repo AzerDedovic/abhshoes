@@ -34,7 +34,7 @@ def create
 
   @order_id=Order.where(user_id: @user.id).order("created_at").last
 
-  CreateOrderItems(@order_id)
+  CreateOrderItems
 
 rescue Stripe::CardError => e
   flash[:error] = e.message
