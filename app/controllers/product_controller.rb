@@ -3,6 +3,10 @@ class ProductController < ApplicationController
 	def show
 		@user=current_user
 		@tag=params[:tag]
+		@price=params[:price]
+		
+
+	
 		#@category=Category.new
 		@category_id=Category.where(tag: @tag).select('id')
 		@category=Category.where(tag: @tag).to_a
@@ -11,14 +15,9 @@ class ProductController < ApplicationController
 
 
 
-
-
-		
-
-		#@product_category=ProductCategory.where(category_id: @category.category_id).to_a
-		#@products=Product.where(product_id: @product_id).all
-
 	end
+
+
 
 	
 

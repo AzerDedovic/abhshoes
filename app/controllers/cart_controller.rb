@@ -22,18 +22,40 @@ class CartController < ApplicationController
 
 	def add
 		if signed_in?
-		@user=current_user
-		@id = params[:product_id]
-		@item = CartItem.new(cart_params)
-		if @item.save
-			flash[:success] = Product.find_by(id: @item.product_id).name + " was just added to your cart."
-		else
-			flash[:error] = "Please choose size and color."
-		end
+			@user=current_user
+			@id = params[:product_id]
+			@item = CartItem.new(cart_params)
+
+
+			#if (params.has_key?(:color) && params.has_key?(:size))
+			if (@item.color != nil && @item.size!=nil)
+				@color_id=Color.find_by(color: @item.color).id
+				@size_id=Size.find_by(size: @item.size).id
+				@numberOfProduct=Variant.find_by(product_id: @item.product_id, size_id: @size_id, color_id: @color_id).quantity
+				if @numberOfProduct<@item.quantity
+					if @numberOfProduct==0
+						flash[:error] = "Out of stock"
+					else
+					flash[:error] = "Only #{@numberOfProduct} left in stock."
+					end
+				else
+					if @item.save
+					flash[:success] = Product.find_by(id: @item.product_id).name + " was just added to your cart."
+					@newNumberOfProduct=@numberOfProduct-@item.quantity
+					Variant.find_by(product_id: @item.product_id, size_id: @size_id, color_id: @color_id).update(quantity: @newNumberOfProduct)
+					end
+				end
+			else
+				flash[:error] = "Please choose size and color."
+			end
+			
+
+			
+		
 		
 		redirect_to url_for(:controller => :product, :action => :detail, :id => @item.product_id )
 		else 
-			flash[:error] ="Please Login to Add Item to Your Cart."
+		flash[:error] ="Please Login to Add Item to Your Cart."
 		redirect_to url_for(:controller => :sessions, :action => :new)
 
 		end
@@ -111,6 +133,17 @@ class CartController < ApplicationController
   	def drop
   		@user=current_user
   		@cart_id=Cart.find_by(user_id: @user.id).id
+  		@items=CartItem.where(cart_id: @cart_id).to_a
+  		@quantity=0
+  		@items.each do |item|
+  			@size_id=Size.find_by(size: item.size).id
+  			@color_id=Color.find_by(color: item.color).id
+  			@quantity=Variant.find_by(product_id: item.product_id, size_id: @size_id, color_id: @color_id).quantity
+  			Variant.find_by(product_id: item.product_id, size_id: @size_id, color_id: @color_id).update(quantity: @quantity+item.quantity)
+
+  					
+  		end
+			
   		CartItem.destroy_all(cart_id: @cart_id)
 
   		redirect_to url_for(:controller => :welcome, :action => :index)
