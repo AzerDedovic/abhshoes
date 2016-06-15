@@ -34,7 +34,7 @@
         <td><%= order.created_at.strftime("%b %d, %Y") %></td>
 		<td><%= order.total_price%> KM</td>
 		<td><%= OrderItem.where(order_id: order.id).count %></td>
-		<td><%= link_to "Detail", {:action => 'detail', :controller=>'order', :order_id => order.id } %></td>
+		<td><%= link_to "Details", {:action => 'detail', :controller=>'order', :order_id => order.id } %></td>
       </tr>
 
     <% end %>
