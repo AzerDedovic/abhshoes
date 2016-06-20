@@ -18,15 +18,18 @@
       	<div style="display: inline-block"><h2 class="category_title" style="margin-left:0px">Your cart</h2></div>
         <div style="display: inline-block; position: absolute; right: 38px;"><h2 class="category_title purchase_history" style=""><%= link_to "Purchase history", {:action => 'history', :controller=>'order' } %></h2></div>
       	<% @items %>
+        
       	<% @sum=0 %>
       	<% @items.each do |item| %>
       	<% @sum=@sum+(Product.find_by(id: item.product_id).price.round(2) * item.quantity) %>
+        <% @brand_id=Product.find_by(id: item.product_id).brand_id %>
 
       	<div>
       	<div class="imageProduct">
       		<%= image_tag Product.find_by(id: item.product_id).image, :size => "120x120" %>
       		</div>
       		<p class="description_cart"> Model: <%= Product.find_by(id: item.product_id).name %>  </br>
+           Brand: <%= Brand.find_by(id: @brand_id).brand %> </br>
       		 Size: <%= item.size %> </br>
       		 Color: <%= item.color %> </br>
       		 ID: <%= item.product_id %> </p>

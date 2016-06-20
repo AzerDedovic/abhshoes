@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160610142919) do
+ActiveRecord::Schema.define(version: 20160620200710) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,12 @@ ActiveRecord::Schema.define(version: 20160610142919) do
 
   add_index "bills", ["cart_id"], name: "index_bills_on_cart_id", using: :btree
   add_index "bills", ["order_id"], name: "index_bills_on_order_id", using: :btree
+
+  create_table "brands", force: :cascade do |t|
+    t.string   "brand"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "cart_items", force: :cascade do |t|
     t.integer  "cart_id"
@@ -106,6 +112,7 @@ ActiveRecord::Schema.define(version: 20160610142919) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "order_id"
+    t.string   "brand"
   end
 
   add_index "order_items", ["order_id"], name: "index_order_items_on_order_id", using: :btree
@@ -140,9 +147,11 @@ ActiveRecord::Schema.define(version: 20160610142919) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "deleted"
-    t.string   "brand"
     t.string   "image"
+    t.integer  "brand_id"
   end
+
+  add_index "products", ["brand_id"], name: "index_products_on_brand_id", using: :btree
 
   create_table "sizes", force: :cascade do |t|
     t.integer  "size"
@@ -187,6 +196,7 @@ ActiveRecord::Schema.define(version: 20160610142919) do
   add_foreign_key "orders", "users"
   add_foreign_key "product_categories", "categories"
   add_foreign_key "product_categories", "products"
+  add_foreign_key "products", "brands"
   add_foreign_key "variants", "colors"
   add_foreign_key "variants", "products"
   add_foreign_key "variants", "sizes"

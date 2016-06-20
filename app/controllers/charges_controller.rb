@@ -42,7 +42,7 @@ def create
 
   @items.each do |item|
       @order_item=OrderItem.new()
-
+      @brand_id=Product.find_by(id: item.product_id).brand_id
       @order_item.name=Product.find_by(id: item.product_id).name
       @order_item.price=Product.find_by(id: item.product_id).price
       @order_item.image=Product.find_by(id: item.product_id).image
@@ -50,6 +50,7 @@ def create
       @order_item.color=item.color
       @order_item.quantity=item.quantity
       @order_item.order_id=@order_id
+      @order_item.brand=Brand.find_by(id: @brand_id).brand
 
       @order_item.save
 

@@ -6,8 +6,9 @@
         <%= link_to (image_tag product.image, :size => "120x120"), :controller => "product", :action => "detail", :id => product.id %>
 
        
-          <h4> <%= product.name %> </br> <%= product.price.round(2) %> KM 
+          <h4> <%= product.name %> </br><%= Brand.find_by(id: product.brand_id).brand %></br> <%= product.price.round(2) %> KM 
           </h4>
+
 
           <% @color_id=Variant.where(product_id: product.id).select('color_id') %>
           <% @color_name=Color.where(id: @color_id).to_a %>

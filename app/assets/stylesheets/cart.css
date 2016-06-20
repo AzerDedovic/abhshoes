@@ -63,7 +63,21 @@
     font-weight: bolder;
     color: rgba(0, 0, 0, 0.61);
     margin-bottom: -4px;
-    margin-top: -142px
+    margin-top: -143px;
+
+}
+.order_description_cart{
+    display: inline;
+    position: absolute;
+    font-size: 12px;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    text-align: left;
+    margin-left: 187px;
+    text-transform: none;
+    font-weight: bolder;
+    color: rgba(0, 0, 0, 0.61);
+    margin-bottom: -4px;
+    margin-top: -143px;
 
 }
 .price_o{
@@ -107,7 +121,7 @@
     font-weight: bolder;
     color: rgba(0, 0, 0, 0.61);
     margin-bottom: -4px;
-    margin-top: -89px;
+    margin-top: -82px;
     text-align: right;
     padding-left: 413px
 
@@ -123,7 +137,7 @@
     font-weight: bolder;
     color: rgba(0, 0, 0, 0.61);
     margin-bottom: -4px;
-    margin-top: -92px;
+    margin-top: -85px;
     text-align: right;
     border-radius: 3px;
     border-color: rgba(0, 0, 0, 0.61);

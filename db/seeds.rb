@@ -7,8 +7,18 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 ProductCategory.delete_all
+
 Variant.delete_all
+OrderItem.delete_all
+Order.delete_all
+Delivery.delete_all
+Bill.delete_all
+CartItem.delete_all
+Cart.delete_all
+User.delete_all
+
 Product.delete_all
+Brand.delete_all
 Category.delete_all
 Image.delete_all
 Color.delete_all
@@ -30,17 +40,23 @@ Color.create(color: "white", code: "#ffffff")
 Color.create(color: "black", code: "#000000")
 Color.create(color: "green", code: "#008000")
 
+Brand.create(brand:"Converse")
+Brand.create(brand:"Vans")
+Brand.create(brand:"Skechers")
+Brand.create(brand:"Geox")
+
+
 #Image.create(:default => true, :image => File.new("#{Rails.root}/app/assets/images/shoes1_1.jpg"))
 
-(1..100).each do |f| 
+(1..200).each do |f| 
 	name = "Shoes" + f.to_s
 	description = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat."
 	price = rand(30.00...500.00)
 	deleted = false
-	brand = "Converse"
+	brand = Brand.order("RANDOM()").first.id
 	image_num = rand(1..8).to_i
 	image = "shoes" + image_num.to_s + ".jpg"
-	product = Product.create(name: name, description: description, price: price, deleted: deleted, brand: brand, image: image)
+	product = Product.create(name: name, description: description, price: price, deleted: deleted, brand_id: brand, image: image)
 	if image_num == 1
 		product.product_category.create(category_id: Category.find_by_tag('w').id)
 	elsif image_num == 2
@@ -66,9 +82,9 @@ end
 Product.all.each do |p|
 	(1..10).each do |size|
 		size = Size.order("RANDOM()").first
-		to_colors = rand(2..6)
+		to_colors = rand(2..4)
 		(1..to_colors).each do 
-			Variant.create(product_id: p.id, size_id: size.id, color_id: Color.order("RANDOM()").first.id, quantity: rand(3...50).to_i)
+			Variant.create(product_id: p.id, size_id: size.id, color_id: Color.order("RANDOM()").first.id, quantity: rand(3...25).to_i)
 		end
 	end
 end

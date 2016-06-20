@@ -28,8 +28,10 @@
   			</div>
 
   			<div class="col-md-5">
-  				<p class="title"><%= product.name %> </p>
-  				<p class="description"><%= product.description %></p>
+  				<span class="title" style="inline-block"><%= product.name %> </span>
+          <span class="title" style="inline-block; margin-left: 10px;color: rgba(119, 119, 119, 0.83);"><%= Brand.find_by(id: product.brand_id).brand %></span>
+
+  				<p class="description" style="margin-top:40px;"><%= product.description %></p>
           
           
           <%= form_for :cart_item, :url=>{:action => "add", :controller => "cart"} do |f| %>
