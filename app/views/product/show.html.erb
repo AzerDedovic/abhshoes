@@ -5,7 +5,6 @@
   <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> 
     <%= stylesheet_link_tag "product.css" %> 
 </head>
 <body>
@@ -21,8 +20,8 @@
 
         
           <p class="filter-text">Brand</p>
-          <div class="btn-group">
-              <button type="button" class="btn btn-default dropdown-toggle filter-button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width:160px; text-align:left">
+          <div class="btn-group filter-button">
+              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width:160px; text-align:left">
               All Brands <span class="pull-right"><span class="caret" ></span></span>
               </button>
               <ul class="dropdown-menu">
@@ -35,24 +34,14 @@
 
 
           <p class="filter-text">Size</p>
-          <div class="btn-group">
-              <button type="button" class="btn btn-default dropdown-toggle filter-button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width:160px; text-align:left">
-              All Sizes <span class="pull-right"><span class="caret" ></span></span>
+          <div class="btn-group filter-button">
+              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width:160px; text-align:left">
+              <span class="selection">All Sizes</span> <span class="pull-right"><span class="caret" ></span></span>
               </button>
               <ul class="dropdown-menu">
-                <li><a href="#">35</a></li>
-                <li><a href="#">36</a></li>
-                <li><a href="#">37</a></li>
-                <li><a href="#">38</a></li>
-                <li><a href="#">39</a></li>
-                <li><a href="#">40</a></li>
-                <li><a href="#">41</a></li>
-                <li><a href="#">42</a></li>
-                <li><a href="#">43</a></li>
-                <li><a href="#">44</a></li>
-                <li><a href="#">45</a></li>
-                <li><a href="#">46</a></li>
-                
+                <% @sizes.each do |size| %>
+                <li><a val="size=<%=size.id %>" > <%=size.size %></a> </li> 
+              <% end %>                
               
             </ul>
         </div>
@@ -60,23 +49,20 @@
 
 
           <p class="filter-text">Color</p>
-          <div class="btn-group">
-              <button type="button" class="btn btn-default dropdown-toggle filter-button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width:160px; text-align:left">
-              All Colors <span class="pull-right"><span class="caret" ></span></span>
+          <div class="btn-group filter-button">
+              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width:160px; text-align:left">
+              <span class="selection">All Colors </span><span class="pull-right"><span class="caret" ></span></span>
               </button>
               <ul class="dropdown-menu">
-                <li><a href="#">Black</a></li>
-                <li><a href="#">White</a></li>
-                <li><a href="#">Red</a></li>
-                <li><a href="#">Blue</a></li>
-                <li><a href="#">Green</a></li>
-                <li><a href="#">Brown</a></li>
-                
+                <% @colors.each do |color| %>
+              <li><a val="color=<%=color.id %>" > <%=color.color %></a> </li> 
+                 
+              <% end %>     
             </ul>
         </div>
       
 
-     
+     <!--
           <p class="filter-text">Style</p>
           <div class="btn-group">
               <button type="button" class="btn btn-default dropdown-toggle filter-button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width:160px; text-align:left">
@@ -86,82 +72,49 @@
                 <li><a href="#">Style</a></li>
             </ul>
       
-      </div>
+      </div> -->
 
 
           <p class="filter-text">Price</p>
-          <div class="btn-group">
-              <button type="button" class="btn btn-default dropdown-toggle filter-button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width:160px; text-align:left">
-              All Prices <span class="pull-right"><span class="caret" ></span></span>
+          <div class="btn-group filter-button">
+              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width:160px; text-align:left">
+              <span class="selection">All Prices</span> <span class="pull-right"><span class="caret" ></span></span>
               </button>
               <ul class="dropdown-menu">
-                <li><a href="#">30KM - 60KM</a></li>
-                <li><a href="#">60KM - 90KM</a></li>
-                <li><a href="#">90KM - 120KM</a></li>
-                <li><a href="#">120KM< </a></li>
+                <li><a val="min=30&max=60">30KM - 60KM</a></li>
+                <li><a val="min=60&max=90">60KM - 90KM</a></li>
+                <li><a val="min=90&max=120">90KM - 120KM</a></li>
+                <li><a val="min=120&max=10000">120KM<</a></li>
              
             </ul>
         </div>
-     
-
-
 
 
       </div>
 
-
-     
 
       <div class="col-md-8">
 
         <% @category.each do |c| %>
         <h2 class="category_title"> <%= c.name %> 
         <% end %>
+        
         <small>
-
         <span class="btn-group pull-right buttonText" style="padding-right:63px; padding-top: 11px;">
-
-            <button class="btn " >Price</button>
             <button class="btn dropdown-toggle" data-toggle="dropdown" >
-                <span class="caret"></span>
+               <span class="selection">Price</span> <span class="caret"></span>
             </button>
             <ul class="dropdown-menu">
-                <li><a href="#">Price: lowest first</a></li>
-                <li><a href="#">Price: highest first</a></li>
+                <li><a val="price_ASC=1">Price: lowest first</a> </li>
+                <li><a val="price_DESC=1">Price: highest first</a> </li>
             </ul>
         </span>
-    </small>
-      </h2>
+        </small>
+        </h2>
      
-
-      <% @products.each do |product| %>
-
-      <div class="imageProduct">
-
-        <%= link_to (image_tag product.image, :size => "120x120"), :controller => "product", :action => "detail", :id => product.id %>
-
-       
-          <h4> <%= product.name %> </br> <%= product.price.round(2) %> KM 
-          </h4>
-
-          <% @color_id=Variant.where(product_id: product.id).select('color_id') %>
-          <% @color_name=Color.where(id: @color_id).to_a %>
-
-          <div class="positionColors">
-            <% @color_name.each do |i| %>
-            <div class="circle" style="background: <%= i.code %>;">
-            </div>
-            <% end %>
-          </div>
-
-        
-
-
-
-
-
-      </div>
-      <% end %>
+  <div id="products">
+     <%= render :partial => "products" %>
+  </div>
 
       
 
@@ -169,4 +122,34 @@
      
     </div>
   </div>
+
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> 
+    <script   src="https://code.jquery.com/jquery-3.0.0.min.js"   integrity="sha256-JmvOoLtYsmqlsWxa7mDSLMwa6dZ9rrIdtrrVYRnDRH0="   crossorigin="anonymous"></script>
+
+  <script type="text/javascript">
+    $(".dropdown-menu li a").click(function(e){
+      e.preventDefault();
+      var link = '<%= product_products_url %>'
+
+      $(this).parents(".btn-group").find('.selection').text($(this).text());
+      val = $(this).attr("val");
+      if(val != undefined) {
+        $(this).parents(".btn-group").find('.selection').attr("val", val);
+      }
+
+      attr = "";
+      $("span.selection").each(function() {
+        v = $(this).attr("val");
+        if(v != undefined && v != "") {
+          if(attr != "") attr += "&";
+          attr += v;
+        }
+      });
+
+      link = link + "?" + attr + "&tag=" + "<%= @tag %>";
+      //alert(link);
+      $.get(link);
+     });
+  </script>
 </body>
+</html>

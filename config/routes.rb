@@ -21,8 +21,10 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
    root 'welcome#index'
 
-   get 'product/show'
    get 'product/detail'
+   get 'product/products'
+   get 'product/show'
+   resources :product 
    get 'cart/show'
    post 'cart/add'
    get 'cart/add'

@@ -2,17 +2,41 @@ class ProductController < ApplicationController
 
 	def show
 		@user=current_user
-		@tag=params[:tag]
-		@price=params[:price]
-		
-
-	
-		#@category=Category.new
+		@colors=Color.all.to_a
+		@sizes=Size.all.to_a
+		@tag=params[:tag]	
 		@category_id=Category.where(tag: @tag).select('id')
 		@category=Category.where(tag: @tag).to_a
 		@product_category=ProductCategory.where(category_id: @category_id).select('product_id')
-		@products=Product.where(id: @product_category).to_a
 
+		@products=Product.where(id: @product_category)
+	end
+
+	def products
+
+		@user=current_user
+		@tag=params[:tag]
+		@min=params[:min]
+		@max=params[:max]
+		@color_id=params[:color]
+		@size_id=params[:size]
+
+		@products_id_color=Variant.where(color_id: @color_id).select('product_id')
+		@products_id_size=Variant.where(size_id: @size_id).select('product_id')
+
+
+		@category_id=Category.where(tag: @tag).select('id')
+		@category=Category.where(tag: @tag).to_a
+		@product_category=ProductCategory.where(category_id: @category_id).select('product_id')
+		@products=Product.where(id: @product_category)
+
+		@products=@products.where(id: @product_category, price: @min..@max) if params[:min] && params[:max]
+		
+		@products=@products.where(id: @products_id_color) if params[:color]
+		@products=@products.where(id: @products_id_size) if params[:size]
+
+		@products=@products.where(id: @product_category).order("price ASC").to_a if params[:price_ASC]
+		@products=@products.where(id: @product_category).order("price DESC").to_a if params[:price_DESC]
 
 
 	end
