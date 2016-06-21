@@ -42,6 +42,8 @@ class ProductController < ApplicationController
 		@products=@products.where(id: @product_category).order("price ASC").to_a if params[:price_ASC]
 		@products=@products.where(id: @product_category).order("price DESC").to_a if params[:price_DESC]
 
+		
+
 
 	end
 

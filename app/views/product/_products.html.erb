@@ -1,6 +1,6 @@
  <%= stylesheet_link_tag "product.css" %> 
  <% @products.each do |product| %>
-
+ 
       <div class="imageProduct">
 
         <%= link_to (image_tag product.image, :size => "120x120"), :controller => "product", :action => "detail", :id => product.id %>
@@ -27,4 +27,5 @@
 
 
       </div>
+
       <% end %>
