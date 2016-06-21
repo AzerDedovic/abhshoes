@@ -1,53 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>abhShoes</title>
-  <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> 
-    <%= stylesheet_link_tag "cart.css" %> 
-</head>
-<body>
-	<div class="container">
-    <div class="row">
-      <div class="col-md-1">
-      </div>
+<% content_for :head do %>
+<%= stylesheet_link_tag "cart.css" %> 
+<% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-1">
+    </div>
 
-      <div class="col-md-6">
-      	<h2 class="category_title" style="margin-left:0px">Your order</h2>
-
-         
+    <div class="col-md-6">
+     	<h2 class="category_title" style="margin-left:0px">Your order</h2>
 
         <div class="box_order" style="margin-top: -9px; padding-bottom: 5px; margin-left:2px; margin-bottom: 30px;">
-        <span style="display:inline-block;">
+          <span style="display:inline-block;">
           <p class="order_title"> Delivery Address </p></br>
           <p class="delivery_address_field"> <%= @delivery_address.full_name %> </br>
             <%= @delivery_address.address %> </br>
             <%= @delivery_address.city %>, <%= @delivery_address.region %> <%= @delivery_address.zip %></br>
             <%= @delivery_address.country %> </br>
             Phone: <%= @delivery_address.phone %> </br> </p>
-        </span>
+          </span>
 
-        <span style="display:inline-block; margin-left:100px;">
+          <span style="display:inline-block; margin-left:100px;">
           <p class="order_title"> Billing Address </p></br>
           <p class="delivery_address_field"> <%= @billing_address.full_name_bill %> </br>
             <%= @billing_address.address_bill %> </br>
             <%= @billing_address.city_bill %>, <%= @billing_address.region_bill %> <%= @billing_address.zip_bill %></br>
             <%= @billing_address.country_bill %> </br>
             Phone: <%= @billing_address.phone_bill %> </br> </p>
-        </span>
-      </div>
-
-        
+          </span>
+        </div>
 
       	<% @items %>
 
       	<% @items.each do |item| %>
 
       	<div>
-      	<div class="imageProduct">
-      		<%= image_tag item.image, :size => "120x120" %>
+      	  <div class="imageProduct">
+      		  <%= image_tag item.image, :size => "120x120" %>
       		</div>
       		<p class="order_description_cart"> Model: <%= item.name %>  </br>
            Brand: <%= item.brand %> </br>
@@ -59,21 +47,18 @@
       		 <p class="price_item"> <%= item.price.round(2) %>KM </p>
       		 <p class="quantity_cart"> Quantity: </p>
       		 <p class="quantity_item"> <%= item.quantity %>   </p>
-
-      		
       	
-      	
-      </div>
+        </div>
 
       	<% end %>
 
 
 
-      	</div>
+    </div>
 
-      <div class="col-md-4">
-      	<h2 class="category_title purchase_history" style="position: absolute; right: 13px;"><%= link_to "Purchase history", {:action => 'history', :controller=>'order' } %></h2>
-      	<div class="box_order" style="margin-top:60px" >
+    <div class="col-md-4">
+    	<h2 class="category_title purchase_history" style="position: absolute; right: 13px;"><%= link_to "Purchase history", {:action => 'history', :controller=>'order' } %></h2>
+      <div class="box_order" style="margin-top:60px" >
       	<span class="order_title"> Order: </span>
       	<span class="order_quantity"> <%= @items.count %> items </span>
       	<p class="order_price"> Price: </p>
@@ -85,30 +70,14 @@
       	
       	<p class="order_price"> Total: </p>
       	<p class="order_sum"> <%= @order.total_price+30 %>KM </p>
-      	</div>
-      	<!--<div class="box_order" style="margin-top: 5px; padding-bottom: 13px;">
-      	<span class="order_title"> Delivery address: </span>
-      	<p class="delivery_address_field" style="margin-top:5px;"> <%= @delivery_address.full_name %> </br>
-            <%= @delivery_address.address %> </br>
-            <%= @delivery_address.city %>, <%= @delivery_address.region %> <%= @delivery_address.zip %></br>
-            <%= @delivery_address.country %> </br>
-            Phone: <%= @delivery_address.phone %> </br> </p>
-        <hr class="hr_order"/> 
-      	<span class="order_title"> Billing address: </span>
-      	<p class="delivery_address_field" style="margin-top:5px;"> <%= @billing_address.full_name_bill %> </br>
-            <%= @billing_address.address_bill %> </br>
-            <%= @billing_address.city_bill %>, <%= @billing_address.region_bill %> <%= @billing_address.zip_bill %></br>
-            <%= @billing_address.country_bill %> </br>
-            Phone: <%= @billing_address.phone_bill %> </p>
-
-
-      	</div>-->
-
       </div>
-      <div class="col-md-1">
-      </div>
+     
+
+    </div>
+    <div class="col-md-1">
+    </div>
 
   </div>
 </div>
-</body>
+
 

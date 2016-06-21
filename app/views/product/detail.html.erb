@@ -1,100 +1,90 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<title>abhShoes</title>
-	<meta charset="utf-8">
-  	<meta name="viewport" content="width=device-width, initial-scale=1">
-  	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-  	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> 
-  	<%= stylesheet_link_tag "detail.css" %> 
-</head>
-<body>
+<% content_for :head do %>
+<%= stylesheet_link_tag "detail.css" %> 
+<% end %>
+
 </br>
 
-	<div class="container ">
+<div class="container ">
+	<div class="row">
+	<% @product.each do  |product| %>
+		<div class="col-md-1">
+		</div>
 
-		<div class="row">
-			<% @product.each do  |product| %>
-  			<div class="col-md-1">
-  			</div>
-
-  			<div class="col-md-5">
-  				<div class="detailImage">
+		<div class="col-md-5">
+			<div class="detailImage">
 				<%= image_tag product.image, :size => "300x300" %>
 			</div>
-
-           		
             	
-  			</div>
+		</div>
 
-  			<div class="col-md-5">
-  				<span class="title" style="inline-block"><%= product.name %> </span>
-          <span class="title" style="inline-block; margin-left: 10px;color: rgba(119, 119, 119, 0.83);"><%= Brand.find_by(id: product.brand_id).brand %></span>
+		<div class="col-md-5">
+			<span class="title" style="inline-block"><%= product.name %> </span>
+      <span class="title" style="inline-block; margin-left: 10px;color: rgba(119, 119, 119, 0.83);"><%= Brand.find_by(id: product.brand_id).brand %></span>
 
-  				<p class="description" style="margin-top:40px;"><%= product.description %></p>
+			<p class="description" style="margin-top:40px;"><%= product.description %></p>
           
           
-          <%= form_for :cart_item, :url=>{:action => "add", :controller => "cart"} do |f| %>
+      <%= form_for :cart_item, :url=>{:action => "add", :controller => "cart"} do |f| %>
           
-          <%= f.hidden_field :product_id, :value => product.id %>
+      <%= f.hidden_field :product_id, :value => product.id %>
           
          
           
-          <p class="error"><%= flash[:error] %></p>
+      <p class="error"><%= flash[:error] %></p>
 
-  				<div class="btn-group">
-  					<p class="detail-button-text">Size:</p>
-  					<button type="button" class="btn btn-default btn-sm dropdown-toggle filter-button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width: 100px;margin-left:2px; text-align: left; border-radius: 2px">
-    				<% if @chosenS.present? %>
-              <% @chosenS.each do |s| %>
-              <%= s.size %>
-              <% @size=s.size %>
-              <%= f.hidden_field :size, :value => @size %>
-              <% end %>
-              <% end %>
-             <span class="pull-right"><span class="caret" ></span></span>
-  					</button>
-  					<ul class="dropdown-menu">
-              <% @sizes.each do |size| %>
-              <% if @chosenC.present? %>
-              <% @chosenC.each do |c| %>
-              <li><%= link_to size.size, :id => product.id, :color_id => c.id, :size_id => size.id %> </li>
-              <% end %>
-              <% else %>
-  						<li><%= link_to size.size, :size_id => size.id, :id => product.id  %></li>
-              <% end %>
-              <% end %>
+			<div class="btn-group">
+				<p class="detail-button-text">Size:</p>
+				<button type="button" class="btn btn-default btn-sm dropdown-toggle filter-button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width: 100px;margin-left:2px; text-align: left; border-radius: 2px">
+ 				<% if @chosenS.present? %>
+          <% @chosenS.each do |s| %>
+            <%= s.size %>
+            <% @size=s.size %>
+            <%= f.hidden_field :size, :value => @size %>
+            <% end %>
+          <% end %>
+        <span class="pull-right"><span class="caret" ></span></span>
+  			</button>
+  		<ul class="dropdown-menu">
+        <% @sizes.each do |size| %>
+          <% if @chosenC.present? %>
+            <% @chosenC.each do |c| %>
+            <li><%= link_to size.size, :id => product.id, :color_id => c.id, :size_id => size.id %> </li>
+          <% end %>
+          <% else %>
+    				<li><%= link_to size.size, :size_id => size.id, :id => product.id  %></li>
+          <% end %>
+        <% end %>
     
-  					</ul>
+  		</ul>
 
 
-				</div>
+			</div>
 
-				<div class="btn-group">
-  					<p class="detail-button-text" style="margin-left:13px">Color:</p>
-  			
-            <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width: 100px;margin-left:14px; text-align: left; border-radius: 2px">
-              <% if @chosenC.present? %>
-              <% @chosenC.each do |c| %>
-              <%= c.color %>
-              <% @color=c.color %>
-              <%= f.hidden_field :color, :value => @color %>
-              <% end %>
-              <% end %>
-    				<span class="pull-right"><span class="caret" ></span></span>
-            </button>
-  					<ul class="dropdown-menu" >
-  						<% @colors.each do |color| %>
-              <% if @chosenS.present? %>
-              <% @chosenS.each do |s| %>
-              <li><%= link_to color.color, :id => product.id, :color_id => color.id, :size_id => s.id %> </li>
-              <% end %>
-              <% else %>
-              <li><%= link_to color.color, :id => product.id,  :color_id => color.id %></li>
-              <% end %>
-              <% end %>
+		  <div class="btn-group">
+  			<p class="detail-button-text" style="margin-left:13px">Color:</p>
+  		
+        <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width: 100px;margin-left:14px; text-align: left; border-radius: 2px">
+        <% if @chosenC.present? %>
+          <% @chosenC.each do |c| %>
+            <%= c.color %>
+            <% @color=c.color %>
+            <%= f.hidden_field :color, :value => @color %>
+          <% end %>
+        <% end %>
+    		<span class="pull-right"><span class="caret" ></span></span>
+        </button>
+  			<ul class="dropdown-menu" >
+  				<% @colors.each do |color| %>
+            <% if @chosenS.present? %>
+            <% @chosenS.each do |s| %>
+            <li><%= link_to color.color, :id => product.id, :color_id => color.id, :size_id => s.id %> </li>
+            <% end %>
+            <% else %>
+            <li><%= link_to color.color, :id => product.id,  :color_id => color.id %></li>
+            <% end %>
+            <% end %>
     
-  					</ul>
+  			</ul>
 
 
 				</div>
@@ -102,63 +92,60 @@
 
         <div class="btn-group">
             <p class="detail-button-text", style="margin-left:13px">Quantity:</p>
-        <div style="width: 70px;margin-left:14px; margin-bottom: -5px; text-align: left; border-radius: 2px; margin-top: 1px; height: 33px;">
-        <%= f.number_field :quantity, :min => '1', :max => '5', :class => "quantity", :value => '1' %>
+          <div style="width: 70px;margin-left:14px; margin-bottom: -5px; text-align: left; border-radius: 2px; margin-top: 1px; height: 33px;">
+            <%= f.number_field :quantity, :min => '1', :max => '5', :class => "quantity", :value => '1' %>
           </div>
         </div>
 
         
         
-        </br>
-      <div>
-        <p class="price">Unit Price: <span style="color: green"><%= product.price.round(2) %></span> KM</p>
+      </br>
+        <div>
+          <p class="price">Unit Price: <span style="color: green"><%= product.price.round(2) %></span> KM</p>
     
   
-        <p class="success"><%= flash[:success] %></p>
-      </div>
+          <p class="success"><%= flash[:success] %></p>
+        </div>
 
         <div>
           <%= submit_tag "Add to Cart", class: "btn btn-default btn-sm addtoCartButton", id: "addToCart"%>
           <% end %>
         </div>
-				<!--<div class="btn-group">
-
-					<%= link_to raw('<button type="button" class="btn btn-primary btn-sm background buyButton" style="width: 103px; margin-left:120px; text-align: center; margin-top: 0px"; position: absolute; top: -42px>Buy it now</button>') %>
-				</div>-->
+				
 
 
-  			</div>
-  			<% end %>
-
-  			<div class="col-md-1">
-  			</div>
-
-  		</div>
   	</div>
-  </br>
+		<% end %>
+
+  	<div class="col-md-1">
+  	</div>
+
+  </div>
+</div>
+</br>
 
 <h5 class="text_like"> You may also like </h5>
 
-  <div class="container suggestedPart">
-<div class="row">
-  <div class="col-md-1">
-  </div>
-  
- <div class="col-md-10">
-    
-    <% @featured_product.each do |f| %>
-    <div class="image hovereffect">
-     <%= image_tag f.image, :size => "180x180" %>
-      <div class="overlay">
-        <h2> <%= link_to f.name, :controller => "product", :action => "detail", :id => f.id %></h2>
-           <p class="info" href="#"><%= f.price.round(2) %> KM</p>
-        </div> 
+<div class="container suggestedPart">
+  <div class="row">
+    <div class="col-md-1">
     </div>
+  
+    <div class="col-md-10">
+    
+      <% @featured_product.each do |f| %>
+      <div class="image hovereffect">
+        <%= image_tag f.image, :size => "180x180" %>
+          <div class="overlay">
+          <h2> <%= link_to f.name, :controller => "product", :action => "detail", :id => f.id %></h2>
+           <p class="info" href="#"><%= f.price.round(2) %> KM</p>
+          </div> 
+      </div>
      <% end %>
     </div>
   
- <div class="col-md-1">
- </div>
+  <div class="col-md-1">
+  </div>
 </div>
 </div>
 	
@@ -167,9 +154,6 @@
 
 
 
-  </body>
-
-</html>
 
 
 

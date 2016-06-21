@@ -1,42 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>Sign Up</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-  <%= stylesheet_link_tag "login.css" %> 
-</head>
-
-<body>
-
+<% content_for :head do %>
+<%= stylesheet_link_tag "login.css" %> 
+<% end %>
 
 <div class="container">
 	
- 	
-
 	<div class="row row-center ">
-    <div class="col-md-4">
-    </div>
+    	<div class="col-md-4">
+    	</div>
   
-  	
-
-
-
-	<div class="col-md-4">
+		<div class="col-md-4">
 			<%= form_for :users, url: 'create' do |f| %>
 			
 			<div>
-			<h2 style="text-align:left;float:left;">Create your account</h2>
-      		<h5 style="text-align:right; float: right;"><%= link_to "Login to your account", {:action => 'new', :controller=>"sessions" } %> </h5> 
-     		 <hr style="clear:both;"/>
+				<h2 style="text-align:left;float:left;">Create your account</h2>
+      			<h5 style="text-align:right; float: right;"><%= link_to "Login to your account", {:action => 'new', :controller=>"sessions" } %> </h5> 
+     			 <hr style="clear:both;"/>
     		</div>
 
-    		<!--<% if flash[:error] %>
-				<p class="error"><%= flash[:error] %> </p> 
-			<% end %> -->
 			<div class="error">
 			<% if  @user.errors.any? %>
 				<h2>Errors:</h2>
@@ -51,52 +31,32 @@
 			</div>
 			
 
-				<div class="box">
-        			<p>EMAIL</p>
-					<div class="field">
-						<%= f.text_field "username", class: "form-control", placeholder: "Email", autofocus: :true%>
-					</div> </br>
-					<p>PASSWORD</p>
-					<div class="field">
-						<%= f.password_field  "password", class: "form-control", placeholder: "Password"%>
-					</div> </br>
-					<p>CONFIRM PASSWORD</p>
-					<div class="field">
-						<%= f.password_field "password_confirmation", class: "form-control", placeholder: "Confirm Password"%>
-					</div> </br> 
-				  </div> </br>
+			<div class="box">
+       			<p>EMAIL</p>
+				<div class="field">
+					<%= f.text_field "username", class: "form-control", placeholder: "Email", autofocus: :true%>
+				</div> </br>
+				<p>PASSWORD</p>
+				<div class="field">
+					<%= f.password_field  "password", class: "form-control", placeholder: "Password"%>
+				</div> </br>
+				<p>CONFIRM PASSWORD</p>
+				<div class="field">
+					<%= f.password_field "password_confirmation", class: "form-control", placeholder: "Confirm Password"%>
+				</div> </br> 
+			</div> </br>
 			
 				
-        		<div class="field">
+        	<div class="field">
   				
-					<%= f.submit "CREATE ACCOUNT", class: "btn pull-right button-css", id: "create"%>
-				</div> 
+				<%= f.submit "CREATE ACCOUNT", class: "btn pull-right button-css", id: "create"%>
+			</div> 
 			<%end%>
 			
 		</div>
 		<div class="col-md-4">
-    </div>
+    	</div>
 	</div>
-
-</body>
-</html>
+</div>
 
 
-<!--<h1>Sign Up</h1>
-
-<%= form_tag :action => 'create' do  %>
-
-<p><label for = "username">email</label>:
-	<%= text_field 'users', 'username', placeholder: "email" %></p>
-
-<p><label for = "password">Password</label>:
-	<%= password_field "users", "password", placeholder: "Password" %></p>
-
-<p><label for = "password_confirmation">Confirm password</label>:
-	<%= password_field "users", "password_confirmation", placeholder: "Confirm Password" %></p>
-
-
-<%= submit_tag "Sign Up" %>
-
-<% end -%>
--->
