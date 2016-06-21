@@ -1,36 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>abhShoes</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <%= stylesheet_link_tag "login.css" %> 
-</head>
+<% content_for :head do %>
+   <%= stylesheet_link_tag "login.css" %>
+<% end %>
 
 <div class="container">
 	<div class="container">
  	
-
-	<div class="row row-center ">
-    <div class="col-md-4">
-    </div>
+    <div class="row row-center ">
+      <div class="col-md-4">
+      </div>
   
-  	
+	    <div class="col-md-4">
+        <% @sum = @total.to_f/100 %>
+		    <h2>Thanks, you paid <strong><%= @sum %> KM</strong>!</h2>
 
-
-
-	<div class="col-md-4">
-
-
-		<% @sum = @total.to_f/100 %>
-		<h2>Thanks, you paid <strong><%= @sum %> KM</strong>!</h2>
-
-    <h5 style="margin-bottom: 450px; text-align:left;"><%= link_to "Click to see your order", {:action => 'detail', :controller=>'order', :order_id => @order_id } %> </h5>
+        <h5 style="margin-bottom: 450px; text-align:left;"><%= link_to "Click to see your order", {:action => 'detail', :controller=>'order', :order_id => @order_id } %> </h5>
     
-
-		</div>
-		<div class="col-md-4">
+		  </div>
+		  <div class="col-md-4">
+      </div>
     </div>
-</div>
-</div>
+  </div>
 </div>

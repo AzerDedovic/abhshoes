@@ -1,65 +1,57 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>abhShoes</title>
-  <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <%= stylesheet_link_tag "product.css" %> 
-</head>
-<body>
+<% content_for :head do %>
+<%= stylesheet_link_tag "product.css" %> 
+<% end %>
 
-  <div class="container">
-    <div class="row">
-      <div class="col-md-1">
-      </div>
 
-      <div class="col-md-3">
+<div class="container">
+  <div class="row">
+    <div class="col-md-1">
+    </div>
+
+    <div class="col-md-3">
         
-        <h2 class="category_title" style="margin-left:0px">Filter</h2>
-
+      <h2 class="category_title" style="margin-left:0px">Filter</h2>
         
-          <p class="filter-text">Brand</p>
-          <div class="btn-group filter-button">
-              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width:160px; text-align:left">
-              <span class="selection">All Brands </span><span class="pull-right"><span class="caret" ></span></span>
-              </button>
-              <ul class="dropdown-menu">
-                <% @brands.each do |brand| %>
-                <li><a val="brand=<%=brand.id %>" > <%=brand.brand %></a> </li>
-                <% end %>               
-            </ul>
+        <p class="filter-text">Brand</p>
+        <div class="btn-group filter-button">
+          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width:160px; text-align:left">
+          <span class="selection">All Brands </span><span class="pull-right"><span class="caret" ></span></span>
+          </button>
+          <ul class="dropdown-menu">
+            <% @brands.each do |brand| %>
+            <li><a val="brand=<%=brand.id %>" > <%=brand.brand %></a> </li>
+            <% end %>               
+          </ul>
 
-       
-      </div>
+        </div>
 
 
-          <p class="filter-text">Size</p>
-          <div class="btn-group filter-button">
-              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width:160px; text-align:left">
-              <span class="selection">All Sizes</span> <span class="pull-right"><span class="caret" ></span></span>
-              </button>
-              <ul class="dropdown-menu">
-                <% @sizes.each do |size| %>
-                <li><a val="size=<%=size.id %>" > <%=size.size %></a> </li> 
-              <% end %>                
-              
-            </ul>
+        <p class="filter-text">Size</p>
+        <div class="btn-group filter-button">
+          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width:160px; text-align:left">
+          <span class="selection">All Sizes</span> <span class="pull-right"><span class="caret" ></span></span>
+          </button>
+          <ul class="dropdown-menu">
+            <% @sizes.each do |size| %>
+            <li><a val="size=<%=size.id %>" > <%=size.size %></a> </li> 
+            <% end %>                
+             
+          </ul>
         </div>
 
 
 
-          <p class="filter-text">Color</p>
-          <div class="btn-group filter-button">
-              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width:160px; text-align:left">
-              <span class="selection">All Colors </span><span class="pull-right"><span class="caret" ></span></span>
-              </button>
-              <ul class="dropdown-menu">
-                <% @colors.each do |color| %>
-              <li><a val="color=<%=color.id %>" > <%=color.color %></a> </li> 
+        <p class="filter-text">Color</p>
+        <div class="btn-group filter-button">
+          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width:160px; text-align:left">
+          <span class="selection">All Colors </span><span class="pull-right"><span class="caret" ></span></span>
+          </button>
+          <ul class="dropdown-menu">
+            <% @colors.each do |color| %>
+            <li><a val="color=<%=color.id %>" > <%=color.color %></a> </li> 
                  
-              <% end %>     
-            </ul>
+            <% end %>     
+          </ul>
         </div>
       
 
@@ -76,61 +68,62 @@
       </div> -->
 
 
-          <p class="filter-text">Price</p>
-          <div class="btn-group filter-button">
-              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width:160px; text-align:left">
-              <span class="selection">All Prices</span> <span class="pull-right"><span class="caret" ></span></span>
-              </button>
-              <ul class="dropdown-menu">
-                <li><a val="min=30&max=60">30KM - 60KM</a></li>
-                <li><a val="min=60&max=90">60KM - 90KM</a></li>
-                <li><a val="min=90&max=120">90KM - 120KM</a></li>
-                <li><a val="min=120&max=10000">120KM<</a></li>
+        <p class="filter-text">Price</p>
+        <div class="btn-group filter-button">
+          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width:160px; text-align:left">
+          <span class="selection">All Prices</span> <span class="pull-right"><span class="caret" ></span></span>
+          </button>
+          <ul class="dropdown-menu">
+            <li><a val="min=30&max=60">30KM - 60KM</a></li>
+            <li><a val="min=60&max=90">60KM - 90KM</a></li>
+            <li><a val="min=90&max=120">90KM - 120KM</a></li>
+            <li><a val="min=120&max=10000">120KM<</a></li>
              
-            </ul>
+          </ul>
         </div>
 
 
-      </div>
+    </div>
 
 
-      <div class="col-md-8">
+    <div class="col-md-8">
 
-        <% @category.each do |c| %>
-        <h2 class="category_title"> <%= c.name %> 
-        <% end %>
+      <% @category.each do |c| %>
+      <h2 class="category_title"> <%= c.name %> 
+      <% end %>
         
-        <small>
-        <span class="btn-group pull-right buttonText" style="padding-right:63px; padding-top: 11px;">
-            <button class="btn dropdown-toggle" data-toggle="dropdown" >
-               <span class="selection">Price</span> <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu">
-                <li><a val="price_ASC=1">Price: lowest first</a> </li>
-                <li><a val="price_DESC=1">Price: highest first</a> </li>
-            </ul>
+      <small>
+         <span class="btn-group pull-right buttonText" style="padding-right:63px; padding-top: 11px;">
+          <button class="btn dropdown-toggle" data-toggle="dropdown" >
+            <span class="selection">Price</span> <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <li><a val="price_ASC=1">Price: lowest first</a> </li>
+            <li><a val="price_DESC=1">Price: highest first</a> </li>
+          </ul>
         </span>
+
         </small>
         </h2>
 
         
 
         
+
+      </small>
+      </h2>
+
      
-  <div id="products">
+    <div id="products">
      <%= render :partial => "products" %>
-  </div>
-
-      
-
-
-     
     </div>
+
+ 
   </div>
+</div>
 
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> 
-    <script   src="https://code.jquery.com/jquery-3.0.0.min.js"   integrity="sha256-JmvOoLtYsmqlsWxa7mDSLMwa6dZ9rrIdtrrVYRnDRH0="   crossorigin="anonymous"></script>
-
+ 
+<% content_for :footer do %>
   <script type="text/javascript">
     $(".dropdown-menu li a").click(function(e){
       e.preventDefault();
@@ -156,5 +149,4 @@
       $.get(link);
      });
   </script>
-</body>
-</html>
+<% end %>

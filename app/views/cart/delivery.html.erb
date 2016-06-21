@@ -1,29 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>abhShoes</title>
-  <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> 
-    <%= stylesheet_link_tag "cart.css" %> 
-</head>
-<body>
-	<div class="container">
-    <div class="row">
-      <div class="col-md-1">
-      </div>
+<% content_for :head do %>
+  <%= stylesheet_link_tag "cart.css" %> 
+<% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-1">
+    </div>
 
-      <div class="col-md-6">
-      	<h2 class="category_title" style="margin-left:0px">Delivery Address</h2>
+    <div class="col-md-6">
+     	<h2 class="category_title" style="margin-left:0px">Delivery Address</h2>
 
-        <%= form_for :delivery, :url=>{:action => "delivery_address", :controller => "cart"} do |f| %>
-
-        
-
+      <%= form_for :delivery, :url=>{:action => "delivery_address", :controller => "cart"} do |f| %>
       
-        <p class="error"><%= flash[:error] %></p>
-        <div >
+      <p class="error"><%= flash[:error] %></p>
+      <div>
         <p>Name</p>
         <div class="field delivery_field">
           <%= f.text_field :full_name, class: "form-control", placeholder: "Name", autofocus: :true%>
@@ -57,122 +46,107 @@
 
     </br>
 
-    <div>
+      <div>
 
       
 
-      <h2 class="category_title" style="margin-left:0px; margin-bottom:10px;">Billing Address </h2>
+        <h2 class="category_title" style="margin-left:0px; margin-bottom:10px;">Billing Address </h2>
     
-      <input type="checkbox" name="billingCheckbox" id="billingCheckbox" style="">
-      <label class="checkbox-text" style="margin-bottom:30px">
-        Use Delivery Address as Billing Address
-      </label>
+        <input type="checkbox" name="billingCheckbox" id="billingCheckbox" style="">
+        <label class="checkbox-text" style="margin-bottom:30px">
+          Use Delivery Address as Billing Address
+        </label>
 
-      <div class="reveal-if-active"> 
+        <div class="reveal-if-active"> 
 
-        <p>Name</p>
-        <div class="field delivery_field">
-          <%= f.text_field :full_name_bill, class: "form-control", placeholder: "Name"%>
-        </div> 
-        </br>
-        <p>Address</p>
-        <div class="field delivery_field">
+          <p>Name</p>
+          <div class="field delivery_field">
+            <%= f.text_field :full_name_bill, class: "form-control", placeholder: "Name"%>
+          </div> 
+          </br>
+          <p>Address</p>
+          <div class="field delivery_field">
           <%= f.text_field :address_bill, class: "form-control", placeholder: "Address"%> 
-        </div> 
-        </br>
-        <p>City</p>
-        <div class="field delivery_field">
+          </div> 
+          </br>
+          <p>City</p>
+          <div class="field delivery_field">
           <%= f.text_field :city_bill, class: "form-control", placeholder: "City"%> 
-        </div> 
-        </br>
-        <p>Region</p>
-        <div class="field delivery_field">
+          </div> 
+          </br>
+          <p>Region</p>
+          <div class="field delivery_field">
           <%= f.text_field :region_bill, class: "form-control", placeholder: "Region"%> 
-        </div> 
-        </br>
-        <p>ZIP</p>
-        <div class="field delivery_field">
+          </div> 
+          </br>
+          <p>ZIP</p>
+          <div class="field delivery_field">
           <%= f.text_field :zip_bill, class: "form-control", placeholder: "ZIP"%> 
-        </div> 
-        </br>
-        <p>Country</p>
-        <div class="field delivery_field">
+          </div> 
+          </br>
+          <p>Country</p>
+          <div class="field delivery_field">
           <%= f.text_field :country_bill, class: "form-control", placeholder: "Country"%> 
-        </div> 
-        </br>
-        <p>Phone number</p>
-        <div class="field delivery_field">
+          </div> 
+          </br>
+          <p>Phone number</p>
+          <div class="field delivery_field">
           <%= f.text_field :phone_bill, class: "form-control", placeholder: "Phone number"%> 
-        </div> 
-        </br>
+          </div> 
+          </br>
 
+        </div>
+
+      </div>  	
+      	
+    </div>
+
+
+    <div class="col-md-4">
+      <% @items %>
+      <% @sum=0 %>
+      <% @items.each do |item| %>
+      <% @sum=@sum+(Product.find_by(id: item.product_id).price.round(2) * item.quantity) %>
+      <% end %>
+
+    	<h2 class="paymentProgress" style="display: inline-block; left: 0; color: rgba(0, 0, 0, 0.61);">Cart</h2>
+      <h2 class="paymentProgress" style="display: inline-block; position: absolute; left: 159px; color: rgba(0, 0, 0, 0.61); ">Delivery</h2>
+      <h2 class="paymentProgress" style="display: inline-block; position: absolute; left: 312px; color: rgba(0, 0, 0, 0.25); ">Payment</h2>
+      <div class="progress" style="margin-top:-28px;">
+        <div class="progress-bar progress-bar-custom" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 67%;">
+          
+        </div>
       </div>
+      <% @item_quantity %>
+      <div class="box_order">
+      	<span class="order_title"> Order: </span>
+      	<span class="order_quantity"> <%= @item_quantity %> items </span>
+      	<p class="order_price"> Price: </p>
+      	<p class="order_sum"> <%= @sum %>KM </p>
+      	<p class="order_price"> Delivery: </p>
+      	<p class="order_sum"> 30.00KM </p>
+      	<hr class="hr_order"/> 
+      		
+      	<p class="order_price"> Total: </p>
+      	<p class="order_sum"> <%= @sum+30 %>KM </p>   
 
+    	</div>
+
+     	<div class="btn-group" style="margin-bottom:100px">
+
+     		<%= link_to raw('<button type="button" class="btn btn-primary btn-sm dropButton" style="width: 103px; margin-left:120px; text-align: center; margin-top: 0px"; position: absolute; top: -42px>Drop</button>'), :controller => "cart", :action => "drop" %>
+
+		  	<%= submit_tag "Continue", class: "btn btn-primary btn-sm background continue_delivery ",  id: "Continue" %>
+      
+        <% end %>
+		  </div>
 
 
     </div>
-
-    
-    
-
-
-  
-  
-      		
-      	
-      	
-      </div>
-
-
-
-
-      
-
-      <div class="col-md-4">
-        <% @items %>
-        <% @sum=0 %>
-        <% @items.each do |item| %>
-        <% @sum=@sum+(Product.find_by(id: item.product_id).price.round(2) * item.quantity) %>
-        <% end %>
-
-      	<h2 class="paymentProgress" style="display: inline-block; left: 0; color: rgba(0, 0, 0, 0.61);">Cart</h2>
-        <h2 class="paymentProgress" style="display: inline-block; position: absolute; left: 159px; color: rgba(0, 0, 0, 0.61); ">Delivery</h2>
-        <h2 class="paymentProgress" style="display: inline-block; position: absolute; left: 312px; color: rgba(0, 0, 0, 0.25); ">Payment</h2>
-        <div class="progress" style="margin-top:-28px;">
-          <div class="progress-bar progress-bar-custom" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 67%;">
-          
-          </div>
-        </div>
-      	<% @item_quantity %>
-      	<div class="box_order">
-      		<span class="order_title"> Order: </span>
-      		<span class="order_quantity"> <%= @item_quantity %> items </span>
-      		<p class="order_price"> Price: </p>
-      		<p class="order_sum"> <%= @sum %>KM </p>
-      		<p class="order_price"> Delivery: </p>
-      		<p class="order_sum"> 30.00KM </p>
-      		<hr class="hr_order"/> 
-      		
-      		<p class="order_price"> Total: </p>
-      		<p class="order_sum"> <%= @sum+30 %>KM </p>   
-
-      	</div>
-
-      	<div class="btn-group" style="margin-bottom:100px">
-
-      		<%= link_to raw('<button type="button" class="btn btn-primary btn-sm dropButton" style="width: 103px; margin-left:120px; text-align: center; margin-top: 0px"; position: absolute; top: -42px>Drop</button>'), :controller => "cart", :action => "drop" %>
-
-			<%= submit_tag "Continue", class: "btn btn-primary btn-sm background continue_delivery ",  id: "Continue" %>
-      
-      <% end %>
-		</div>
-
-
-      </div>
-      <div class="col-md-1">
-      </div>
+    <div class="col-md-1">
+    </div>
 
   </div>
 </div>
-</body>
+
 
