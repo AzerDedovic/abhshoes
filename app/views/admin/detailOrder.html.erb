@@ -1,0 +1,82 @@
+<% content_for :head do %>
+<%= stylesheet_link_tag "cart.css" %> 
+<% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-1">
+    </div>
+
+    <div class="col-md-6">
+
+        <div class="box_order" style="margin-top: -9px; padding-bottom: 5px; margin-left:2px; margin-bottom: 30px;">
+          <span style="display:inline-block;">
+          <p class="order_title"> Delivery Address </p></br>
+          <p class="delivery_address_field"> <%= @delivery_address.full_name %> </br>
+            <%= @delivery_address.address %> </br>
+            <%= @delivery_address.city %>, <%= @delivery_address.region %> <%= @delivery_address.zip %></br>
+            <%= @delivery_address.country %> </br>
+            Phone: <%= @delivery_address.phone %> </br> </p>
+          </span>
+
+          <span style="display:inline-block; margin-left:100px;">
+          <p class="order_title"> Billing Address </p></br>
+          <p class="delivery_address_field"> <%= @billing_address.full_name_bill %> </br>
+            <%= @billing_address.address_bill %> </br>
+            <%= @billing_address.city_bill %>, <%= @billing_address.region_bill %> <%= @billing_address.zip_bill %></br>
+            <%= @billing_address.country_bill %> </br>
+            Phone: <%= @billing_address.phone_bill %> </br> </p>
+          </span>
+        </div>
+
+      	<% @items %>
+
+      	<% @items.each do |item| %>
+
+      	<div>
+      	  <div class="imageProduct">
+      		  <%= image_tag item.image, :size => "120x120" %>
+      		</div>
+      		<p class="order_description_cart"> Model: <%= item.name %>  </br>
+           Brand: <%= item.brand %> </br>
+      		 Size: <%= item.size %> </br>
+      		 Color: <%= item.color %> </br>
+      		 </p>
+
+      		 <p class="price_o"> Price: </p>
+      		 <p class="price_item"> <%= item.price.round(2) %>KM </p>
+      		 <p class="quantity_cart"> Quantity: </p>
+      		 <p class="quantity_item"> <%= item.quantity %>   </p>
+      	
+        </div>
+
+      	<% end %>
+
+
+
+    </div>
+
+    <div class="col-md-4">
+    	
+      <div class="box_order" style="margin-top:-9px; margin-bottom:170px;" >
+      	<span class="order_title"> Order: </span>
+      	<span class="order_quantity"> <%= @items.count %> items </span>
+      	<p class="order_price"> Price: </p>
+      	
+      	<p class="order_sum"> <%= @order.total_price %>KM </p>
+      	<p class="order_price"> Delivery: </p>
+      	<p class="order_sum"> 30.00KM </p>
+      	<hr class="hr_order"/> 
+      	
+      	<p class="order_price"> Total: </p>
+      	<p class="order_sum"> <%= @order.total_price+30 %>KM </p>
+      </div>
+     
+
+    </div>
+    <div class="col-md-1">
+    </div>
+
+  </div>
+</div>
+
+

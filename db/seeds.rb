@@ -24,6 +24,8 @@ Image.delete_all
 Color.delete_all
 Size.delete_all
 
+#User.create(id: 1, username: "admin@abhshoes.ba", password_hash: "$2a$10$gDFpAIkRsW9zyhApR4VG.ugbluFZmePpQ6cmSgzXUCyRPKvh/g7ha", password_salt: "$2a$10$gDFpAIkRsW9zyhApR4VG.u", admin: true)
+
 Category.create(tag: "m", name: "Men")
 Category.create(tag: "w", name: "Women")
 Category.create(tag: "k", name: "Kids")

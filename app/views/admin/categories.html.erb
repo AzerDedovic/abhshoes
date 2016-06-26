@@ -1,0 +1,96 @@
+<% content_for :head do %>
+<%= stylesheet_link_tag "admin.css" %> 
+<% end %>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-1">
+        </div>
+        <div class="col-md-10">
+            <div id="toolbar">
+          
+                <button id="button" class="btn btn-default">Remove</button>
+            <%= link_to raw('<button type="button" class="btn btn-default">Add Category</button>'), {:controller => "admin", :action => "addCategory" } %></div>
+            <table 
+                id="table"
+                class="tableCSS"
+                data-toggle="table"
+                data-toolbar="#toolbar"
+                data-classes="table table-hover table-condensed"
+                data-striped="true"
+                data-sort-name="email"
+                data-sort-order="asc"
+                data-pagination="true"
+                data-page-list=""
+                data-search="true"
+
+                >
+                <thead>
+                    <tr>
+                        <th data-field="state" data-checkbox="true"></th>
+                        <th data-field="id" data-sortable="true">ID</th>
+                        <th data-field="name" data-sortable="true">Name</th>
+                        <th data-field="tag">Tag</th>
+                        <th data-field="createdAt" data-sortable="true">Created At</th>
+                        <th data-field="options">Options</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% @categories.each do |category| %>
+                    <tr>
+                        <td></td>
+                        <td><%= category.id %></td>
+                        <td><%= category.name %></td>
+                        <td><%= category.tag %></td>
+                        <td><%= category.created_at.strftime("%b %d, %Y") %></td>
+                       
+                        <td>
+                            <%= link_to raw('<span class="glyphicon glyphicon-pencil" style="margin-left:10px"></span>'), {:action => "editCategory", :controller => "admin", :id => category.id} %>
+                            <%= link_to raw('<span class="glyphicon glyphicon-trash" style="margin-left:5px"></span>'), {:action => "deleteCategory", :controller => "admin", :id_s => category.id} %>
+                        </td>
+                    </tr>
+                    <% end %>
+                </tbody>
+            </table>
+            <div style="margin-bottom:150px">
+            </div>
+        </div>
+        <div class="col-md-1">
+        </div>
+
+    </div>
+</div>
+
+<script>
+    var $table = $('#table'),
+        $button = $('#button');
+
+    $(function () {
+        $button.click(function () {
+            var ids = $.map($table.bootstrapTable('getSelections'), function (row) {
+                return row.id;
+            });
+            
+            var link = '<%= admin_deleteCategory_url %>'
+
+            attr="";
+            ids.forEach(function(entry) {
+               attr=attr+"&id[]="+entry
+
+            console.log(entry);
+            });
+
+            link = link + "?" + attr;
+            //alert(link);
+            window.location=link;
+
+
+        });
+    });
+
+</script>
+
+
+

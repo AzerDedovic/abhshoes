@@ -1,0 +1,86 @@
+<% content_for :head do %>
+<%= stylesheet_link_tag "admin.css" %> 
+<% end %>
+<div class="container">
+	<div class="row">
+		<div class="col-md-1">
+		</div>
+		<div class="col-md-10">
+      <div class="error" style="margin-left:17px">
+          <% if  @editUser.errors.any? %>
+          <h2 class="error-title">Errors:</h2>
+          <ul>
+            <% @editUser.errors.full_messages.each do |message| %>
+            <li>  <%= message %></li>
+            <% end %>
+
+          </ul>
+
+          <% end %>
+      </div>
+			<div class="boxUser">
+			<%= form_for :updateUser, :url=>{:action => "updateUser", :controller => "users", :id => @editUser.id} do |f| %>
+    
+      		<div>
+       		<p>Email</p>
+        	<div class="field delivery_field">
+          	<%= f.text_field :email, :name => "email", class: "form-control", value: @editUser.username %>
+        	</div> 
+        	</div>
+        	</br>
+
+        	<div>
+        	<p>Administrator</p>
+        		<div class="radio">
+  					<label><input id="admin" type="checkbox"  value="admin" name="admin"> Yes</label>
+  				</div>
+  				<div class="radio">
+    				<label><input id="notAdmin" type="checkbox"  value="notAdmin" name="admin"> No</label>
+				</div>
+			</div>
+			
+		
+			<div class="btn-group" style="left: 455px; bottom: -83px;">
+
+     			<%= link_to raw('<button type="button" class="btn btn-primary button_back">Back</button>'), {:controller => "admin", :action => "users" } %>
+
+		  		<%= submit_tag "Save", class: "btn btn-primary button_save_user",  id: "Save" %>
+      
+        		
+		  	</div>
+		  	<% end %>
+			
+
+		
+      
+        
+
+        	<% if @editUser.admin %>
+        	<script>
+        		document.getElementById("admin").checked = true;
+			</script>
+        	<% else %>
+        	<script>
+        		document.getElementById("notAdmin").checked = true;
+			</script>
+        	<% end %>
+        	
+      		</div>
+		</div>
+		<div class="col-md-1">
+		</div>
+	</div>
+</div>
+
+<script>
+$("input:checkbox").on('click', function() {
+  var $box = $(this);
+  if ($box.is(":checked")) {
+    var group = "input:checkbox[name='" + $box.attr("name") + "']";
+    $(group).prop("checked", false);
+    $box.prop("checked", true);
+  } else {
+    $box.prop("checked", false);
+  }
+});
+</script>

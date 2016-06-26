@@ -11,7 +11,11 @@ class SessionsController < ApplicationController
   	else
   		sign_in user
   		#redirect_to user
-      redirect_to url_for(:controller => :welcome, :action => :index)
+      if user.admin
+        redirect_to url_for(:controller => :admin, :action => :dashboard)
+      else
+        redirect_to url_for(:controller => :welcome, :action => :index)
+      end
     end
 end
   def destroy

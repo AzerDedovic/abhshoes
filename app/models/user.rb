@@ -5,12 +5,12 @@ class User < ActiveRecord::Base
 
    #attr_accessible :username, :password
    validates :username, :presence => true
-   validates :password, :presence =>true
-   validates_confirmation_of :password
+   validates :password, :presence =>true, :on => :create
+   validates_confirmation_of :password, :on => :create
    validates_uniqueness_of :username
-   validates_format_of :username, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, on: :create
-   validates_length_of :password, minimum: 5, maximum: 30
-   validates :password_confirmation, :presence => true
+   validates_format_of :username, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
+   validates_length_of :password, minimum: 5, maximum: 30, :on => :create
+   validates :password_confirmation, :presence => true, :on => :create
 
 
    #validates :password_confirmation, :presence => true

@@ -1,0 +1,100 @@
+<% content_for :head do %>
+<%= stylesheet_link_tag "admin.css" %> 
+<% end %>
+<div class="container">
+	<div class="row">
+		<div class="col-md-1">
+		</div>
+		<div class="col-md-10">
+      <div class="error" style="margin-left:17px">
+          <% if  @newUser.errors.any? %>
+          <h2 class="error-title">Errors:</h2>
+          <ul>
+            <% @newUser.errors.full_messages.each do |message| %>
+            <li>  <%= message %></li>
+            <% end %>
+
+          </ul>
+
+          <% end %>
+      </div>
+			<div class="boxUser">
+			<%= form_for :createUser, :url=>{:action => "createUser", :controller => "users"} do |f| %>
+      
+      		
+
+      		<%#= f.hidden_field :id => @editUser.id %>
+
+      		<div>
+       		<p>Email</p>
+        	<div class="field delivery_field">
+          	<%= f.text_field "username", class: "form-control", placeholder: "Email", autofocus: :true%>
+        	</div> 
+        	</div>
+          </br>
+          <div>
+          <p>Password</p>
+          <div class="field delivery_field">
+            <%= f.password_field  "password", class: "form-control", placeholder: "Password"%>
+          </div> 
+          </div>
+        	</br>
+          <div>
+          <p>Confirm Password</p>
+          <div class="field delivery_field">
+            <%= f.password_field "password_confirmation", class: "form-control", placeholder: "Confirm Password"%>
+          </div> 
+          </div>
+
+        	<div style="position: absolute; left: 609px; top: 57px;">
+        	<p>Administrator</p>
+        		<div class="radio">
+  					<label><input id="admin" type="checkbox"  value=1 name="admin"> Yes</label>
+  				</div>
+  				<div class="radio">
+    				<label><input id="notAdmin" type="checkbox"  value=0 name="admin"> No</label>
+				</div>
+			</div>
+			
+		
+			<div class="btn-group" style="left: 455px; bottom: -40px;">
+
+     			<%= link_to raw('<button type="button" class="btn btn-primary button_back">Back</button>'), {:controller => "admin", :action => "users" } %>
+
+		  		<%= submit_tag "Create User", class: "btn btn-primary button_save_user",  id: "Create" %>
+      
+        		
+		  	</div>
+		  	<% end %>
+			
+
+		
+      
+        
+
+        	
+        	
+        	<script>
+        		document.getElementById("notAdmin").checked = true;
+			</script>
+        	
+        	
+      		</div>
+		</div>
+		<div class="col-md-1">
+		</div>
+	</div>
+</div>
+
+<script>
+$("input:checkbox").on('click', function() {
+  var $box = $(this);
+  if ($box.is(":checked")) {
+    var group = "input:checkbox[name='" + $box.attr("name") + "']";
+    $(group).prop("checked", false);
+    $box.prop("checked", true);
+  } else {
+    $box.prop("checked", false);
+  }
+});
+</script>

@@ -7,9 +7,7 @@ class WelcomeController < ApplicationController
 
   end
 
-  #def logged_in_index
-  	#@user=current_user
-  #end
+ 
 end
 
 

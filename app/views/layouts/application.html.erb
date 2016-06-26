@@ -25,7 +25,16 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="/" style="margin-left:60px; margin-right: 50px; color: #fcf8e3">abhShoes</a>
+        <% if signed_in? %>
+          <% if current_user.admin %>
+          <a class="navbar-brand" href="../admin/dashboard" style="margin-left:60px; margin-right: 50px; color: #fcf8e3">abhShoes</a>
+          <% else %>
+          <a class="navbar-brand" href="/" style="margin-left:60px; margin-right: 50px; color: #fcf8e3">abhShoes</a>
+          <% end %>
+        <% else %>
+          <a class="navbar-brand" href="/" style="margin-left:60px; margin-right: 50px; color: #fcf8e3">abhShoes</a>
+        <% end %>
+        
       </div> 
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -60,6 +69,38 @@
   </div>
 
 </nav>
+<% if signed_in? %>
+  <% if current_user.admin %>
+<div class"row">
+<div class="col-md-1">
+</div>
+<div class="col-md-10">
+<nav class="navbar navbar-default navbar-dashboard">
+  
+
+   
+      <ul class="nav navbar-nav">
+            
+        <li class ="nav-menu"><%= link_to "Dashboard" ,{:action => 'dashboard', :controller=>"admin" }%></li>
+        <li class ="nav-menu"><%= link_to "Categories" ,{:action => 'categories', :controller=>"admin" }%></li> 
+        <li class ="nav-menu"><%= link_to "Shoes" ,{:action => 'shoes', :controller=>"admin" }%></li> 
+        <li class ="nav-menu"><%= link_to "Users" ,{:action => 'users', :controller=>"admin" }%></li> 
+        
+        
+       </ul>
+     
+   
+   
+  
+</nav>
+</div>
+<div class="col-md-1">
+</div>
+</div>
+
+  <% end %>
+<% end %>
+
 
 <%= yield %>
 

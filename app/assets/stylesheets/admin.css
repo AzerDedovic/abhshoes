@@ -1,0 +1,193 @@
+
+
+a {
+  
+}
+
+.boxUser{
+  position: inherit;
+  left: 13px;
+  padding-top: 23px;
+  padding: 34px;
+  border-radius: 2px;
+  border: 1px solid #CCC;
+  margin: 0px;
+  height: 400px;
+  margin-bottom: 50px;
+  
+}
+
+.label{
+  font-size: 12px;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    text-align: left;
+    text-transform: none;
+    font-weight: bolder;
+    color: rgba(0, 0, 0, 0.61);
+    margin-bottom: 15px;
+}
+
+.box_admin {
+  padding: 2em;
+  border: 1px solid #ccc;
+  display: block;
+  width: 31%;
+  height: 160px;
+  float: left;
+  margin-left: 22px; 
+  color: black;
+  background: #f8f8f8;
+  
+  background-size: 100% 202%;
+  transition: all 0.2s ease;
+  animation: down-bump 0.4s ease;
+}
+
+.box_admin h2 {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 500;
+  letter-spacing: -0.5px;
+  line-height: 0.2;
+  text-align: center;
+  padding-top: 17px;
+}
+.box_admin h3 {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 20px;
+  text-align: center;
+}
+
+.box_admin:hover {
+  background-position: 100% 100%;
+  animation: up-bump 0.4s ease;
+  background: #FAD447; 
+  z-index: -1; 
+}
+.box_admin:hover h2 {
+  color: black;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 500;
+  
+}
+
+.box_admin:hover h3 {
+  color: black;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+@keyframes up-bump {
+  0% { padding-top: 2em; }
+  50% { padding-top: 1.5em; }
+  100% { padding-top: 2em; }
+}
+@keyframes down-bump {
+  0% { padding-top: 2em; }
+  50% { padding-top: 2.5em; }
+  100% { padding-top: 2em; }
+}
+
+.button-categories{
+  margin-left: 76px;
+  font-size: 12px;
+  background-color: #FAD447;
+  text-transform: uppercase;
+  font-weight: bolder;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: black;
+  z-index: -1;
+  width: 150px;
+
+}
+
+.button-shoes{
+  margin-left: 162px;
+  font-size: 12px;
+  background-color: #FAD447;
+  text-transform: uppercase;
+  font-weight: bolder;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: black;
+  z-index: -1;
+  width: 150px;
+
+}
+
+.button-users{
+  margin-left: 162px;
+  font-size: 12px;
+  background-color: #FAD447;
+  text-transform: uppercase;
+  font-weight: bolder;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: black;
+  z-index: -1;
+  width: 150px;
+
+
+}
+.button_save_user{
+  margin-left: 242px;
+  bottom: -13px;
+  font-size: 12px;
+  background-color: #FAD447;
+  text-transform: uppercase;
+  font-weight: bolder;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: black;
+  border-radius: 2px;
+  width: 130px;
+}
+.button_save_user:hover{
+  background-color: rgba(250, 212, 71, 0.85);
+ 
+}
+.button_back{
+  width: 103px; 
+  margin-left:120px; 
+  text-align: center; 
+  margin-top: 0px; 
+  font-size: 12px;
+  background-color: #f8f8f8;
+  text-transform: uppercase;
+  font-weight: bolder;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: black;
+  border-radius: 2px;
+  position: absolute;
+   
+  bottom: -13px;
+}
+
+.button-categories:hover{
+  background-color: #EBD16F;
+  z-index:-2;
+
+}
+.button-shoes:hover{
+  background-color: #EBD16F;
+  z-index:-2;
+
+}
+.button-users:hover{
+  background-color: #EBD16F;
+  z-index:-2;
+
+}
+
+.tableCSS{
+  font-size: 12px;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  
+
+}
+.error {
+  font-size: 12px;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: bolder;
+  color: red;
+  text-align: left;
+}
+.error-title{
+  font-size: 18px;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}

@@ -5,8 +5,38 @@ Rails.application.routes.draw do
 
   get 'welcome/index'
   get 'welcome/logged_in_index'
+
   get 'users/new'
   post 'users/create'
+
+  get 'admin/dashboard'
+  get 'admin/shoes'
+  get 'admin/users'
+  get 'admin/categories'
+  get 'admin/deleteUser'
+  get 'admin/editUser'
+  get 'admin/updateUser'
+  post 'admin/updateUser'
+  get 'admin/addUser'
+  get 'admin/createUser'
+  post 'admin/createUser'
+  get 'admin/deleteCategory'
+  get 'admin/editCategory'
+  get 'admin/addCategory'
+  get 'admin/createCategory'
+  post 'admin/createCategory'
+  get 'admin/updateCategory'
+  post 'admin/updateCategory'
+  get 'admin/viewOrders'
+  get 'admin/detailOrder'
+
+  get 'users/createUser'
+  post 'users/createUser'
+  get 'users/updateUser'
+  post 'users/updateUser'
+
+
+
 
 
   get 'sessinos/new' #=> 'sessinons#new'

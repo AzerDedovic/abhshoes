@@ -1,0 +1,58 @@
+<% content_for :head do %>
+<%= stylesheet_link_tag "admin.css" %> 
+<% end %>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-1">
+        </div>
+        <div class="col-md-10">
+            <div id="toolbar">
+          
+                
+            <table 
+                id="table"
+                class="tableCSS"
+                data-toggle="table"
+                data-classes="table table-hover table-condensed"
+                data-striped="true"
+                data-sort-name="email"
+                data-sort-order="asc"
+                data-pagination="true"
+                data-page-list=""
+                data-search="true"
+                
+                >
+                <thead>
+                    <tr>
+                        <th data-field="id" data-sortable="true">Order ID</th>
+                        <th data-field="date" data-sortable="true">Date</th>
+                        <th data-field="totalPrice" data-sortable="true">Total Price</th>
+                        <th data-field="items" data-sortable="true">Items</th>
+                        <th data-field="options">Options</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% @orders.each do |order| %>
+                    <% @num=@orders.count %>
+                    <tr>
+                        <td><%= order.id %></td>
+                        <td><%= order.created_at.strftime("%b %d, %Y") %></td>
+                        <td><%= order.total_price %></td>
+                        <td><%= @num %></td>
+                        <td>
+                            <%= link_to raw('<span class="glyphicon glyphicon-eye-open" style="margin-left:5px"></span>'), {:action => "detailOrder", :controller => "admin", :id => order.id} %>
+                        </td>
+                    </tr>
+                    <% end %>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-1">
+        </div>
+
+    </div>
+</div>
+
