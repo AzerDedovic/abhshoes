@@ -15,11 +15,12 @@
       <h4 style="margin-right:10px"> Featured Products </h4>
       <% @featured_product.each do |f| %>
         <div class="image hovereffect">
+          <span style="cursor:pointer">
           <%= image_tag f.image, :size => "180x180" %>
-            <div class="overlay">
-              <h2> <%= link_to f.name, :controller => "product", :action => "detail", :id => f.id %></h2>
-              <p class="info" href="#"><%= f.price.round(2) %> KM</p>
-            </div> 
+            <a class="overlay" id="overlay" data-id="<%=f.id%>" onclick="getID(this);">
+              <h2> <%= f.name %></h2>
+              <p class="info"><%= f.price.round(2) %> KM</p>
+            </a> </span>
         </div>
       <% end %>
     </div>
@@ -28,6 +29,19 @@
     </div>
   </div>
 </div>
+
+<% content_for :footer do %>
+  <script type="text/javascript">
+
+        var link = '<%= product_detail_url %>'
+
+        function getID(identifier){     
+            (window.location=link+"?id="+$(identifier).data('id'));               
+        };
+       
+
+    </script>
+<% end %>
  
 
 
