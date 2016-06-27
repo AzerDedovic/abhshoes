@@ -57,9 +57,9 @@
           <p class="order_price"> Price: </p>
           <p class="order_sum"> <%= @sum %>KM </p>
           <p class="order_price"> Delivery: </p>
-          <p class="order_sum"> 30.00KM </p>
+          <p class="order_sum"> <%= @deliveryPrice %>KM </p>
           <hr class="hr_order"/> 
-          <% @total=@sum+30 %>
+          <% @total=@sum+@deliveryPrice %>
           <% @amount=@total*100 %>
           
           

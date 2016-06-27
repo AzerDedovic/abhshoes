@@ -3,6 +3,7 @@ class CartController < ApplicationController
 
 	def show
 		@user=current_user
+		#@deliveryPrice=Country.find_by(country: 'Bosnia and Herzegovina').delivery
 		if !signed_in?
 			flash[:error] = "Please login to view your cart"
 			redirect_to url_for(:controller => :sessions, :action => :new)
@@ -66,12 +67,14 @@ class CartController < ApplicationController
 		@cart_id=Cart.find_by(user_id: @user.id).id
 		@items=CartItem.where(cart_id: @cart_id).order(created_at: :desc).to_a
 		@item_quantity=@items.count
+		@countries=Country.all
 	end
 
 	def delivery_params
 		@user=current_user
 		@cart_id=Cart.find_by(user_id: @user.id).id
-  		params.require(:delivery).permit(:full_name, :address, :city, :region, :zip, :country, :phone).merge(cart_id: @cart_id)
+		@country=params[:country]
+  		params.require(:delivery).permit(:full_name, :address, :city, :region, :zip, :phone).merge(cart_id: @cart_id, country: @country)
   	end
 
   	def billing_address_params
@@ -127,6 +130,8 @@ class CartController < ApplicationController
 		#@billing_address=Bill.where(cart_id: @cart_id).to_a.last
 		@delivery_address=Delivery.where(cart_id: @cart_id).order("created_at").last
 		@billing_address=Bill.where(cart_id: @cart_id).order("created_at").last
+		@delivery_country=@delivery_address.country
+		@deliveryPrice=Country.find_by(country: @delivery_country).delivery
 
   	end
 

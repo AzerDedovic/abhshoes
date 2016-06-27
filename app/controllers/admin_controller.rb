@@ -523,8 +523,68 @@ class AdminController < ApplicationController
       end
     end
 
+    def countries
+      @user=current_user
+      @countries=Country.all
+    end
+
+    def addCountry
+      @user=current_user
+      @newCountry=Country.new()
+    end
+
+    def deleteCountry
+      @user=current_user
+      @id=params[:id].to_a
+      @id_s=params[:id_s]
+     
+      if params[:id]
+        @id.each do |id|
+          Country.where(:id => id).destroy_all
+        end
+      else 
+        Country.where(:id => @id_s).destroy_all
+      end
+      redirect_to url_for(:controller => :admin, :action => :countries)
+    end
+
+    def editCountry
+      @user=current_user
+      @id=params[:id]
+      @editCountry=Country.find_by(id: @id)
+    end
+
+    def updateCountry
+      @user=current_user
+      @id=params[:id]
+      @newCountry=params[:country]
+      @newDeliveryPrice=params[:delivery]
+      
+      @editCountry=Country.find_by(id: @id)
+      @editCountry.country=@newCountry
+      @editCountry.delivery=@newDeliveryPrice
+
+      if @editCountry.save
+        redirect_to url_for(:controller => :admin, :action => :countries)        
+      else
+        render '/admin/editCountry'
+      end
+    end
+
+    def country_params
+      params.require(:createCountry).permit(:country, :delivery)
+    end
+
+    def createCountry
+      @user=current_user
+      @newCountry=Country.new(country_params)
+      if @newCountry.save
+        redirect_to url_for(:controller => :admin, :action => :countries)
+      else
+        render '/admin/addCountry'
+      end
+    end
+
     
 end
 
-
-  

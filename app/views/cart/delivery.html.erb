@@ -35,7 +35,12 @@
         </div> </br>
         <p>Country</p>
         <div class="field delivery_field">
-          <%= f.text_field :country, class: "form-control", placeholder: "Country"%> 
+          <select class="form-control" id="country" name="country">
+              <option value="" selected disabled>Select Country</option>
+            <% @countries.each do |country| %>
+              <option><%= country.country %></option>
+              <% end %>
+            </select> 
         </div> </br>
         <p>Phone number</p>
         <div class="field delivery_field">
@@ -86,7 +91,12 @@
           </br>
           <p>Country</p>
           <div class="field delivery_field">
-          <%= f.text_field :country_bill, class: "form-control", placeholder: "Country"%> 
+          <select class="form-control" id="country_bill" name="country_bill">
+              <option value="" selected disabled>Select Country</option>
+            <% @countries.each do |country| %>
+              <option><%= country.country %></option>
+              <% end %>
+            </select>
           </div> 
           </br>
           <p>Phone number</p>
@@ -123,12 +133,11 @@
       	<span class="order_quantity"> <%= @item_quantity %> items </span>
       	<p class="order_price"> Price: </p>
       	<p class="order_sum"> <%= @sum %>KM </p>
-      	<p class="order_price"> Delivery: </p>
-      	<p class="order_sum"> 30.00KM </p>
+      	
       	<hr class="hr_order"/> 
       		
       	<p class="order_price"> Total: </p>
-      	<p class="order_sum"> <%= @sum+30 %>KM </p>   
+      	<p class="order_sum"> <%= @sum %>KM </p>   
 
     	</div>
 

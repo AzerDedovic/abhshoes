@@ -68,6 +68,14 @@ Rails.application.routes.draw do
   post 'admin/createVariants'
   get 'admin/updateVariants'
   post 'admin/updateVariants'
+  get 'admin/countries'
+  get 'admin/addCountry'
+  get 'admin/editCountry'
+  get 'admin/deleteCountry'
+  get 'admin/createCountry'
+  post 'admin/createCountry'
+  get 'admin/updateCountry'
+  post 'admin/updateCountry'
 
 
   get 'users/createUser'
