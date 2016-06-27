@@ -10,10 +10,10 @@
           
       </div>
       <div class="error" style="margin-left:17px">
-          <% if  @newCategory.errors.any? %>
+          <% if  @newBrand.errors.any? %>
           <h2 class="error-title">Errors:</h2>
           <ul>
-            <% @newCategory.errors.full_messages.each do |message| %>
+            <% @newBrand.errors.full_messages.each do |message| %>
             <li>  <%= message %></li>
             <% end %>
 
@@ -22,30 +22,25 @@
           <% end %>
       </div>
 			<div class="boxUser">
-			<%= form_for :createCategory, :url=>{:action => "createCategory", :controller => "admin"} do |f| %>
+			<%= form_for :createBrand, :url=>{:action => "createBrand", :controller => "admin"} do |f| %>
       
       		
       		<div>
-       		<p>Category Name</p>
+       		<p>Brand</p>
         	<div class="field delivery_field">
-          	<%= f.text_field "name", class: "form-control", placeholder: "Category Name", autofocus: :true%>
+          	<%= f.text_field "brand", class: "form-control", placeholder: "Brand", autofocus: :true%>
         	</div> 
         	</div>
           </br>
-          <div>
-          <p>Tag</p>
-          <div class="field delivery_field">
-            <%= f.text_field  "tag", class: "form-control", placeholder: "Tag"%>
-          </div> 
-          </div>
+          
         	</br>
           
 
 			
 		
-			<div class="btn-group" style="left: 455px; bottom: -107px;">
+			<div class="btn-group" style="left: 455px; bottom: -157px;">
 
-     			<%= link_to raw('<button type="button" class="btn btn-primary button_back" style="position: absolute; left: 120px;">Back</button>'), {:controller => "admin", :action => "categories" } %>
+     			<%= link_to raw('<button type="button" class="btn btn-primary button_back" style="position: absolute; left: 120px;">Back</button>'), {:controller => "admin", :action => "brands" } %>
 
 		  		<%= submit_tag "Create", class: "btn btn-primary button_save_user",  id: "Create" %>
       

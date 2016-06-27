@@ -12,8 +12,7 @@
             <div id="toolbar">
           
                 <button id="button" class="btn btn-default">Remove</button>
-            <%= link_to raw('<button type="button" class="btn btn-default">Add Shoes</button>'), {:controller => "admin", :action => "addShoes" } %>
-            <%= link_to raw('<button type="button" class="btn btn-default">Brands</button>'), {:controller => "admin", :action => "brands" } %>
+            <%= link_to raw('<button type="button" class="btn btn-default">Add Variants</button>'), {:controller => "admin", :action => "addVariants", :product_id => @id } %>
             <%= link_to raw('<button type="button" class="btn btn-default">Colors</button>'), {:controller => "admin", :action => "colors" } %>
             <%= link_to raw('<button type="button" class="btn btn-default">Sizes</button>'), {:controller => "admin", :action => "sizes" } %>
             </div>
@@ -37,28 +36,24 @@
                         <th data-field="state" data-checkbox="true"></th>
                         <th data-field="id" data-sortable="true">ID</th>
                         <th data-field="name" data-sortable="true">Name</th>
-                        <th data-field="category" data-sortable="true">Category</th>
-                        <th data-field="Brand" data-sortable="true">Brand</th>
-                        <th data-field="Price" data-sortable="true">Price</th>
+                        <th data-field="size" data-sortable="true">Size</th>
+                        <th data-field="color" data-sortable="true">Color</th>
+                        <th data-field="quantity" data-sortable="true">Quantity</th>
                         <th data-field="options">Options</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <% @products.each do |product| %>
-                    <% @category_id=ProductCategory.find_by(product_id: product.id).category_id %>
-                    <% @category=Category.find_by(id: @category_id).name %>
-                    <% @brand=Brand.find_by(id: product.brand_id).brand %>
+                    <% @variants.each do |variant| %>
                     <tr>
                         <td></td>
-                        <td><%= product.id %></td>
-                        <td><%= product.name %></td>
-                        <td><%= @category %></td>
-                        <td><%= @brand %></td>
-                        <td><%= product.price.round(2) %> KM</td>
+                        <td><%= variant.id %></td>
+                        <td><%= Product.find_by(id: variant.product_id).name %></td>
+                        <td><%= Size.find_by(id: variant.size_id).size %></td>
+                        <td><%= Color.find_by(id: variant.color_id).color %></td>
+                        <td><%= variant.quantity %></td>
                         <td>
-                            <%= link_to raw('<span class="glyphicon glyphicon-pencil" style="margin-left:5px"></span>'), {:action => "editShoes", :controller => "admin", :id => product.id} %>
-                            <%= link_to raw('<span class="glyphicon glyphicon-trash" style="margin-left:5px"></span>'), {:action => "deleteShoes", :controller => "admin", :id_s => product.id} %>
-                            <%= link_to raw('<span class="glyphicon glyphicon-list-alt" style="margin-left:5px"></span>'), {:action => "viewVariants", :controller => "admin", :id => product.id} %>
+                            <%= link_to raw('<span class="glyphicon glyphicon-pencil" style="margin-left:5px"></span>'), {:action => "editVariants", :controller => "admin", :id => variant.id, :product_id => variant.product_id} %>
+                            <%= link_to raw('<span class="glyphicon glyphicon-trash" style="margin-left:5px"></span>'), {:action => "deleteVariants", :controller => "admin", :id_s => variant.id} %>
 
                         </td>
                     </tr>
@@ -82,7 +77,7 @@
                 return row.id;
             });
             
-            var link = '<%= admin_deleteShoes_url %>'
+            var link = '<%= admin_deleteVariants_url %>'
 
             attr="";
             ids.forEach(function(entry) {

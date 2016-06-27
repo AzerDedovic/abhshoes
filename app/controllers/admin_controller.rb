@@ -84,12 +84,29 @@ class AdminController < ApplicationController
      
       if params[:id]
         @id.each do |id|
-          ProductCategory.where(:category_id => id).destroy_all
-          Category.where(:id => id).destroy_all
+          
+          if ProductCategory.where(:category_id => id).count!=0
+            @product_id=ProductCategory.find_by(:category_id => id).product_id
+            Variant.where(product_id: @product_id).destroy_all
+            ProductCategory.where(:category_id => id).destroy_all
+            Product.where(id: @product_id).destroy_all
+            Category.where(:id => id).destroy_all
+          else
+            Category.where(:id => id).destroy_all
+          end
+
         end
       else 
-        ProductCategory.where(:category_id => @id_s).destroy_all
-        Category.where(:id => @id_s).destroy_all
+        
+        if ProductCategory.where(:category_id => @id_s).count!=0
+          @product_id=ProductCategory.find_by(:category_id => @id_s).product_id
+          Variant.where(product_id: @product_id).destroy_all
+          ProductCategory.where(:category_id => @id_s).destroy_all
+          Product.where(id: @product_id).destroy_all
+          Category.where(:id => @id_s).destroy_all
+        else
+          Category.where(:id => @id_s).destroy_all
+        end
       end
       redirect_to url_for(:controller => :admin, :action => :categories)
     end
@@ -141,6 +158,371 @@ class AdminController < ApplicationController
       @delivery_address=Delivery.find_by(id: @order.delivery_id)
       @billing_address=Bill.find_by(id: @order.bill_id)
     end
+
+    def brands
+      @user=current_user
+      @brands=Brand.all
+    end
+    def addBrand
+      @user=current_user
+      @newBrand=Brand.new()
+    end
+    def deleteBrand
+      @user=current_user
+      @id=params[:id].to_a
+      @id_s=params[:id_s]
+     
+      if params[:id]
+        @id.each do |id|
+          Product.where(:brand_id => id).destroy_all
+          Brand.where(:id => id).destroy_all
+        end
+      else 
+        Product.where(:brand_id => @id_s).destroy_all
+        Brand.where(:id => @id_s).destroy_all
+      end
+      redirect_to url_for(:controller => :admin, :action => :brands)
+    end
+    def editBrand
+      @user=current_user
+      @id=params[:id]
+      @editBrand=Brand.find_by(id: @id)
+    end
+
+    def brand_params
+      params.require(:createBrand).permit(:brand)
+    end
+
+    def createBrand
+      @user=current_user
+      @newBrand=Brand.new(brand_params)
+      if @newBrand.save
+        redirect_to url_for(:controller => :admin, :action => :brands)
+      else
+        render '/admin/addBrand'
+      end
+    end
+
+    def updateBrand
+      @user=current_user
+      @id=params[:id]
+      @newBrand=params[:brand]
+      
+      @editBrand=Brand.find_by(id: @id)
+      @editBrand.brand=@newBrand
+
+      if @editBrand.save
+        redirect_to url_for(:controller => :admin, :action => :brands)        
+      else
+        render '/admin/editBrand'
+      end
+    end
+
+    def colors
+      @user=current_user
+      @colors=Color.all
+    end
+
+    def addColor
+      @user=current_user
+      @newColor=Color.new()
+    end
+    def deleteColor
+      @user=current_user
+      @id=params[:id].to_a
+      @id_s=params[:id_s]
+     
+      if params[:id]
+        @id.each do |id|
+          Variant.where(:color_id => id).destroy_all
+          Color.where(:id => id).destroy_all
+        end
+      else 
+        Variant.where(:color_id => @id_s).destroy_all
+        Color.where(:id => @id_s).destroy_all
+      end
+      redirect_to url_for(:controller => :admin, :action => :colors)
+    end
+    def editColor
+      @user=current_user
+      @id=params[:id]
+      @editColor=Color.find_by(id: @id)
+    end
+
+    def color_params
+      params.require(:createColor).permit(:color, :code)
+    end
+
+    def createColor
+      @user=current_user
+      @newColor=Color.new(color_params)
+      if @newColor.save
+        redirect_to url_for(:controller => :admin, :action => :colors)
+      else
+        render '/admin/addColor'
+      end
+    end
+
+    def updateColor
+      @user=current_user
+      @id=params[:id]
+      @newColor=params[:color]
+      @newCode=params[:code]
+      
+      @editColor=Color.find_by(id: @id)
+      @editColor.color=@newColor
+      @editColor.code=@newCode
+
+      if @editColor.save
+        redirect_to url_for(:controller => :admin, :action => :colors)        
+      else
+        render '/admin/editColors'
+      end
+    end
+
+
+    def sizes
+      @user=current_user
+      @sizes=Size.all
+    end
+
+    def addSize
+      @user=current_user
+      @newSize=Size.new()
+    end
+    def deleteSize
+      @user=current_user
+      @id=params[:id].to_a
+      @id_s=params[:id_s]
+     
+      if params[:id]
+        @id.each do |id|
+          Variant.where(:size_id => id).destroy_all
+          Size.where(:id => id).destroy_all
+        end
+      else 
+        Variant.where(:size_id => @id_s).destroy_all
+        Size.where(:id => @id_s).destroy_all
+      end
+      redirect_to url_for(:controller => :admin, :action => :sizes)
+    end
+    def editSize
+      @user=current_user
+      @id=params[:id]
+      @editSize=Size.find_by(id: @id)
+    end
+
+    def size_params
+      params.require(:createSize).permit(:size)
+    end
+
+    def createSize
+      @user=current_user
+      @newSize=Size.new(size_params)
+      if @newSize.save
+        redirect_to url_for(:controller => :admin, :action => :sizes)
+      else
+        render '/admin/addSize'
+      end
+    end
+
+    def updateSize
+      @user=current_user
+      @id=params[:id]
+      @newSize=params[:size]
+          
+      @editSize=Size.find_by(id: @id)
+      @editSize.size=@newSize
+
+      if @editSize.save
+        redirect_to url_for(:controller => :admin, :action => :sizes)        
+      else
+        render '/admin/editSize'
+      end
+    end
+
+    def addShoes
+      @user=current_user
+      @newShoes=Product.new()
+      @brands=Brand.all
+      @categories=Category.all
+    end
+
+    def editShoes
+      @user=current_user
+      @id=params[:id]
+      @editShoes=Product.find_by(id: @id)
+      @brands=Brand.all
+      @categories=Category.all
+      @brand=Brand.find_by(id: @editShoes.brand_id).brand
+      @category_id=ProductCategory.find_by(product_id: @editShoes.id).category_id
+      @category=Category.find_by(id: @category_id).name
+
+    end
+
+    def deleteShoes
+      @user=current_user
+      @id=params[:id].to_a
+      @id_s=params[:id_s]
+     
+      if params[:id]
+        @id.each do |id|
+          Variant.where(:product_id => id).destroy_all
+          ProductCategory.where(:product_id => id).destroy_all
+          Product.where(:id => id).destroy_all
+        end
+      else 
+        Variant.where(:product_id => @id_s).destroy_all
+        ProductCategory.where(:product_id => @id_s).destroy_all
+        Product.where(:id => @id_s).destroy_all
+      end
+      redirect_to url_for(:controller => :admin, :action => :shoes)
+    end
+
+    def viewVariants
+      @user=current_user
+      @id=params[:id]
+      @variants=Variant.where(product_id: @id).all
+    end
+    def shoes_params
+
+      params.require(:createShoes).permit(:name, :description, :price, :image)
+    end
+
+    def createShoes
+      @user=current_user
+      @brand=params[:brand]
+      @name=params[:name]
+      @price=params[:price]
+      @description=params[:description]
+      @category=params[:category]
+      @category_id=Category.find_by(name: @category).id
+      @brand_id=Brand.find_by(brand: @brand).id
+      @newShoes=Product.new(shoes_params)
+      @newShoes.brand_id=@brand_id
+      @productCategory=ProductCategory.new()
+      @productCategory.category_id=@category_id
+      if @newShoes.save
+        @product_id=@newShoes.id
+        @productCategory.product_id=@product_id
+        @productCategory.save
+        redirect_to url_for(:controller => :admin, :action => :addVariants, :product_id => @product_id)
+
+      else
+        render '/admin/addShoes'
+      end
+    end
+
+    def updateShoes
+      @user=current_user
+      @id=params[:id]
+      @newName=params[:name]
+      @newDescription=params[:description]
+      @newPrice=params[:price]
+      @newImage=params[:image]
+      @newBrand=params[:brand]
+      @newBrand_id=Brand.find_by(brand: @newBrand).id
+      @newCategory=params[:category]
+      @newCategory_id=Category.find_by(name: @newCategory).id
+          
+      @editShoes=Product.find_by(id: @id)
+      @editShoes.name=@newName
+      @editShoes.description=@newDescription
+      @editShoes.price=@newPrice
+      @editShoes.image=@newImage
+      @editShoes.brand_id=@newBrand_id
+
+      if @editShoes.save
+        @product_category=ProductCategory.find_by(product_id: @editShoes.id)
+        @product_category.category_id=@newCategory_id
+        @product_category.save
+        redirect_to url_for(:controller => :admin, :action => :shoes)        
+      else
+        render '/admin/editShoes'
+      end
+    end
+
+    def addVariants
+      @user=current_user
+      @product_id=params[:product_id]
+      @newVariants=Variant.new()
+      @sizes=Size.all
+      @colors=Color.all
+    end
+
+    def editVariants
+      @user=current_user
+      @variant_id=params[:id]
+      @product_id=params[:product_id]
+      @colors=Color.all
+      @sizes=Size.all
+      @variant=Variant.find_by(id: @variant_id)
+      @editVariants=Variant.find_by(id: @variant_id)
+    end
+
+    def deleteVariants
+      @user=current_user
+      @id=params[:id].to_a
+      @id_s=params[:id_s]
+
+     
+      if params[:id]
+        @id.each do |id|
+          @product_id=Variant.find_by(id: id).product_id
+          Variant.where(:id => id).destroy_all
+        end
+      else 
+        @product_id=Variant.find_by(id: @id_s).product_id
+        Variant.where(:id => @id_s).destroy_all
+      end
+      redirect_to url_for(:controller => :admin, :action => :viewVariants, :id => @product_id)
+    end
+
+    def createVariants
+      @user=current_user
+      @product_id=params[:product_id]
+      @size=params[:size]
+      @quantity=params[:quantity]
+      @color=params[:color]
+      @size_id=Size.find_by(size: @size).id
+      @color_id=Color.find_by(color: @color).id
+
+      @newVariants=Variant.new()
+      @newVariants.product_id=@product_id
+      @newVariants.size_id=@size_id
+      @newVariants.color_id=@color_id
+      @newVariants.quantity=@quantity
+      if @newVariants.save
+        redirect_to url_for(:controller => :admin, :action => :viewVariants, :id => @product_id)
+
+      else
+        render '/admin/addVariants'
+      end
+    end
+
+    def updateVariants
+      @user=current_user
+      @product_id=params[:product_id]
+      @variant_id=params[:variant_id]
+      @size=params[:size]
+      @quantity=params[:quantity]
+      @color=params[:color]
+      @size_id=Size.find_by(size: @size).id
+      @color_id=Color.find_by(color: @color).id
+
+      @editVariants=Variant.find_by(id: @variant_id)
+      @editVariants.product_id=@product_id
+      @editVariants.size_id=@size_id
+      @editVariants.color_id=@color_id
+      @editVariants.quantity=@quantity
+      if @editVariants.save
+        redirect_to url_for(:controller => :admin, :action => :viewVariants, :id => @product_id)
+
+      else
+        render '/admin/editVariants'
+      end
+    end
+
     
 end
 

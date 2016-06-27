@@ -17,6 +17,19 @@ a {
   
 }
 
+.boxShoes{
+  position: inherit;
+  left: 13px;
+  padding-top: 23px;
+  padding: 34px;
+  border-radius: 2px;
+  border: 1px solid #CCC;
+  margin: 0px;
+  height: 525px;
+  margin-bottom: 50px;
+
+}
+
 .label{
   font-size: 12px;
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -74,6 +87,15 @@ a {
   color: black;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
+.shoes-title{
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 19px;
+  color: #555;
+  letter-spacing: -0.5px;
+  line-height: 0.2;
+  text-align: left;
+  margin-bottom: 31px;
+}
 
 @keyframes up-bump {
   0% { padding-top: 2em; }
@@ -84,6 +106,22 @@ a {
   0% { padding-top: 2em; }
   50% { padding-top: 2.5em; }
   100% { padding-top: 2em; }
+}
+
+.button_back{
+
+  width: 103px; 
+  
+  text-align: center; 
+  margin-top: 0px; 
+  font-size: 12px;
+  background-color: #f8f8f8;
+  text-transform: uppercase;
+  font-weight: bolder;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: black;
+  border-radius: 2px;
+  bottom: -13px;
 }
 
 .button-categories{
@@ -141,22 +179,7 @@ a {
   background-color: rgba(250, 212, 71, 0.85);
  
 }
-.button_back{
-  width: 103px; 
-  margin-left:120px; 
-  text-align: center; 
-  margin-top: 0px; 
-  font-size: 12px;
-  background-color: #f8f8f8;
-  text-transform: uppercase;
-  font-weight: bolder;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  color: black;
-  border-radius: 2px;
-  position: absolute;
-   
-  bottom: -13px;
-}
+
 
 .button-categories:hover{
   background-color: #EBD16F;
