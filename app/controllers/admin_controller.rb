@@ -386,12 +386,12 @@ class AdminController < ApplicationController
     end
     def shoes_params
 
-      params.require(:createShoes).permit(:name, :description, :price, :image, :picture)
+      params.require(:createShoes).permit(:name, :description, :price, :image)
     end
 
     def createShoes
       @user=current_user
-      @brands=Brand.all
+      @brands.Brand.all
       @categories=Category.all
       @brand=params[:brand]
       @name=params[:name]
