@@ -386,31 +386,35 @@ class AdminController < ApplicationController
     end
     def shoes_params
 
-      params.require(:createShoes).permit(:name, :description, :price, :image)
+      if params[:brand]
+        @brand=params[:brand]
+        @brand_id=Brand.find_by(brand: @brand).id
+      end
+      params.require(:createShoes).permit(:name, :description, :price, :image).merge(:brand_id => @brand_id)
+
     end
 
     def createShoes
       @user=current_user
-      @brands.Brand.all
+      @brands=Brand.all
       @categories=Category.all
-      @brand=params[:brand]
-      @name=params[:name]
-      @price=params[:price]
-      @description=params[:description]
-      @category=params[:category]
-      @category_id=Category.find_by(name: @category).id
-      @brand_id=Brand.find_by(brand: @brand).id
+      
       @newShoes=Product.new(shoes_params)
-      @newShoes.brand_id=@brand_id
-      @productCategory=ProductCategory.new()
-      @productCategory.category_id=@category_id
-      if @newShoes.save
+                  
+      if @newShoes.valid? && params[:category]
+        @newShoes.save
+        @category=params[:category]
         @product_id=@newShoes.id
+        @productCategory=ProductCategory.new()  
+        
+        @category_id=Category.find_by(name: @category).id
+        @productCategory.category_id=@category_id
         @productCategory.product_id=@product_id
         @productCategory.save
         redirect_to url_for(:controller => :admin, :action => :addVariants, :product_id => @product_id)
 
       else
+        flash.now[:error] = "Category can't be blank"
         render '/admin/addShoes'
       end
     end
@@ -482,22 +486,30 @@ class AdminController < ApplicationController
 
     def createVariants
       @user=current_user
+      @colors=Color.all
+      @sizes=Size.all
       @product_id=params[:product_id]
-      @size=params[:size]
       @quantity=params[:quantity]
-      @color=params[:color]
-      @size_id=Size.find_by(size: @size).id
-      @color_id=Color.find_by(color: @color).id
+      if params[:size]
+        @size=params[:size]
+        @size_id=Size.find_by(size: @size).id
+      end
+      if params[:color]
+        @color=params[:color]
+        @color_id=Color.find_by(color: @color).id
+      end
 
       @newVariants=Variant.new()
       @newVariants.product_id=@product_id
       @newVariants.size_id=@size_id
       @newVariants.color_id=@color_id
       @newVariants.quantity=@quantity
-      if @newVariants.save
+      if @newVariants.valid?
+        @newVariants.save
         redirect_to url_for(:controller => :admin, :action => :viewVariants, :id => @product_id)
 
       else
+
         render '/admin/addVariants'
       end
     end

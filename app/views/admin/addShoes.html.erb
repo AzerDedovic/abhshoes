@@ -18,6 +18,11 @@
 
           <% end %>
       </div>
+      <% if !flash.empty? %>
+      <div class="error" style="margin-left:43px; margin-top:-15px">
+        <li> <%= flash[:error] %></li>
+      </div>
+      <% end %>
 			<div class="boxShoes">
 			<%= form_for :createShoes, :url=>{:action => "createShoes", :controller => "admin"} do |f| %>
       

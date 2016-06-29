@@ -54,8 +54,12 @@
             <select class="form-control" id="brand" name="brand">
               <option value="" selected disabled>Select brand</option>
             <% @brands.each do |brand| %>
-              <option><%= brand.brand %></option>
+              <% if brand.brand==@brand %>
+                <option selected><%= brand.brand %></option>
+              <% else %>
+                <option><%= brand.brand %></option>
               <% end %>
+            <% end %>
             </select>
 
           </div>
@@ -65,10 +69,18 @@
             <select class="form-control" id="category" name="category">
               <option value="" selected disabled>Select category</option>
             <% @categories.each do |category| %>
-              <option><%= category.name %></option>
+              <% if category.name==@category %>
+                <option selected><%= category.name %></option>
+              <% else %>
+                <option><%= category.name %></option>
+              <% end %>
               <% end %>
             </select>
 
+          </div>
+
+          <div class="detailImage">
+            <%= image_tag @editShoes.image, :size => "220x220" %>
           </div>
 
           <div style="position: absolute; left: 485px; top: 308px;">

@@ -214,3 +214,20 @@ a {
   font-size: 18px;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
+
+.detailImage{
+
+  border: 1px solid rgba(2, 26, 64, 0.25);
+  width: 284px;
+  margin: 0px;
+  margin-left: 10px;
+  padding-left: 28px;
+  padding-bottom: 12px;
+  padding-top: 0px;
+  margin-bottom: 11px;
+  display: inline-block;
+  position: absolute;
+  top: 36px;
+  left: 517px;
+  height: 250px;
+}

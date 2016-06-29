@@ -27,7 +27,11 @@
             <select class="form-control" id="color" name="color">
               <option value="" selected disabled>Select color</option>
             <% @colors.each do |color| %>
-              <option><%= color.color %></option>
+              <% if color.id==@editVariants.color_id %>
+                <option selected><%= color.color %></option>
+              <% else %>
+                <option><%= color.color %></option>
+              <% end %>
               <% end %>
             </select>
 
@@ -39,7 +43,11 @@
             <select class="form-control" id="size" name="size">
               <option value="" selected disabled>Select size</option>
             <% @sizes.each do |size| %>
-              <option><%= size.size %></option>
+              <% if size.id==@editVariants.size_id %>
+                <option selected><%= size.size %></option>
+              <% else %>
+                <option><%= size.size %></option>
+              <% end %>
               <% end %>
             </select>
 

@@ -6,4 +6,9 @@ class Product < ActiveRecord::Base
 	has_many :cart_item
 	belongs_to :brand
 
+	validates :name, :presence => true
+	validates :description, :presence => true
+	validates :brand_id, :presence => true
+	validates :price, :presence => true
+
 end
