@@ -32,7 +32,7 @@ class AdminController < ApplicationController
           @order_id=Order.where(:user_id => id).select('id')
           OrderItem.where(:order_id => @order_id).destroy_all
           Order.where(:user_id => id).destroy_all
-          @cart_id=Cart.where(:user_id => id).select('cart_id')
+          @cart_id=Cart.where(:user_id => id).select('id')
           Delivery.where(:cart_id => @cart_id).destroy_all
           Bill.where(:cart_id => @cart_id).destroy_all
           CartItem.where(:cart_id => @cart_id).destroy_all
@@ -43,7 +43,7 @@ class AdminController < ApplicationController
         @order_id=Order.where(:user_id => @id_s).select('id')
         OrderItem.where(:order_id => @order_id).destroy_all
         Order.where(:user_id => @id_s).destroy_all
-        @cart_id=Cart.where(:user_id => @id_s).select('cart_id')
+        @cart_id=Cart.where(:user_id => @id_s).select('id')
         Delivery.where(:cart_id => @cart_id).destroy_all
         Bill.where(:cart_id => @cart_id).destroy_all
         CartItem.where(:cart_id => @cart_id).destroy_all
