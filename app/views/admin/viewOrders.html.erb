@@ -36,11 +36,12 @@
                 </thead>
                 <tbody>
                     <% @orders.each do |order| %>
+                    <% @items=OrderItem.where(order_id: order.id).count %>
                     <tr>
                         <td><%= order.id %></td>
                         <td><%= order.created_at.strftime("%b %d, %Y") %></td>
                         <td><%= order.total_price %></td>
-                        <td><%= order.count %></td>
+                        <td><%= @items %></td>
                         <td>
                             <%= link_to raw('<span class="glyphicon glyphicon-eye-open" style="margin-left:5px"></span>'), {:action => "detailOrder", :controller => "admin", :id => order.id} %>
                         </td>
