@@ -127,7 +127,7 @@
   <script type="text/javascript">
     $(".dropdown-menu li a").click(function(e){
       e.preventDefault();
-      var link = '<%= product_products_url %>'
+      var link = '<%= products_product_index_url %>'
 
       $(this).parents(".btn-group").find('.selection').text($(this).text());
       val = $(this).attr("val");

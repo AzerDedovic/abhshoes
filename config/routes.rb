@@ -1,124 +1,132 @@
 Rails.application.routes.draw do
-  get 'sessions/new'
+  
+  resources :welcome
 
-  get 'users/new'
+  resources :users do  
+    collection do
+      post 'create'
+      get 'createUser'
+      get 'updateUser'
+      post 'createUser'
+      post 'updateUser'
+    end
+  end
 
-  get 'welcome/index'
-  get 'welcome/logged_in_index'
+  resources :sessions do
+    collection do
+      post 'create'
+      get 'destroy'
+    end
+  end
 
-  get 'users/new'
-  post 'users/create'
+  resources :product do
+    collection do
+      get 'detail'
+      get 'show'
+      get 'products'
+    end
+  end
+ 
+  resources :cart do 
+    collection do
+      get 'show'
+      get 'drop'
+      get 'delivery'
+      post 'delivery'
+      get 'add'
+      post 'add'
+      get 'delivery_address'
+      post 'delivery_address'
+      get 'confirmation'
+    end
+  end
 
-  get 'admin/dashboard'
-  get 'admin/shoes'
-  get 'admin/users'
-  get 'admin/categories'
-  get 'admin/deleteUser'
-  get 'admin/editUser'
-  get 'admin/updateUser'
-  post 'admin/updateUser'
-  get 'admin/addUser'
-  get 'admin/createUser'
-  post 'admin/createUser'
-  get 'admin/deleteCategory'
-  get 'admin/editCategory'
-  get 'admin/addCategory'
-  get 'admin/createCategory'
-  post 'admin/createCategory'
-  get 'admin/updateCategory'
-  post 'admin/updateCategory'
-  get 'admin/viewOrders'
-  get 'admin/detailOrder'
-  get 'admin/brands'
-  get 'admin/addBrand'
-  get 'admin/editBrand'
-  get 'admin/deleteBrand'
-  get 'admin/createBrand'
-  post 'admin/createBrand'
-  get 'admin/updateBrand'
-  post 'admin/updateBrand'
-  get 'admin/colors'
-  get 'admin/addColor'
-  get 'admin/editColor'
-  get 'admin/deleteColor'
-  get 'admin/createColor'
-  post 'admin/createColor'
-  get 'admin/updateColor'
-  post 'admin/updateColor'
-  get'admin/sizes'
-  get 'admin/addSize'
-  get 'admin/editSize'
-  get 'admin/deleteSize'
-  get 'admin/createSize'
-  post 'admin/createSize'
-  get 'admin/updateSize'
-  post 'admin/updateSize'
-  get 'admin/addShoes'
-  get 'admin/editShoes'
-  get 'admin/deleteShoes'
-  get 'admin/viewVariants'
-  get 'admin/createShoes'
-  post 'admin/createShoes'
-  get 'admin/updateShoes'
-  post 'admin/updateShoes'
-  get 'admin/addVariants'
-  get 'admin/editVariants'
-  get 'admin/deleteVariants'
-  get 'admin/createVariants'
-  post 'admin/createVariants'
-  get 'admin/updateVariants'
-  post 'admin/updateVariants'
-  get 'admin/countries'
-  get 'admin/addCountry'
-  get 'admin/editCountry'
-  get 'admin/deleteCountry'
-  get 'admin/createCountry'
-  post 'admin/createCountry'
-  get 'admin/updateCountry'
-  post 'admin/updateCountry'
+  resources :order do
+    collection do
+      get 'detail'
+      get 'history'
+    end
+  end
+  
+  resources :charges
 
-
-  get 'users/createUser'
-  post 'users/createUser'
-  get 'users/updateUser'
-  post 'users/updateUser'
-
-
-
-
-
-  get 'sessinos/new' #=> 'sessinons#new'
-  post 'sessions/create' #=> 'session#create'
-  get 'sessions/destroy' #=> 'session#destroy'
-  resources :users
-  #get 'login' => 'sessions#new'
-  #post 'login' => 'sessions#create'
+  resources :admin do
+    collection do
+      get 'dashboard'
+      get 'shoes'
+      get 'users'
+      get 'categories'
+      get 'deleteUser'
+      get 'editUser'
+      get 'updateUser'
+      post 'updateUser'
+      get 'addUser'
+      get 'createUser'
+      post 'createUser'
+      get 'deleteCategory'
+      get 'editCategory'
+      get 'addCategory'
+      get 'createCategory'
+      post 'createCategory'
+      get 'updateCategory'
+      post 'updateCategory'
+      get 'viewOrders'
+      get 'detailOrder'
+      get 'brands'
+      get 'addBrand'
+      get 'editBrand'
+      get 'deleteBrand'
+      get 'createBrand'
+      post 'createBrand'
+      get 'updateBrand'
+      post 'updateBrand'
+      get 'colors'
+      get 'addColor'
+      get 'editColor'
+      get 'deleteColor'
+      get 'createColor'
+      post 'createColor'
+      get 'updateColor'
+      post 'updateColor'
+      get'sizes'
+      get 'addSize'
+      get 'editSize'
+      get 'deleteSize'
+      get 'createSize'
+      post 'createSize'
+      get 'updateSize'
+      post 'updateSize'
+      get 'addShoes'
+      get 'editShoes'
+      get 'deleteShoes'
+      get 'viewVariants'
+      get 'createShoes'
+      post 'createShoes'
+      get 'updateShoes'
+      post 'updateShoes'
+      get 'addVariants'
+      get 'editVariants'
+      get 'deleteVariants'
+      get 'createVariants'
+      post 'createVariants'
+      get 'updateVariants'
+      post 'updateVariants'
+      get 'countries'
+      get 'addCountry'
+      get 'editCountry'
+      get 'deleteCountry'
+      get 'createCountry'
+      post 'createCountry'
+      get 'updateCountry'
+      post 'updateCountry'
+    end
+  end
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
    root 'welcome#index'
-
-   get 'product/detail'
-   get 'product/products'
-   get 'product/show'
-   resources :product 
-   get 'cart/show'
-   post 'cart/add'
-   get 'cart/add'
-   get 'cart/delivery'
-   get 'cart/delivery_address'
-   post 'cart/delivery_address'
-   get 'cart/confirmation'
-   post 'cart/delivery'
-   get'cart/drop'
-
-   resources :charges
-   get 'charges/create'
-   post 'charges/create'
-
-   get 'order/detail'
-   get 'order/history'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
