@@ -57,27 +57,10 @@ class ProductController < ApplicationController
 	def detail
 		@user=current_user
 		@id=params[:id]
-		@product=Product.where(id: @id).to_a
+		@product=Product.find_by(id: @id)
 
 		@chosenColor=params[:color_id]
 		@chosenSize=params[:size_id]
-
-
-		#@sizes_id=Variant.where(product_id: @id).select('size_id')
-		#@sizes=Size.where(id: @sizes_id).to_a
-
-		#@colors_id=Variant.where(product_id: @id).select('color_id')
-		#@colors=Color.where(id: @colors_id).to_a
-
-		
-
-
-
-
-
-
-
-		
 
 
 		if !@chosenColor.present? and !@chosenSize.present?
@@ -87,8 +70,6 @@ class ProductController < ApplicationController
 			@colors_id=Variant.where(product_id: @id).select('color_id')
 			@colors=Color.where(id: @colors_id).order('color ASC').to_a
 
-
-		
 		
 		elsif @chosenSize.present? and !@chosenColor.present? 
 			@colors_id=Variant.where(product_id: @id, size_id: @chosenSize.to_i).select('color_id')
@@ -105,7 +86,6 @@ class ProductController < ApplicationController
 			@colors=Color.where(id: @colors_id).order('color ASC').to_a
 			@chosenC=Color.where(id: @chosenColor).to_a
 			
-		#elsif @chosenColor.present? and @chosenSize.present?
 		elsif @chosenColor.present? and @chosenSize.present?
 			
 			@chosenC=Color.where(id: @chosenColor)
@@ -125,8 +105,6 @@ class ProductController < ApplicationController
 
 
 		
-
-		
 		@category_id=ProductCategory.where(product_id: @id).select('category_id')
 		@product_category=ProductCategory.where(category_id: @category_id).select('product_id')
 		@featured_product=Product.where(id: @product_category).limit(8).order("RANDOM()")
@@ -135,6 +113,28 @@ class ProductController < ApplicationController
 
 
 	end
+
+	#def variants
+	#	@user=current_user
+
+	#	@id=params[:id]
+	#	@size=params[:size_id]
+	#	@color=params[:color_id]
+
+	#	@product=Product.find_by(id: @id)
+
+	#	@variants=Variant.where(product_id: @id)
+
+	#	@sizes_id=@variants.select('size_id')
+	#	@colors_id=@variants.select('color_id')
+
+	#	@colors_id=@variants.where(size_id: @size).select('color_id') if params[:size_id]
+	#	@sizes_id=@variants.where(color_id: @color).select('size_id') if params[:color_id]
+
+	#	@sizes=Size.where(id: @sizes_id).order('size ASC').to_a
+	#	@colors=Color.where(id: @colors_id).order('color ASC').to_a
+
+	#end
 
 
 

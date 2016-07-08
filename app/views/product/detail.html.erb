@@ -6,27 +6,26 @@
 
 <div class="container ">
 	<div class="row">
-	<% @product.each do  |product| %>
 		<div class="col-md-1">
 		</div>
 
 		<div class="col-md-5">
 			<div class="detailImage">
-				<%= image_tag product.image, :size => "300x300" %>
+				<%= image_tag @product.image, :size => "300x300" %>
 			</div>
             	
 		</div>
 
 		<div class="col-md-5">
-			<span class="title" style="inline-block"><%= product.name %> </span>
-      <span class="title" style="inline-block; margin-left: 10px;color: rgba(119, 119, 119, 0.83);"><%= Brand.find_by(id: product.brand_id).brand %></span>
+			<span class="title" style="inline-block"><%= @product.name %> </span>
+      <span class="title" style="inline-block; margin-left: 10px;color: rgba(119, 119, 119, 0.83);"><%= Brand.find_by(id: @product.brand_id).brand %></span>
 
-			<p class="description" style="margin-top:40px;"><%= product.description %></p>
+			<p class="description" style="margin-top:40px;"><%= @product.description %></p>
           
           
       <%= form_for :cart_item, :url=>{:action => "add", :controller => "cart"} do |f| %>
           
-      <%= f.hidden_field :product_id, :value => product.id %>
+      <%= f.hidden_field :product_id, :value => @product.id %>
           
          
           
@@ -48,10 +47,10 @@
         <% @sizes.each do |size| %>
           <% if @chosenC.present? %>
             <% @chosenC.each do |c| %>
-            <li><%= link_to size.size, :id => product.id, :color_id => c.id, :size_id => size.id %> </li>
+            <li><%= link_to size.size, :id => @product.id, :color_id => c.id, :size_id => size.id %> </li>
           <% end %>
           <% else %>
-    				<li><%= link_to size.size, :size_id => size.id, :id => product.id  %></li>
+    				<li><%= link_to size.size, :size_id => size.id, :id => @product.id  %></li>
           <% end %>
         <% end %>
     
@@ -77,10 +76,10 @@
   				<% @colors.each do |color| %>
             <% if @chosenS.present? %>
             <% @chosenS.each do |s| %>
-            <li><%= link_to color.color, :id => product.id, :color_id => color.id, :size_id => s.id %> </li>
+            <li><%= link_to color.color, :id => @product.id, :color_id => color.id, :size_id => s.id %> </li>
             <% end %>
             <% else %>
-            <li><%= link_to color.color, :id => product.id,  :color_id => color.id %></li>
+            <li><%= link_to color.color, :id => @product.id,  :color_id => color.id %></li>
             <% end %>
             <% end %>
     
@@ -101,7 +100,7 @@
         
       </br>
         <div>
-          <p class="price">Unit Price: <span style="color: green"><%= product.price.round(2) %></span> KM</p>
+          <p class="price">Unit Price: <span style="color: green"><%= @product.price.round(2) %></span> KM</p>
     
   
           <p class="success"><%= flash[:success] %></p>
@@ -115,7 +114,7 @@
 
 
   	</div>
-		<% end %>
+		
 
   	<div class="col-md-1">
   	</div>
