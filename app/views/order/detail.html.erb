@@ -63,13 +63,13 @@
       	<span class="order_quantity"> <%= @items.count %> items </span>
       	<p class="order_price"> Price: </p>
       	
-      	<p class="order_sum"> <%= @order.total_price %>KM </p>
+      	<p class="order_sum"> <%= @order.total_price-@deliveryPrice %>KM </p>
       	<p class="order_price"> Delivery: </p>
-      	<p class="order_sum"> 30.00KM </p>
+      	<p class="order_sum"> <%= @deliveryPrice %>KM </p>
       	<hr class="hr_order"/> 
       	
       	<p class="order_price"> Total: </p>
-      	<p class="order_sum"> <%= @order.total_price+30 %>KM </p>
+      	<p class="order_sum"> <%= @order.total_price %>KM </p>
       </div>
      
 

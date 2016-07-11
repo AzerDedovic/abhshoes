@@ -7,6 +7,9 @@ class OrderController < ApplicationController
 		@items=OrderItem.where(order_id: @order_id).order(name: :asc).to_a
 		@delivery_address=Delivery.find_by(id: @order.delivery_id)
 		@billing_address=Bill.find_by(id: @order.bill_id)
+		@delivery_country=@delivery_address.country
+		@deliveryPrice=Country.find_by(country: @delivery_country).delivery
+
 	end
 	def history
 		@user=current_user
