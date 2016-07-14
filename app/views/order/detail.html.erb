@@ -35,7 +35,11 @@
 
       	<div>
       	  <div class="imageProduct">
-      		  <%= image_tag item.image, :size => "120x120" %>
+          <% if item.image_file_name.present? %>
+            <%= image_tag item.image.url(:small) %>
+          <% else %>
+      		  <%= image_tag item.picture, :size => "120x120" %>
+          <% end %>
       		</div>
       		<p class="order_description_cart"> Model: <%= item.name %>  </br>
            Brand: <%= item.brand %> </br>

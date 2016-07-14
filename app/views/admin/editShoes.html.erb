@@ -80,13 +80,21 @@
           </div>
 
           <div class="detailImageAdmin">
-            <%= image_tag @editShoes.image, :size => "220x220" %>
+            <% if @editShoes.image_file_name.present? %>
+            <%= image_tag @editShoes.image.url(:mid1), :style => "margin-top: 15px" %>
+            <% else %>
+            <%= image_tag @editShoes.picture, :size => "220x220" %>
+            <% end %>
+          </div>
+
+          <div style="position: absolute; left: 526px; top: 275px;">
+          <%= f.file_field :image, :image => "image" %>
           </div>
 
           <div style="position: absolute; left: 485px; top: 308px;">
           <p>Link to Image</p>
           <div class="field delivery_field">
-            <%= f.text_field :image, :name => "image", class: "form-control", value: @editShoes.image %>
+            <%= f.text_field :picture, :picture => "picture", class: "form-control", value: @editShoes.picture %>
           </div> 
           </div>
 

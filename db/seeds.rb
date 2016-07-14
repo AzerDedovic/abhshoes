@@ -20,7 +20,7 @@ User.delete_all
 Product.delete_all
 Brand.delete_all
 Category.delete_all
-Image.delete_all
+#Picture.delete_all
 Color.delete_all
 Size.delete_all
 
@@ -57,8 +57,8 @@ Brand.create(brand:"Geox")
 	deleted = false
 	brand = Brand.order("RANDOM()").first.id
 	image_num = rand(1..8).to_i
-	image = "shoes" + image_num.to_s + ".jpg"
-	product = Product.create(name: name, description: description, price: price, deleted: deleted, brand_id: brand, image: image)
+	picture = "shoes" + image_num.to_s + ".jpg"
+	product = Product.create(name: name, description: description, price: price, deleted: deleted, brand_id: brand, picture: picture)
 	if image_num == 1
 		product.product_category.create(category_id: Category.find_by_tag('w').id)
 	elsif image_num == 2

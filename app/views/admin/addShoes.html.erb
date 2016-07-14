@@ -73,11 +73,14 @@
             </select>
 
           </div>
+          <div style="position: absolute; left: 485px; top: 133px;">
+          <%= f.file_field :image %>
+          </div>
 
           <div style="position: absolute; left: 485px; top: 308px;">
           <p>Link to Image</p>
           <div class="field delivery_field">
-            <%= f.text_field "image", class: "form-control", placeholder: "http://"%>
+            <%= f.text_field "picture", class: "form-control", placeholder: "http://"%>
           </div> 
           </div>
 

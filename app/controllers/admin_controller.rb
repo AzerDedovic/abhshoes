@@ -392,8 +392,7 @@ class AdminController < ApplicationController
         @brand=params[:brand]
         @brand_id=Brand.find_by(brand: @brand).id
       end
-      params.require(:createShoes).permit(:name, :description, :price, :image).merge(:brand_id => @brand_id)
-
+      params.require(:createShoes).permit(:name, :description, :price, :image, :picture).merge(:brand_id => @brand_id)
     end
 
     def createShoes
@@ -402,7 +401,7 @@ class AdminController < ApplicationController
       @categories=Category.all
       
       @newShoes=Product.new(shoes_params)
-                  
+      puts @newShoes                
       if @newShoes.valid? && params[:category]
         @newShoes.save
         @category=params[:category]
@@ -427,7 +426,10 @@ class AdminController < ApplicationController
       @newName=params[:name]
       @newDescription=params[:description]
       @newPrice=params[:price]
+      @newPicture=params[:picture]
       @newImage=params[:image]
+      puts @newImage
+      puts @newName
       @newBrand=params[:brand]
       @newBrand_id=Brand.find_by(brand: @newBrand).id
       @newCategory=params[:category]
@@ -437,7 +439,11 @@ class AdminController < ApplicationController
       @editShoes.name=@newName
       @editShoes.description=@newDescription
       @editShoes.price=@newPrice
-      @editShoes.image=@newImage
+      @editShoes.picture=@newPicture
+      if params[:image]
+        @editShoes.image=params[:image] 
+        puts "novaaaaa '''''''''''''''''''''''"
+      end
       @editShoes.brand_id=@newBrand_id
 
       if @editShoes.save

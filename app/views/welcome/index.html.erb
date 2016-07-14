@@ -16,7 +16,11 @@
       <% @featured_product.each do |f| %>
         <div class="image hovereffect">
           <span style="cursor:pointer">
-          <%= image_tag f.image, :size => "180x180" %>
+          <% if f.image_file_name.present? %>
+          <%= image_tag f.image.url(:mid) %>
+          <% else %>
+          <%= image_tag f.picture, :size => "180x180" %>
+          <% end %>
             <a class="overlay" id="overlay" data-id="<%=f.id%>" onclick="getID(this);">
               <h2> <%= f.name %></h2>
               <p class="info"><%= f.price.round(2) %> KM</p>
@@ -43,6 +47,3 @@
     </script>
 <% end %>
  
-
-
-

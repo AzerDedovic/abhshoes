@@ -45,7 +45,10 @@ def create
       @brand_id=Product.find_by(id: item.product_id).brand_id
       @order_item.name=Product.find_by(id: item.product_id).name
       @order_item.price=Product.find_by(id: item.product_id).price
-      @order_item.image=Product.find_by(id: item.product_id).image
+      @order_item.picture=Product.find_by(id: item.product_id).picture
+      if Product.find_by(id: item.product_id).image_file_name.present?
+        @order_item.image = Product.find_by(id: item.product_id).image.url(:small)
+      end
       @order_item.size=item.size
       @order_item.color=item.color
       @order_item.quantity=item.quantity

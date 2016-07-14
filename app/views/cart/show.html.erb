@@ -18,7 +18,11 @@
 
       	<div>
           <div class="imageProduct">
-      		  <%= image_tag Product.find_by(id: item.product_id).image, :size => "120x120" %>
+          <% if Product.find_by(id: item.product_id).image_file_name.present? %>
+            <%= image_tag Product.find_by(id: item.product_id).image.url(:small) %>
+            <% else %>
+      		  <%= image_tag Product.find_by(id: item.product_id).picture, :size => "120x120" %>
+            <% end %>
       		</div>
       		<p class="description_cart"> Model: <%= Product.find_by(id: item.product_id).name %>  </br>
           Brand: <%= Brand.find_by(id: @brand_id).brand %> </br>
