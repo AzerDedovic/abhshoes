@@ -15,6 +15,7 @@ class UsersController < ApplicationController
      if @user.save
       @cart = Cart.create(user_id: @user.id)
       flash[:success] = "Registration successful!"
+      RegistrationMailer.registration_email(@user).deliver
      else
         
       render 'new'
@@ -40,7 +41,7 @@ class UsersController < ApplicationController
         @cart = Cart.create(user_id: @newUser.id)
         flash[:success] = "Registration successful!"
         redirect_to url_for(:controller => :admin, :action => :users)
-
+        #RegistrationMailer.registration_email(@user).deliver
      else
         
       render '/admin/addUser'

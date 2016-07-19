@@ -68,3 +68,4 @@ gem 'paperclip', :git=> 'https://github.com/thoughtbot/paperclip', :ref => '523b
 
 gem 'dotenv-rails', :groups => [:development, :test]
 gem 'fastimage'
+gem 'mailgun-ruby', '~> 1.0', '>= 1.0.3'

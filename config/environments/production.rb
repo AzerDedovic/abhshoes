@@ -84,7 +84,23 @@ Rails.application.configure do
     access_key_id: ENV.fetch('AWS_ACCESS_KEY_ID'),
     secret_access_key: ENV.fetch('AWS_SECRET_ACCESS_KEY'),
     s3_region: ENV.fetch('AWS_REGION'),
+    }
   }
-}
+
+  config.action_mailer.raise_delivery_errors = true
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address: "smtp.elasticemail.com",
+    port: 2525,
+    domain: "railscasts.com",
+    authentication: "plain",
+    enable_starttls_auto: true,
+    user_name: ENV.fetch('MAIL_USER_NAME'),
+    password: ENV.fetch('MAIL_PASSWORD')
+  }
+
+  
+
   
 end
