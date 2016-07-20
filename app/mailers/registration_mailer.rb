@@ -5,6 +5,6 @@ class RegistrationMailer < ActionMailer::Base
   def registration_email(user)
     @user = user
     mail( :to => @user.username,
-    :subject => 'Thanks for signing up for our amazing app' )
+    :subject => 'Abhshoes: Registration Confirmation' )
   end
 end

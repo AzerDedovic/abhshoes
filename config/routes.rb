@@ -9,6 +9,13 @@ Rails.application.routes.draw do
       get 'updateUser'
       post 'createUser'
       post 'updateUser'
+      get 'confirm_email'
+      get 'resetPassword'
+      get 'newPassword'
+      post 'newPassword'
+      get 'setNewPassword'
+      post 'setNewPassword'
+      get 'enterNewPassword'
     end
   end
 

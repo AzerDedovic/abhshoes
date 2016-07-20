@@ -1,2 +1,2 @@
-Hi <%= @user.username %>
-Sample mail sent using smtp.
+Hi <%= @user.username %>,
+Thanks for registering! To confirm your registration click the <%= link_to "here", {:action => 'confirm_email', :controller=>"users", :confirm_token => @user.confirm_token} %>.

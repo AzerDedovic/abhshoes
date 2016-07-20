@@ -38,9 +38,19 @@
     				<label><input id="notAdmin" type="checkbox"  value="notAdmin" name="admin"> No</label>
 				</div>
 			</div>
+
+      <div>
+          <p>Activated</p>
+            <div class="radio">
+            <label><input id="activated" type="checkbox"  value="activated" name="activated"> Yes</label>
+          </div>
+          <div class="radio">
+            <label><input id="notActivated" type="checkbox"  value="notActivated" name="activated"> No</label>
+        </div>
+      </div>
 			
 		
-			<div class="btn-group" style="left: 455px; bottom: -83px;">
+			<div class="btn-group" style="left: 455px; bottom: -55px;">
 
      			<%= link_to raw('<button type="button" class="btn btn-primary button_back" style="position: absolute; left: 120px;">Back</button>'), {:controller => "admin", :action => "users" } %>
 
@@ -64,6 +74,16 @@
         		document.getElementById("notAdmin").checked = true;
 			</script>
         	<% end %>
+
+          <% if @editUser.email_confirmed %>
+          <script>
+            document.getElementById("activated").checked = true;
+      </script>
+          <% else %>
+          <script>
+            document.getElementById("notActivated").checked = true;
+      </script>
+          <% end %>
         	
       		</div>
 		</div>

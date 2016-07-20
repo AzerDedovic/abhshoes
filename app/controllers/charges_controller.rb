@@ -60,6 +60,7 @@ def create
     end
   CartItem.destroy_all(cart_id: @cart_id)
 
+  ConfirmOrder.confirm_order_email(@user, @order).deliver
 
 rescue Stripe::CardError => e
   flash[:error] = e.message

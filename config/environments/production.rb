@@ -100,7 +100,7 @@ Rails.application.configure do
     password: ENV.fetch('MAIL_PASSWORD')
   }
 
-  
+  config.action_mailer.default_url_options = { :host => 'damp-hollows-28788.herokuapp.com' }
 
   
 end

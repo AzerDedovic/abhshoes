@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160714084104) do
+ActiveRecord::Schema.define(version: 20160720081538) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -182,6 +182,8 @@ ActiveRecord::Schema.define(version: 20160714084104) do
     t.string   "lastName"
     t.datetime "created_at"
     t.boolean  "admin"
+    t.boolean  "email_confirmed", default: false
+    t.string   "confirm_token"
   end
 
   create_table "variants", force: :cascade do |t|

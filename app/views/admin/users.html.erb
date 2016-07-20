@@ -35,6 +35,7 @@
                         <th data-field="email" data-sortable="true">Email</th>
                         <th data-field="registrationDate" data-sortable="true">Registration Date</th>
                         <th data-field="administrator">Administrator</th>
+                        <th data-field="activated">Activated</th>
                         <th data-field="options">Options</th>
                     </tr>
                 </thead>
@@ -46,6 +47,11 @@
                         <td><%= user.username %></td>
                         <td><%= user.created_at.strftime("%b %d, %Y") %></td>
                         <% if user.admin %>
+                        <td>Yes</td>
+                        <% else %>
+                        <td>No</td>
+                        <% end %>
+                        <% if user.email_confirmed %>
                         <td>Yes</td>
                         <% else %>
                         <td>No</td>

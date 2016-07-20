@@ -8,6 +8,7 @@
     <div class="col-md-4">
     </div>
 		<div class="col-md-4">
+    <h2><%= flash[:success] %></strong></h2>
 			<%= form_for :session, url: 'create' do |f| %>
       <div>
   			<h2 style="text-align:left;float:left;">Login to your account</h2>
@@ -31,6 +32,10 @@
         			<span class="remember">REMEMBER ME</span> 
               <span><%= f.submit "LOGIN", class: "btn pull-right button-css", id: "submit"%></span>
        		</div>
+          <div class="filed">
+            <h5><%= link_to "Forgot your password?", {:action => 'resetPassword', :controller=>"users" } %> 
+            </h5>
+          </div>
         		 
     		<%end%>
 			
