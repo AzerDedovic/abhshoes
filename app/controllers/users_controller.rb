@@ -91,7 +91,7 @@ class UsersController < ApplicationController
         puts @user
         @user.save(validate: false)
         flash[:success] = "Welcome to the abhshoes! Your email has been confirmed.
-        Please sign in to continue."
+        Please log in to continue."
         #redirect_to new_session_url
         #render '/sessions/new'
       else
@@ -138,7 +138,7 @@ class UsersController < ApplicationController
       if @user.valid?
         @user.save
         flash[:success] = "Password updated successfully."
-        redirect_to url_for(:controller => :sessions, :action => :new)
+        #redirect_to url_for(:controller => :sessions, :action => :new)
       else
         render '/users/enterNewPassword'
       end
