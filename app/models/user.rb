@@ -3,6 +3,8 @@ class User < ActiveRecord::Base
    has_many :cart
    has_many :orders
 
+   before_create :confirmation_token
+
    #attr_accessible :username, :password
    validates :username, :presence => true
    validates :password, :presence =>true #, :on => :create
@@ -12,7 +14,6 @@ class User < ActiveRecord::Base
    validates_length_of :password, minimum: 5, maximum: 30, :on => :create
    validates :password_confirmation , :presence => true, :on => :create
 
-   before_create :confirmation_token
 
    #validates :password_confirmation, :presence => true
    #validates :username, :presence => true #, :unique => true
