@@ -30,6 +30,18 @@ a {
 
 }
 
+.boxEditShoes {
+  position: inherit;
+  left: 13px;
+  padding-top: 23px;
+  padding: 34px;
+  border-radius: 2px;
+  border: 1px solid #CCC;
+  margin: 0px;
+  height: 650px;
+  margin-bottom: 50px;
+}
+
 .label{
   font-size: 12px;
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -230,4 +242,20 @@ a {
   top: 37px;
   left: 517px;
   height: 235px;
+}
+
+.detailImageAdminEdit{
+  border: 1px solid rgba(2, 26, 64, 0.25);
+  width: 284px;
+  margin: 0px;
+  margin-left: 10px;
+  padding-left: 28px;
+  padding-bottom: 12px;
+  padding-top: 0px;
+  margin-bottom: 11px;
+  display: inline-block;
+  position: absolute;
+  top: 56px;
+  left: 517px;
+  height: 242px;
 }

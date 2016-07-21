@@ -18,7 +18,7 @@
 
           <% end %>
       </div>
-			<div class="boxShoes">
+			<div class="boxEditShoes">
 			<%= form_for :updateShoes, :url=>{:action => "updateShoes", :controller => "admin", :id => @editShoes.id} do |f| %>
       
       	
@@ -78,23 +78,41 @@
             </select>
 
           </div>
+          </br>
+          <div>
+          <p>On Sale</p>
+            <div class="radio">
+            <label><input id="onSale" type="checkbox"  value="onSale" name="onSale"> Yes</label>
+          </div>
+          <div class="radio">
+            <label><input id="notOnSale" type="checkbox"  value="notOnSale" name="onSale"> No</label>
+          </div>
+          </div>
 
-          <div class="detailImageAdmin">
+         
+          <div>
+          <p>Sale Price (KM)</p>
+          <div class="field delivery_field">
+            <%= f.number_field :sale_price, :name => "sale_price", class: "form-control", value: @editShoes.sale_price, :step => 0.01, :min => 1%>
+          </div> 
+          </div>
+
+          <div class="detailImageAdminEdit">
             <% if @editShoes.image_file_name.present? %>
             <%= image_tag @editShoes.image.url(:mid1), :style => "margin-top: 15px" %>
             <% else %>
             <%= image_tag @editShoes.picture, :size => "220x220" %>
             <% end %>
+          </div>  
+
+          <div style="position: absolute; left: 526px; top: 305px;">
+          <%= f.file_field :image, :name => "image" %>
           </div>
 
-          <div style="position: absolute; left: 526px; top: 275px;">
-          <%= f.file_field :image, :image => "image" %>
-          </div>
-
-          <div style="position: absolute; left: 485px; top: 308px;">
+          <div style="position: absolute; left: 485px; top: 381px;">
           <p>Link to Image</p>
           <div class="field delivery_field">
-            <%= f.text_field :picture, :picture => "picture", class: "form-control", value: @editShoes.picture %>
+            <%= f.text_field :picture, :name => "picture", class: "form-control", value: @editShoes.picture %>
           </div> 
           </div>
 
@@ -102,15 +120,25 @@
 
 			
 		
-			<div class="btn-group" style="left: 459px; bottom: 6px">
+			<div class="btn-group" style="left: 459px; bottom: 45px">
 
      			<%= link_to raw('<button type="button" class="btn btn-primary button_back" style="position: absolute; left: 120px;">Back</button>'), {:controller => "admin", :action => "shoes" } %>
 
 		  		<%= submit_tag "Save", class: "btn btn-primary button_save_user",  id: "Save" %>
       
+      <% if @editShoes.onSale %>
+          <script>
+            document.getElementById("onSale").checked = true;
+      </script>
+          <% else %>
+          <script>
+            document.getElementById("notOnSale").checked = true;
+      </script>
+          <% end %>
         		
 		  	</div>
 		  	<% end %>
+
         	
       		</div>
 		</div>
@@ -118,4 +146,17 @@
 		</div>
 	</div>
 </div>
+
+<script>
+$("input:checkbox").on('click', function() {
+  var $box = $(this);
+  if ($box.is(":checked")) {
+    var group = "input:checkbox[name='" + $box.attr("name") + "']";
+    $(group).prop("checked", false);
+    $box.prop("checked", true);
+  } else {
+    $box.prop("checked", false);
+  }
+});
+</script>
 

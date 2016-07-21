@@ -278,7 +278,7 @@ class AdminController < ApplicationController
       if @editColor.save
         redirect_to url_for(:controller => :admin, :action => :colors)        
       else
-        render '/admin/editColors'
+        render '/admin/editColor'
       end
     end
 
@@ -422,23 +422,35 @@ class AdminController < ApplicationController
 
     def updateShoes
       @user=current_user
+      @brands=Brand.all
+      @categories=Category.all
       @id=params[:id]
       @newName=params[:name]
       @newDescription=params[:description]
       @newPrice=params[:price]
       @newPicture=params[:picture]
       @newImage=params[:image]
-      puts @newImage
-      puts @newName
       @newBrand=params[:brand]
       @newBrand_id=Brand.find_by(brand: @newBrand).id
       @newCategory=params[:category]
       @newCategory_id=Category.find_by(name: @newCategory).id
+      @onSale=params[:onSale]
+      @salePrice=params[:onSale_price]
           
       @editShoes=Product.find_by(id: @id)
+      @brand=Brand.find_by(id: @editShoes.brand_id).brand
+      @category_id=ProductCategory.find_by(product_id: @editShoes.id).category_id
+      @category=Category.find_by(id: @category_id).name
       @editShoes.name=@newName
       @editShoes.description=@newDescription
       @editShoes.price=@newPrice
+      if (@onSale=="onSale")
+          @editShoes.onSale=true
+        else
+          @editShoes.onSale=false
+        end
+      
+      @editShoes.sale_price=@salePrice
       @editShoes.picture=@newPicture
       if params[:image]
         @editShoes.image=params[:image] 
@@ -446,7 +458,8 @@ class AdminController < ApplicationController
       end
       @editShoes.brand_id=@newBrand_id
 
-      if @editShoes.save
+      if @editShoes.valid?
+        @editShoes.save
         @product_category=ProductCategory.find_by(product_id: @editShoes.id)
         @product_category.category_id=@newCategory_id
         @product_category.save
