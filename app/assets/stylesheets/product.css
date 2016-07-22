@@ -11,6 +11,12 @@
   display: inline-block;
 }
 
+.saleSticker1{
+  position: absolute;
+  padding-left: 68px;
+  margin-top: -18px;
+}
+
 h4{
 	font-size: 15px;
     position: absolute;
@@ -63,9 +69,12 @@ h2 .btn-group {
 }
 
 .positionColors{
-  padding-top: 58px;
-  padding-left: 52px;
+  padding-top: 76px;
+  padding-left: 0px;
+  margin-left: -23px;
   position: absolute;
+  -webkit-box-pack: end;
+  -ms-flex-pack: end;
   justify-content: flex-end;
 }
 

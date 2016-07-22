@@ -116,7 +116,11 @@
       <% @items %>
       <% @sum=0 %>
       <% @items.each do |item| %>
+      <% if Product.find_by(id: item.product_id).onSale %>
+      <% @sum=@sum+(Product.find_by(id: item.product_id).sale_price.round(2) * item.quantity) %>
+      <% else %>
       <% @sum=@sum+(Product.find_by(id: item.product_id).price.round(2) * item.quantity) %>
+      <% end %>
       <% end %>
 
     	<h2 class="paymentProgress" style="display: inline-block; left: 0; color: rgba(0, 0, 0, 0.61);">Cart</h2>

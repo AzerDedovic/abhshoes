@@ -34,6 +34,11 @@
 
       	<div>
       	  <div class="imageProduct">
+          <% if item.onSale %>
+          <span class="saleSticker1">
+              <%= image_tag "sale.png" %>
+          </span>
+          <% end %>
           <% if item.image_file_name.present? %>
       		  <%= image_tag item.image %>
           <% else %>
@@ -47,7 +52,11 @@
       		 </p>
 
       		 <p class="price_o"> Price: </p>
-      		 <p class="price_item"> <%= item.price.round(2) %>KM </p>
+          <% if item.onSale %> 
+          <p class="price_item"> <strike><span><%= item.price.round(2) %>KM </span></strike><br/><span style="color:#ce0053;position: absolute;margin-left: -55px;"><%= item.sale_price.round(2) %>KM </span></p>
+          <% else %>
+          <p class="price_item"> <span><%= item.price.round(2) %>KM </span></p>
+          <% end %>
       		 <p class="quantity_cart"> Quantity: </p>
       		 <p class="quantity_item"> <%= item.quantity %>   </p>
       	

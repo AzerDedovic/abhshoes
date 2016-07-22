@@ -76,7 +76,9 @@ background-color:transparent;
 transform:translatey(-100px);
 -webkit-transition:all .2s ease-in-out;
 transition:all .2s ease-in-out;
-padding:50px;
+padding-top: 0px;
+margin-top: 70px;
+margin-bottom: -38px;
 }
 
 .name{
@@ -93,7 +95,7 @@ background-color:transparent;
 transform:translatey(-100px);
 -webkit-transition:all .2s ease-in-out;
 transition:all .2s ease-in-out;
-padding:50px;
+padding:30px;
 
 }
 
@@ -110,11 +112,30 @@ opacity:0;
 filter:alpha(opacity=0);
 -webkit-transition:all .2s ease-in-out;
 transition:all .2s ease-in-out;
+margin:4px 0 0;
+padding:0px 14px;
+}
+
+.hovereffect info1{
+text-decoration:none;
+display:inline-block;
+text-transform:uppercase;
+font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+color:#fff;
+font-weight: bold;
+font-size:17px;
+background-color:transparent;
+opacity:0;
+filter:alpha(opacity=0);
+-webkit-transition:all .2s ease-in-out;
+transition:all .2s ease-in-out;
 margin:1px 0 0;
 padding:0px 14px;
 }
 
-
+.info1{
+  color: white;
+}
 
 .hovereffect:hover img {
 -ms-transform:scale(1.2);
@@ -146,3 +167,9 @@ a:hover {
     color: rgba(221, 221, 221, 0.52);
 }
 
+.saleSticker2{
+  position: absolute;
+  padding-left: 25px;
+  margin-top: -10px;
+  z-index: 10;
+}

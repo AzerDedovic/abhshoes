@@ -31,6 +31,8 @@ Rails.application.routes.draw do
       get 'detail'
       get 'show'
       get 'products'
+      get 'sales'
+      get 'sales_products'
     end
   end
  

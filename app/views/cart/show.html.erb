@@ -13,11 +13,20 @@
         
       	<% @sum=0 %>
       	<% @items.each do |item| %>
+        <% if Product.find_by(id: item.product_id).onSale %>
+        <% @sum=@sum+(Product.find_by(id: item.product_id).sale_price.round(2) * item.quantity) %>
+        <% else %>
       	<% @sum=@sum+(Product.find_by(id: item.product_id).price.round(2) * item.quantity) %>
+        <% end %>
         <% @brand_id=Product.find_by(id: item.product_id).brand_id %>
 
       	<div>
           <div class="imageProduct">
+          <% if Product.find_by(id: item.product_id).onSale %>
+          <span class="saleSticker1">
+              <%= image_tag "sale.png" %>
+          </span>
+          <% end %>
           <% if Product.find_by(id: item.product_id).image_file_name.present? %>
             <%= image_tag Product.find_by(id: item.product_id).image.url(:small) %>
             <% else %>
@@ -31,7 +40,11 @@
       		ID: <%= item.product_id %> </p>
 
       		<p class="price_o"> Price: </p>
-      		<p class="price_item"> <%= Product.find_by(id: item.product_id).price.round(2) %>KM </p>
+          <% if Product.find_by(id: item.product_id).onSale %> 
+      		<p class="price_item"> <strike><span><%= Product.find_by(id: item.product_id).price.round(2) %>KM </span></strike><br/><span style="color:#ce0053;position: absolute;margin-left: -61px;"><%= Product.find_by(id: item.product_id).sale_price.round(2) %>KM </span></p>
+          <% else %>
+          <p class="price_item"> <span><%= Product.find_by(id: item.product_id).price.round(2) %>KM </span></p>
+          <% end %>
       		<p class="quantity_cart"> Quantity: </p>
       		<p class="quantity_item"> <%= item.quantity %>   </p>
         </div>

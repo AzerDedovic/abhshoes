@@ -47,7 +47,46 @@ class ProductController < ApplicationController
 
 	end
 
+	def sales
+		@user=current_user
+		@colors=Color.all.to_a
+		@sizes=Size.all.to_a
+		@brands=Brand.all.to_a
 
+		@products=Product.where(onSale: true)
+	end
+
+	def sales_products
+
+		@user=current_user
+		@tag=params[:tag]
+		@min=params[:min]
+		@max=params[:max]
+		@color_id=params[:color]
+		@size_id=params[:size]
+		@brand_id=params[:brand]
+
+		@products_id_color=Variant.where(color_id: @color_id).select('product_id')
+		@products_id_size=Variant.where(size_id: @size_id).select('product_id')
+
+
+		
+		@products=Product.where(onSale: true)
+
+		@products=@products.where(onSale: true, sale_price: @min..@max) if params[:min] && params[:max]
+		
+		@products=@products.where(id: @products_id_color) if params[:color]
+		@products=@products.where(id: @products_id_size) if params[:size]
+
+		@products=@products.where(brand_id: @brand_id) if params[:brand]
+
+		@products=@products.where(onSale: true).order("sale_price ASC").to_a if params[:price_ASC]
+		@products=@products.where(onSale: true).order("sale_price DESC").to_a if params[:price_DESC]
+
+		
+
+
+	end
 
 	
 

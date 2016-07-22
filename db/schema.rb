@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160721124410) do
+ActiveRecord::Schema.define(version: 20160722133756) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -115,8 +115,8 @@ ActiveRecord::Schema.define(version: 20160721124410) do
     t.integer  "size"
     t.string   "color"
     t.integer  "quantity"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
     t.integer  "order_id"
     t.string   "brand"
     t.string   "image_file_name"
@@ -124,6 +124,8 @@ ActiveRecord::Schema.define(version: 20160721124410) do
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.string   "picture"
+    t.boolean  "onSale",             default: false
+    t.decimal  "sale_price"
   end
 
   add_index "order_items", ["order_id"], name: "index_order_items_on_order_id", using: :btree

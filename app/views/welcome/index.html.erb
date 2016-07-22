@@ -12,9 +12,46 @@
     </div>
   
     <div class="col-md-10">
-      <h4 style="margin-right:10px"> Featured Products </h4>
+    <div>
+      <h4 style="margin-right:10px; color:#ce0053;"> Sale </h4>
+      <% @sales.each do |s| %>
+        <div class="image hovereffect">
+        <% if s.onSale %>
+          <span class="saleSticker2">
+            <%= image_tag "sale.png" %>
+          </span>
+        <% end %>
+          <span style="cursor:pointer">
+          <% if s.image_file_name.present? %>
+          <%= image_tag s.image.url(:mid) %>
+          <% else %>
+          <%= image_tag s.picture, :size => "180x180" %>
+          <% end %>
+            <a class="overlay" id="overlay" data-id="<%=s.id%>" onclick="getID(this);">
+              <h2> <%= s.name %></h2>
+              <% if s.onSale %>
+              <strike style="color: #ce0053"><span class="info1"><%= s.price.round(2) %> KM</span> </strike></br>
+              <p class="info"><%= s.sale_price.round(2) %> KM</p>
+              <% else %>
+              <p class="info"><%= s.price.round(2) %> KM</p>
+              <% end %>
+            </a> </span>
+        </div>
+      <% end %>
+      
+      </div>
+      <br />
+      <a href="/product/sales"><h4 style="margin-right:10px; margin-top:433px; color:#ce0053;"> See All >> </h4></a>
+      </br>
+      <div style="margin-top:10px;">
+      <h4 style="margin-right:10px;"> Featured Products </h4>
       <% @featured_product.each do |f| %>
         <div class="image hovereffect">
+        <% if f.onSale %>
+          <span class="saleSticker2">
+            <%= image_tag "sale.png" %>
+          </span>
+        <% end %>
           <span style="cursor:pointer">
           <% if f.image_file_name.present? %>
           <%= image_tag f.image.url(:mid) %>
@@ -23,10 +60,16 @@
           <% end %>
             <a class="overlay" id="overlay" data-id="<%=f.id%>" onclick="getID(this);">
               <h2> <%= f.name %></h2>
+              <% if f.onSale %>
+              <strike style="color: #ce0053"><span class="info1"><%= f.price.round(2) %> KM</span> </strike></br>
+              <p class="info"><%= f.sale_price.round(2) %> KM</p>
+              <% else %>
               <p class="info"><%= f.price.round(2) %> KM</p>
+              <% end %>
             </a> </span>
         </div>
       <% end %>
+      </div>
     </div>
   
     <div class="col-md-1">

@@ -10,6 +10,11 @@
     margin-bottom: 11px;
     display: inline-block;
 }
+.saleSticker{
+    position: absolute;
+    padding-left: 249px;
+    padding-top: 0px;
+}
 .title{
 	font-size: 15px;
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -160,7 +165,8 @@ background-color:transparent;
 transform:translatey(-100px);
 -webkit-transition:all .2s ease-in-out;
 transition:all .2s ease-in-out;
-padding:50px;
+padding: 45px;
+padding-top: 1px;
 }
 
 .name{

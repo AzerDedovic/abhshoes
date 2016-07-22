@@ -11,12 +11,18 @@
 
 		<div class="col-md-5">
 			<div class="detailImage">
+       <% if @product.onSale %>
+        <div class="saleSticker">
+        <%= image_tag "sale.png" %>
+        </div>
+      <% end %>
       <% if @product.image_file_name.present? %>
         <%= image_tag @product.image.url(:large), :style => "margin-top: 5px" %>
         <%#=link_to image_tag(@product.image.url(:large)), @product.image.url(:original), :popup=>['original_image', 'height=700,width=900'] %> 
       <% else %>
 				<%= image_tag @product.picture, :size => "300x300" %>
       <% end %>
+     
 			</div>
            	
 		</div>
@@ -105,8 +111,11 @@
         
       </br>
         <div>
+        <% if @product.onSale %>
+          <p class="price">Unit Price: <span style="color: #ce0053; margin-right:10px; margin-left: 5px;"><%= @product.sale_price.round(2) %> KM</span><strike style="color: black"><span><%= @product.price.round(2) %> KM</span> </strike> </p>
+        <% else %>
           <p class="price">Unit Price: <span style="color: green"><%= @product.price.round(2) %></span> KM</p>
-    
+        <% end %>
   
           <p class="success"><%= flash[:success] %></p>
         </div>
@@ -139,6 +148,11 @@
     
        <% @featured_product.each do |f| %>
         <div class="image hovereffect">
+        <% if f.onSale %>
+          <span class="saleSticker2">
+            <%= image_tag "sale.png" %>
+          </span>
+        <% end %>
           <span style="cursor:pointer">
           <% if f.image_file_name.present? %>
           <%= image_tag f.image.url(:mid) %>
@@ -147,7 +161,12 @@
           <% end %>
             <a class="overlay" id="overlay" data-id="<%=f.id%>" onclick="getID(this);">
               <h2> <%= f.name %></h2>
+              <% if f.onSale %>
+              <strike style="color: #ce0053"><span class="info1"><%= f.price.round(2) %> KM</span> </strike></br>
+              <p class="info"><%= f.sale_price.round(2) %> KM</p>
+              <% else %>
               <p class="info"><%= f.price.round(2) %> KM</p>
+              <% end %>
             </a> </span>
         </div>
       <% end %>

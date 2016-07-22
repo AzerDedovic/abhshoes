@@ -44,6 +44,10 @@ def create
       @order_item=OrderItem.new()
       @brand_id=Product.find_by(id: item.product_id).brand_id
       @order_item.name=Product.find_by(id: item.product_id).name
+      if Product.find_by(id: item.product_id).onSale
+        @order_item.sale_price=Product.find_by(id: item.product_id).sale_price
+        @order_item.onSale=true
+      end
       @order_item.price=Product.find_by(id: item.product_id).price
       @order_item.picture=Product.find_by(id: item.product_id).picture
       if Product.find_by(id: item.product_id).image_file_name.present?

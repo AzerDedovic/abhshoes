@@ -435,7 +435,7 @@ class AdminController < ApplicationController
       @newCategory=params[:category]
       @newCategory_id=Category.find_by(name: @newCategory).id
       @onSale=params[:onSale]
-      @salePrice=params[:onSale_price]
+      @salePrice=params[:sale_price]
           
       @editShoes=Product.find_by(id: @id)
       @brand=Brand.find_by(id: @editShoes.brand_id).brand
