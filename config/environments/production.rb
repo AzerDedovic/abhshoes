@@ -102,6 +102,6 @@ Rails.application.configure do
 
   config.action_mailer.default_url_options = { :host => 'damp-hollows-28788.herokuapp.com' }
 
-  ENV["REDISTOGO_URL"] = 'redis://redistogo:611388cb179825d613608edabb1e43a0@catfish.redistogo.com:11004/'
+  #ENV["REDISTOGO_URL"] = 'redis://redistogo:611388cb179825d613608edabb1e43a0@catfish.redistogo.com:11004/'
   
 end
