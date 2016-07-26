@@ -1,0 +1,28 @@
+<h2> Dear <%= @user.username %>, </h2>
+
+<h4>We are happy to hear that you are interested in our products, and we are pleased to make the following offer for this week: </h4> <br/> <br/>
+
+<%= stylesheet_link_tag "product.css" %> 
+<% @products.each do |product| %>
+ 
+
+<span class="imageProduct" style="display: inline-block;">
+  
+  <% if product.image_file_name.present? %>
+  <%= link_to (image_tag product.image.url(:small)), :controller => "product", :action => "detail", :id => product.id %>
+
+  <% else %>
+  <%= link_to (image_tag product.picture, :size => "120x120"), :controller => "product", :action => "detail", :id => product.id %>
+  <% end %>
+  
+  <% if product.onSale %> 
+  <h4> <%= product.name %> <br/><%= Brand.find_by(id: product.brand_id).brand %><br/> <span style="color: #ce0053; margin-right:5px;"><%= product.sale_price.round(2) %> KM </span><strike><span><%= product.price.round(2) %> KM </span></strike>
+  </h4>
+  <% else %>  
+  <h4> <%= product.name %> </br><%= Brand.find_by(id: product.brand_id).brand %></br> <%= product.price.round(2) %> KM 
+  </h4>
+  <% end %>
+  
+ 
+</span>
+<% end %>

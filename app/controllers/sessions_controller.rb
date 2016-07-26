@@ -11,6 +11,7 @@ class SessionsController < ApplicationController
   	else
       if user.email_confirmed
   		  sign_in user
+        
   		  #redirect_to user
           if user.admin
           redirect_to url_for(:controller => :admin, :action => :dashboard)
