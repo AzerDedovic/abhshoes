@@ -1,5 +1,5 @@
 class Newsletter < ActionMailer::Base
-	default :from => 'admin@abhshoes.ba'
+	default :from => 'newsletter@abhshoes.ba'
 
   def newsletter(email)
     @user = User.find_by(username: email)
