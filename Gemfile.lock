@@ -65,6 +65,9 @@ GEM
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
     builder (3.2.2)
+    bullet (5.2.0)
+      activesupport (>= 3.0.0)
+      uniform_notifier (~> 1.10.0)
     byebug (9.0.5)
     celluloid (0.17.3)
       celluloid-essentials
@@ -254,6 +257,7 @@ GEM
       unf_ext
     unf_ext (0.0.7.2)
     unf_ext (0.0.7.2-x64-mingw32)
+    uniform_notifier (1.10.0)
     web-console (2.3.0)
       activemodel (>= 4.0)
       binding_of_caller (>= 0.7.2)
@@ -269,6 +273,7 @@ DEPENDENCIES
   aws-sdk (< 2.0)
   bcrypt
   bootstrap-sass (~> 3.3.6)
+  bullet
   byebug
   coffee-rails (~> 4.1.0)
   coffee-script-source (= 1.8.0)

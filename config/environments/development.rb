@@ -16,7 +16,7 @@ Rails.application.configure do
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = true
 
-  
+ 
 
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
 
@@ -43,12 +43,24 @@ Rails.application.configure do
   #Paperclip.options[:command_path] = 'C:\Program Files\ImageMagick-7.0.1-Q16'
   #Paperclip.options[:command_path] = 'C:\Program Files (x86)\GnuWin32\bin'
   
+
   
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 
   ENV["REDISTOGO_URL"] = 'redis://redistogo:611388cb179825d613608edabb1e43a0@catfish.redistogo.com:11004/'
 
- 
+ config.after_initialize do
+    #Enable bullet in your application
+    Bullet.enable = true
+
+    Bullet.alert = true
+
+    Bullet.console = true
+
+    Bullet.rails_logger = true
+
+    Bullet.bullet_logger = true
+ end
   
 end
