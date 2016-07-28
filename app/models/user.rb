@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
    has_many :orders
 
    before_create :confirmation_token
+   before_create { generate_token(:remember_token) }
 
    #attr_accessible :username, :password
    validates :username, :presence => true
@@ -63,6 +64,12 @@ class User < ActiveRecord::Base
       if self.confirm_token.blank?
          self.confirm_token = SecureRandom.urlsafe_base64.to_s
       end
+   end
+
+   def generate_token(column)
+      begin
+         self[column] = SecureRandom.urlsafe_base64
+      end while User.exists?(column => self[column])
    end
 
 #   def email_activate
