@@ -76,3 +76,4 @@ gem 'sidetiq'
 gem 'thin'
 
 gem "bullet", :group => "development"
+

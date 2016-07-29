@@ -43,6 +43,7 @@ Rails.application.configure do
   #Paperclip.options[:command_path] = 'C:\Program Files\ImageMagick-7.0.1-Q16'
   #Paperclip.options[:command_path] = 'C:\Program Files (x86)\GnuWin32\bin'
   
+ 
 
   
   # Raises error for missing translations

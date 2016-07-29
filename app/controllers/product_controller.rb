@@ -42,8 +42,6 @@ class ProductController < ApplicationController
 		@products=@products.where(id: @product_category).order("price ASC").to_a if params[:price_ASC]
 		@products=@products.where(id: @product_category).order("price DESC").to_a if params[:price_DESC]
 
-		
-
 
 	end
 
@@ -101,6 +99,21 @@ class ProductController < ApplicationController
 		@chosenColor=params[:color_id]
 		@chosenSize=params[:size_id]
 
+		########### ISPRAVNO N+1 ####################
+		#@shoes=Variant.includes(:color).limit(30)
+
+		#@shoes.each do |k|
+		#	puts k.color.color
+		#end
+		#############################################
+
+		########### POGRESNO N+1 ####################
+		#@shoes=Variant.limit(30)
+
+		#@shoes.each do |k|
+		#	puts k.color.color
+		#end
+		#############################################
 
 		if !@chosenColor.present? and !@chosenSize.present?
 			@sizes_id=Variant.where(product_id: @id).select('size_id')
